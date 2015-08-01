@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "haml-rails", "~> 0.9"
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'aasm'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
