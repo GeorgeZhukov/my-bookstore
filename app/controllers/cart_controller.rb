@@ -8,9 +8,10 @@ class CartController < ApplicationController
     case step
       when :intro
       when :address
-        @cart.shipping_address ||= Address.new
-        @cart.billing_address ||= Address.new
+        @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
+        @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
       when :delivery
+        @delivery_services = DeliveryService.all
       when :payment
         @cart.credit_card ||= CreditCard.new
     end
@@ -21,7 +22,6 @@ class CartController < ApplicationController
     @cart = current_or_guest_user.cart
     case step
       when :intro
-        @items = @cart.order_items
         params[:items].each do |item|
           # todo: check  id
           order_item = @cart.order_items.find(item[:id])

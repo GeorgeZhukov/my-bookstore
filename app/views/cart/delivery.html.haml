@@ -1,6 +1,6 @@
 %h2 Delivery
 = form_tag wizard_path, method: :put do
-  - @cart.delivery_services.each do |ds|
+  - @delivery_services.each do |ds|
     = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds)
     = ds.name
     %br/

@@ -21,4 +21,10 @@ class Book < ActiveRecord::Base
       joins(:author).where("books.title ILIKE ? OR CONCAT(authors.first_name,' ',authors.last_name) ILIKE ?", "%#{query}%", "%#{query}%")
     end
   end
+
+  def self.best_sellers
+    # Group order items by book and return
+    # an array of books
+    OrderItem.group(:book).order(quantity: :desc).count.map { |item| item.first }
+  end
 end
