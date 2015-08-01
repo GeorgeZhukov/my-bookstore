@@ -42,6 +42,7 @@ gem 'simple_form'
 gem 'country_select'
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'rails_admin'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -59,6 +60,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :production do
