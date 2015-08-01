@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'books#index'
 
   resources :books, only: [:index, :show]
+  resources :categories, only: [:index, :show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Project gems
+gem 'bootstrap-sass', '~> 3.3.5'
 gem "haml-rails", "~> 0.9"
 gem 'devise'
 gem 'cancancan', '~> 1.10'
@@ -43,6 +44,8 @@ gem 'country_select'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'rails_admin'
+gem 'kaminari'
+
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

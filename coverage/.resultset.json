@@ -408,6 +408,18 @@
         null,
         null
       ],
+      "/Users/george/projects/ruby/my-bookstore/config/initializers/kaminari_config.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/george/projects/ruby/my-bookstore/config/initializers/mime_types.rb": [
         null,
         null,
@@ -790,6 +802,7 @@
         1,
         null,
         1,
+        1,
         null,
         null,
         null,
@@ -881,6 +894,10 @@
         1,
         null
       ],
+      "/Users/george/projects/ruby/my-bookstore/app/helpers/categories_helper.rb": [
+        1,
+        null
+      ],
       "/Users/george/projects/ruby/my-bookstore/app/helpers/users/omniauth_callbacks_helper.rb": [
         1,
         null
@@ -890,6 +907,8 @@
         1,
         null,
         1,
+        0,
+        0,
         null,
         null,
         1,
@@ -934,6 +953,17 @@
         0,
         0,
         0,
+        null,
+        null
+      ],
+      "/Users/george/projects/ruby/my-bookstore/app/controllers/categories_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
         null,
         null
       ],
@@ -1167,7 +1197,7 @@
         1,
         10,
         9,
-        0,
+        1,
         null,
         null,
         null,
@@ -1184,17 +1214,51 @@
         1,
         null,
         1,
-        14,
+        13,
         null,
         null
       ],
       "/Users/george/projects/ruby/my-bookstore/app/models/order.rb": [
         1,
         1,
+        null,
         1,
         1,
         1,
         1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
         null,
         1,
         8,
@@ -1221,6 +1285,6 @@
         null
       ]
     },
-    "timestamp": 1438436904
+    "timestamp": 1438439033
   }
 }
