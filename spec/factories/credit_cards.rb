@@ -1,12 +1,12 @@
 FactoryGirl.define do
   factory :credit_card do
-    number "MyString"
-CVV "MyString"
-expiration_month 1
-expiration_year 1
-first_name "MyString"
-last_name "MyString"
-user nil
+    number { Faker::Business.credit_card_number }
+    CVV { Faker::Number.number(3) }
+    expiration_month { Faker::Number.between(1, 12) }
+    expiration_year { Faker::Date.between(Date.today, Date.today + 20.years).year }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    association :user, factory: :user
   end
 
 end

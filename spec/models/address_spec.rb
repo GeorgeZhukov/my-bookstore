@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { expect(subject).to validate_presence_of :address }
+  it { expect(subject).to validate_presence_of :zip_code }
+  it { expect(subject).to validate_presence_of :city }
+  it { expect(subject).to validate_presence_of :phone }
 end

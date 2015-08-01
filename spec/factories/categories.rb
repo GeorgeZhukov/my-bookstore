@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :category do
-    title "MyString"
+    sequence(:title) { |n| "#{Faker::Lorem.word}_#{n}" }
   end
 
 end
