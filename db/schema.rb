@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801175330) do
+ActiveRecord::Schema.define(version: 20150801211857) do
 
   create_table "addresses", force: :cascade do |t|
     t.text     "address"
@@ -33,7 +33,10 @@ ActiveRecord::Schema.define(version: 20150801175330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "photo"
+    t.datetime "deleted_at"
   end
+
+  add_index "authors", ["deleted_at"], name: "index_authors_on_deleted_at"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -46,16 +49,21 @@ ActiveRecord::Schema.define(version: 20150801175330) do
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
     t.string   "cover"
+    t.datetime "deleted_at"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
   add_index "books", ["category_id"], name: "index_books_on_category_id"
+  add_index "books", ["deleted_at"], name: "index_books_on_deleted_at"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "categories", ["deleted_at"], name: "index_categories_on_deleted_at"
 
   create_table "credit_cards", force: :cascade do |t|
     t.string   "number"
@@ -100,9 +108,11 @@ ActiveRecord::Schema.define(version: 20150801175330) do
     t.integer  "credit_card_id"
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"
+    t.datetime "deleted_at"
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
+  add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
   add_index "orders", ["delivery_service_id"], name: "index_orders_on_delivery_service_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 

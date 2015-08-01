@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+  acts_as_paranoid
   belongs_to :author
   belongs_to :category
   has_many :ratings
