@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { expect(subject).to belong_to :book }
+  it { expect(subject).to belong_to :user }
 end
