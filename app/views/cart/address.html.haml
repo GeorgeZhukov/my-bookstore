@@ -1,0 +1,16 @@
+%h2 Address
+-#= render partial: "steps"
+
+= form_tag wizard_path, method: :put do
+  .row
+    .col-md-5
+      = simple_fields_for :shipping_address, @cart.shipping_address do |f|
+        = form_errors(@cart.shipping_address).html_safe
+        = render partial: "address_form", locals: {f: f}
+
+    .col-md-5
+      = simple_fields_for :billing_address, @cart.billing_address do |f|
+        = form_errors(@cart.billing_address).html_safe
+        = render partial: "address_form", locals: {f: f}
+
+  = submit_tag

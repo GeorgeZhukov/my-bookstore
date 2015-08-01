@@ -1,0 +1,19 @@
+= form_tag wizard_path, method: :put do
+  %table.table.table-stripped
+    %thead
+      %tr
+        %th Book
+        %th Price
+        %th QTY
+        %th Total
+    %tbody
+      - @cart.order_items.each do |order_item|
+        %tr
+          = hidden_field_tag("items[][id]", order_item.id)
+          %td= order_item.book.title
+          %td= order_item.book.price
+          %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock})
+          %td= order_item.price
+
+  = submit_tag 'Update'
+  = submit_tag 'Checkout', name: "checkout"

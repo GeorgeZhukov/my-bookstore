@@ -1,5 +1,2 @@
-- @categories.each do |category|
-  = link_to category.title, category
-
 = render partial: "book", collection: @books
 = paginate @books

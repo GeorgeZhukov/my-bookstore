@@ -1,0 +1,40 @@
+%h2 Confirm
+
+
+%h3 Shipping address
+%p= @cart.shipping_address.address
+%p= @cart.shipping_address.city
+%p= @cart.shipping_address.zip_code
+%p= link_to 'Edit', wizard_path(:address)
+
+%h3 Billing address
+%p= @cart.billing_address.address
+%p= @cart.billing_address.city
+%p= @cart.billing_address.zip_code
+%p= link_to 'Edit', wizard_path(:address)
+
+%h3 Delivery
+%p= @cart.delivery_service.name
+%p= link_to 'Edit', wizard_path(:delivery)
+
+%h3 Credit Card
+%p= @cart.credit_card.number
+%p= link_to 'Edit', wizard_path(:payment)
+
+
+%table.table.table-stripped
+  %thead
+    %tr
+      %th Book
+      %th Price
+      %th QTY
+      %th Total
+  %tbody
+  - @cart.order_items.each do |order_item|
+    %tr
+      %td= order_item.book
+      %td= order_item.book.price
+      %td= order_item.quantity
+      %td= order_item.price
+
+= link_to 'Place Order', "#"

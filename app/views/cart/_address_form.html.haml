@@ -1,0 +1,15 @@
+.form-group
+  = f.input :address
+
+.form-group
+  = f.input :zip_code
+
+.form-group
+  = f.input :city
+
+.form-group
+  = f.input :phone
+
+.form-group
+  = f.input :country
+  -#= f.collection_select :country, Country.all, :last, :first, {}, {class: "form-control"}

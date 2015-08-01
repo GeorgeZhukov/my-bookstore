@@ -7,14 +7,12 @@ class CartController < ApplicationController
     @cart = current_or_guest_user.cart
     case step
       when :intro
-        @items = @cart.order_items
       when :address
-        @shipping_address= @cart.shipping_address || Address.new
-        @billing_address = @cart.billing_address || Address.new
+        @cart.shipping_address ||= Address.new
+        @cart.billing_address ||= Address.new
       when :delivery
-        @delivery_services = DeliveryService.all
       when :payment
-        @credit_card = @cart.credit_card || CreditCard.new
+        @cart.credit_card ||= CreditCard.new
     end
     render_wizard
   end

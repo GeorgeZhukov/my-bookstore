@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :init_categories
 
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
   rescue ActiveRecord::RecordNotFound # if session[:guest_user_id] invalid
     session[:guest_user_id] = nil
     guest_user if with_retry
+  end
+
+  def init_categories
+    @categories = Category.all
   end
 
   private

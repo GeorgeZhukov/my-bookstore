@@ -3,7 +3,6 @@ class BooksController < ApplicationController
 
   def index
     @books = @books.page params[:page]
-    @categories = Category.all
   end
 
   def show
