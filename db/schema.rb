@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801002456) do
+ActiveRecord::Schema.define(version: 20150801004026) do
 
   create_table "addresses", force: :cascade do |t|
     t.text     "address"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150801002456) do
     t.text     "biography"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "photo"
   end
 
   create_table "books", force: :cascade do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150801002456) do
     t.integer  "category_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+    t.string   "cover"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(version: 20150801002456) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
