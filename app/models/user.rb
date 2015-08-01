@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+  has_many :orders
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -27,4 +29,5 @@ class User < ActiveRecord::Base
       "http://gravatar.com/avatar/#{gravatar_id}.png?s=128"
     end
   end
+
 end

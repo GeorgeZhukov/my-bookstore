@@ -2,7 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Book
+    can [:read, :add_to_cart], Book
+    can [:read], Category
 
     # Define abilities for the passed in user here. For example:
     #

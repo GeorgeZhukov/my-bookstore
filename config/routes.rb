@@ -9,8 +9,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'books#index'
 
-  resources :books, only: [:index, :show]
+  resources :books, only: [:index, :show] do
+    member do
+      put 'add-to-cart'
+    end
+  end
   resources :categories, only: [:index, :show]
+  resources :cart, only: [:show, :update]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

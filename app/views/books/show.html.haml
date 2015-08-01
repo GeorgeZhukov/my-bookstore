@@ -1,2 +1,7 @@
-%h1 Books#show
-%p Find me in app/views/books/show.html.haml
+%h2= @book.title
+= image_tag @book.cover
+%p= @book.description
+%strong= "Price: $#{@book.price}"
+%strong= "Books in stock: #{@book.books_in_stock}"
+
+= link_to "add to cart", add_to_cart_book_path(@book), method: :put

@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_or_guest_user)
+  end
+
   # find guest_user object associated with the current session,
   # creating one as needed
   def guest_user(with_retry = true)
@@ -31,7 +35,7 @@ class ApplicationController < ActionController::Base
   private
 
   def create_guest_user
-    u = User.create(:name => "guest", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
+    u = User.create(first_name: "guest", last_name: "guest", email: "guest_#{Time.now.to_i}#{rand(100)}@example.com")
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     u
