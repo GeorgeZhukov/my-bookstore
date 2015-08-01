@@ -1,5 +1,6 @@
 %h1 Welcome#index
 %p Find me in app/views/welcome/index.html.haml
+= image_tag(current_user.avatar_url)
 = image_tag(@book.cover_url(:standard))
 = form_for(@book, url: "/welcome/test", method: :post) do |f|
   = f.hidden_field(:cover_cache)
