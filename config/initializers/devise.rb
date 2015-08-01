@@ -239,6 +239,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, "1383086078665837", "4536a1eb6f307335efddef63ada97339",
+                  scope: "email",
+                  image_size: {width: 128, height: 128},
+                  info_fields: "name, email, first_name, last_name"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -262,4 +266,5 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
 end

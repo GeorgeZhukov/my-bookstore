@@ -36,6 +36,7 @@ gem "haml-rails", "~> 0.9"
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'aasm'
+gem 'omniauth-facebook'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -52,6 +53,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :production do
