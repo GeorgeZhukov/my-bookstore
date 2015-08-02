@@ -1,2 +1,6 @@
+= simple_form_for :search, method: :get do |f|
+  = f.input :search, placeholder: "Book title or author name"
+  = f.button :submit, "Search"
+
 = render partial: "book", collection: @books
 = paginate @books

@@ -51,8 +51,10 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_total_price
-    return 0 if order_items.empty?
-    self.order_items.map(&:price).inject(&:+) + delivery_service.price
+    result = 0
+    result += order_items.map(&:price).inject(&:+) if self.order_items.exists?
+    result += delivery_service.price if self.delivery_service
+    result
   end
 end
 

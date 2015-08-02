@@ -4,6 +4,9 @@ class Ability
   def initialize(user)
     can [:read, :add_to_cart], Book
     can [:read], Category
+    can [:read], Author
+    can :create, Rating, user_id: user.id
+    can :read, Rating, Rating.approved
 
     # Define abilities for the passed in user here. For example:
     #

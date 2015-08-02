@@ -2,10 +2,15 @@ class BooksController < ApplicationController
   load_and_authorize_resource
 
   def index
+    if params[:search]
+      @books = @books.search params[:search][:search]
+    end
     @books = @books.page params[:page]
   end
 
   def show
+    @ratings = @book.ratings.approved.latest
+    @new_rating = current_or_guest_user.ratings.build
   end
 
   def add_to_cart
@@ -19,4 +24,6 @@ class BooksController < ApplicationController
     # redirect_to action: "show"
     redirect_to action: :index
   end
+
+
 end

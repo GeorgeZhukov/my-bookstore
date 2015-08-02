@@ -3,5 +3,14 @@
 %p= @book.description
 %strong= "Price: $#{@book.price}"
 %strong= "Books in stock: #{@book.books_in_stock}"
+= form_tag add_to_cart_book_path, method: :put do
+  = number_field_tag :quantity, 1
+  = submit_tag "add to cart"
 
-= link_to "add to cart", add_to_cart_book_path(@book), method: :put
+- @ratings.each do |rating|
+  = rating.review
+
+= simple_form_for @new_rating, url: book_ratings_path(@book) do |f|
+  = f.input :number
+  = f.input :review
+  = f.button :submit

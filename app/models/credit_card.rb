@@ -13,7 +13,7 @@ class CreditCard < ActiveRecord::Base
             numericality: {
                 only_integer: true,
                 greater_than_or_equal_to: Time.now.year,
-                less_than_or_equal_to: Time.now.year + 20
+                less_than_or_equal_to: Time.now.year + 10
             }
   validates :first_name, presence: true
   validates :last_name, presence: true
