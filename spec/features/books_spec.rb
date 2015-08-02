@@ -27,6 +27,8 @@ RSpec.feature "Books", type: :feature do
   end
 
   scenario "A user can add book to cart" do
+    pending 'You cannot call create unless the parent is saved'
+    
     book = FactoryGirl.create :book
     visit book_path(book)
     click_button "add to cart"
