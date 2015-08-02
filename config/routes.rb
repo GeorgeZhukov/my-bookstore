@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: {
+                       omniauth_callbacks: "users/omniauth_callbacks",
+                       registrations: 'registrations'
+                   }
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # The priority is based upon order of creation: first created -> highest priority.

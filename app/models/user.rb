@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   has_many :orders
   has_many :ratings
   belongs_to :billing_address, class_name: "Address"
