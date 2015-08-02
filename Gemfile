@@ -68,6 +68,7 @@ end
 group :test do
   gem "codeclimate-test-reporter"
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :production do
