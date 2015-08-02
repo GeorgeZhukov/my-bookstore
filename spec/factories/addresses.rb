@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :address do
-    address "MyText"
-zip_code "MyString"
-city "MyString"
-phone "MyString"
-user nil
-country "MyString"
+    address { Faker::Address.street_address }
+    zip_code { Faker::Address.zip_code }
+    city { Faker::Address.city }
+    phone { Faker::PhoneNumber.cell_phone }
+    country "us"
   end
 
 end
