@@ -1,2 +1,4 @@
 %h1 Categories#show
 %p Find me in app/views/categories/show.html.haml
+
+= render partial: "books/book", collection: @category.books
