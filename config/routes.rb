@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: {
-                       omniauth_callbacks: "users/omniauth_callbacks",
-                       registrations: 'registrations'
+                       registrations: 'registrations',
+                       omniauth_callbacks: 'users/omniauth_callbacks'
                    }
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :cart, only: [:show, :update]
-
+  resources :orders, only: [:index, :show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

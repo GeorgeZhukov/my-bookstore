@@ -1,0 +1,11 @@
+%h1 Orders#index
+%p Find me in app/views/orders/index.html.haml
+
+%h2 Waiting for processing
+= render @orders.in_queue
+
+%h2 In delivery
+= render @orders.in_delivery
+
+%h2 Delivered
+= render @orders.delivered

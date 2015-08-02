@@ -7,6 +7,7 @@ class Ability
     can [:read], Author
     can :create, Rating, user_id: user.id
     can :read, Rating, Rating.approved
+    can :read, Order, user_id: user.id
 
     # Define abilities for the passed in user here. For example:
     #
