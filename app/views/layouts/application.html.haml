@@ -16,4 +16,7 @@
             = link_to category.title, category
             %br/
         .col-md-9
+          - flash.each do |k,v|
+            = content_tag :div, v, class: "flash #{k}"
+
           = yield

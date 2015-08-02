@@ -10,6 +10,7 @@ class RatingsController < ApplicationController
     rating = current_or_guest_user.ratings.build(rating_params)
     @book.ratings << rating
     # create_response(rating, "Your rating has been successfully sent to review.", book_path(@book))
+    flash[:notice] = "Thank you. The rating sent to administrator for review."
     redirect_to @book
   end
 
