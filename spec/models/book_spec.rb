@@ -32,4 +32,32 @@ RSpec.describe Book, type: :model do
       expect(founded.first).to eq subject
     end
   end
+
+  describe ".best_sellers" do
+    before do
+      10.times { FactoryGirl.create :book }
+    end
+
+    it "returns empty when no order items" do
+      expect(Book.best_sellers).to be_empty
+    end
+
+    it "returns correct book when one order item exists" do
+      item = FactoryGirl.create :order_item
+      expect(Book.best_sellers).to match_array(item.book)
+    end
+
+    it "returns two books" do
+      item1 = FactoryGirl.create :order_item
+      item2 = FactoryGirl.create :order_item
+      expect(Book.best_sellers).to match_array([item1.book, item2.book])
+    end
+
+    it "returns books in correct order dependent of quantity in order items" do
+      item1 = FactoryGirl.create :order_item, quantity: 3
+      item2 = FactoryGirl.create :order_item, quantity: 5
+      item3 = FactoryGirl.create :order_item, quantity: 2
+      expect(Book.best_sellers).to eq [item2.book, item1.book, item3.book]
+    end
+  end
 end
