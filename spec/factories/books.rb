@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :book do
-    title { Faker::Lorem.word }
+    title { Faker::Book.title }
     short_description { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     price { Faker::Commerce.price }
-    books_in_stock { Faker::Number.number(2) }
+    books_in_stock { Faker::Number.between(50, 200) }
     association :author, factory: :author
     association :category, factory: :category
   end
