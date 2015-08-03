@@ -1,7 +1,7 @@
 class CartController < ApplicationController
   include Wicked::Wizard
 
-  steps :intro, :address, :delivery, :payment, :confirm
+  steps :intro, :address, :delivery, :payment, :confirm, :checkout
 
   def show
     @cart = current_user.cart
@@ -14,6 +14,8 @@ class CartController < ApplicationController
         @delivery_services = DeliveryService.all
       when :payment
         @cart.credit_card ||= CreditCard.new
+      when :checkout
+        @cart.checkout!
     end
     render_wizard
   end

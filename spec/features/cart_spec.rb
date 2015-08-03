@@ -95,4 +95,62 @@ RSpec.feature "Cart", type: :feature do
     end
     expect(page).to have_content "Place Order"
   end
+
+  scenario "When user visit addresses step its init form with user addresses" do
+    user = FactoryGirl.create :user
+    login_as(user, :scope => :user)
+
+    user.shipping_address = FactoryGirl.create :address
+    user.billing_address = FactoryGirl.create :address
+    user.save
+    visit cart_path(:address)
+    expect(page).to have_content user.shipping_address.address
+    expect(page).to have_content user.billing_address.address
+  end
+
+  scenario "A user can checkout the order" do
+    credit_card = FactoryGirl.create :credit_card
+    # Put addresses to show last page
+    address = FactoryGirl.create :address
+    visit cart_path(:address)
+    # click_button "Checkout"
+    # Shipping address
+    fill_in "shipping_address_address", with: address.address
+    fill_in "shipping_address_zip_code", with: address.zip_code
+    fill_in "shipping_address_city", with: address.city
+    fill_in "shipping_address_phone", with: address.phone
+    select "Ukraine", from: "shipping_address_country"
+
+    # Billing address
+    fill_in "billing_address_address", with: address.address
+    fill_in "billing_address_zip_code", with: address.zip_code
+    fill_in "billing_address_city", with: address.city
+    fill_in "billing_address_phone", with: address.phone
+    select "Ukraine", from: "billing_address_country"
+    click_button "Save changes"
+
+    # put delivery service
+
+    # init delivery services
+    delivery_services = []
+    3.times { delivery_services << FactoryGirl.create(:delivery_service) }
+
+    visit cart_path(:delivery)
+    choose("delivery_#{delivery_services[1].id}")
+    click_button "Save changes"
+
+    # Actually code to test current scenario
+    visit cart_path(:payment)
+    within "#new_credit_card" do
+      fill_in "Number", with: credit_card.number
+      fill_in "Cvv", with: credit_card.CVV
+      select "7", from: "Expiration month"
+      select Date.today.year, from: "Expiration year"
+      fill_in "First name", with: credit_card.first_name
+      fill_in "Last name", with: credit_card.last_name
+      click_button "Save changes"
+    end
+    click_link "Place Order"
+    expect(page).to have_content "COmplete"
+  end
 end
