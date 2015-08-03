@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.avatar = auth.info.image
@@ -24,7 +24,16 @@ class User < ActiveRecord::Base
   end
 
   def cart
-    self.orders.in_progress.first_or_create
+    return self.orders.in_progress.first_or_create
+    s = self.orders.in_progress.count
+    if self.orders.in_progress.exists?
+      self.orders.in_progress
+    else
+      order = Order.create(state: :in_progress, user: self)
+      q = order.user == self
+      i  =5
+      return order
+    end
   end
 
   def avatar_url
