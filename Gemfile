@@ -46,6 +46,7 @@ gem 'cloudinary'
 gem 'rails_admin'
 gem 'kaminari'
 gem "paranoia", "~> 2.0"
+gem 'rails_admin_aasm'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

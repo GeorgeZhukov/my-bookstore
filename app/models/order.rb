@@ -38,8 +38,25 @@ class Order < ActiveRecord::Base
     end
   end
 
+  rails_admin do
+    list do
+      field :state, :state
+    end
+    edit do
+      field :state, :state
+    end
+  end
+
   def notify_user
     # todo: send email
+  end
+
+  def take_books
+    order_items.map(&:take_books)
+  end
+
+  def restore_books
+    order_items.map(&:restore_books)
   end
 
   def add_book(book, quantity=1)
