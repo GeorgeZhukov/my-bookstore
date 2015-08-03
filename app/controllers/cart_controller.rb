@@ -38,13 +38,10 @@ class CartController < ApplicationController
         is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
 
         unless is_billing_updated and is_shipping_updated
-          @billing_address = @cart.billing_address
-          @shipping_address = @cart.shipping_address
           return render_wizard
         end
       when :delivery
-        delivery_service = DeliveryService.find(params[:delivery])
-        @cart.delivery_service = delivery_service
+        @cart.delivery_service = DeliveryService.find(params[:delivery])
       when :payment
         @credit_card = @cart.credit_card ||= CreditCard.new
         return render_wizard unless @cart.credit_card.update(credit_card_params)

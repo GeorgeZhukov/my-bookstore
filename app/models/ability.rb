@@ -2,18 +2,16 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, :all
-    return
-    can :access, :rails_admin
-    can :dashboard
-    can [:read, :add_to_cart], Book
-    can [:read], Category
-    can [:read], Author
-    can :create, Rating, user_id: user.id
-    can :read, Rating, Rating.approved
-    can :read, Order, user_id: user.id
-
-
+    if user.is_admin
+      can :manage, :all
+    else
+      can [:read, :add_to_cart], Book
+      can [:read], Category
+      can [:read], Author
+      can :create, Rating, user_id: user.id
+      can :read, Rating, Rating.approved
+      can :read, Order, user_id: user.id
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

@@ -47,6 +47,8 @@ gem 'rails_admin'
 gem 'kaminari'
 gem "paranoia", "~> 2.0"
 gem 'rails_admin_aasm', git: "https://github.com/zcpdog/rails_admin_aasm.git"
+gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
+
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

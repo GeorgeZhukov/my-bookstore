@@ -22,7 +22,7 @@ class OrderItem < ActiveRecord::Base
     book.price * quantity
   end
 
-  # Decrease books quantity when order sent to customer
+  # Decrease books quantity when order sent to custom
   def take_books
     book.books_in_stock -= quantity
   end
