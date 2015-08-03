@@ -4,12 +4,12 @@ class CartController < ApplicationController
   steps :intro, :address, :delivery, :payment, :confirm
 
   def show
-    @cart = current_or_guest_user.cart
+    @cart = current_user.cart
     case step
       when :intro
       when :address
-        @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
-        @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
+        @cart.shipping_address ||= current_user.shipping_address || Address.new
+        @cart.billing_address ||= current_user.billing_address || Address.new
       when :delivery
         @delivery_services = DeliveryService.all
       when :payment
@@ -19,7 +19,7 @@ class CartController < ApplicationController
   end
 
   def update
-    @cart = current_or_guest_user.cart
+    @cart = current_user.cart
     case step
       when :intro
         params[:items].each do |item|

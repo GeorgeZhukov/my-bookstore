@@ -24,16 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def cart
-    return self.orders.in_progress.first_or_create
-    s = self.orders.in_progress.count
-    if self.orders.in_progress.exists?
-      self.orders.in_progress
-    else
-      order = Order.create(state: :in_progress, user: self)
-      q = order.user == self
-      i  =5
-      return order
-    end
+    self.orders.in_progress.first_or_create
   end
 
   def avatar_url

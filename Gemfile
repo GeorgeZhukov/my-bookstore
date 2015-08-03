@@ -46,7 +46,6 @@ gem 'cloudinary'
 gem 'rails_admin'
 gem 'kaminari'
 gem "paranoia", "~> 2.0"
-gem "devise-guests"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

@@ -10,14 +10,14 @@ class BooksController < ApplicationController
 
   def show
     @ratings = @book.ratings.approved.latest
-    @new_rating = current_or_guest_user.ratings.build
+    @new_rating = current_user.ratings.build
   end
 
   def add_to_cart
     book = Book.find(params[:id])
     authorize! :read, book
     quantity = params[:add_to_cart].fetch(:quantity, 1).to_i
-    @cart = current_or_guest_user.cart
+    @cart = current_user.cart
     @cart.add_book(book, quantity)
     @cart.save
     flash[:notice] = "Book was successfully added to cart."

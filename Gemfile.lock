@@ -98,8 +98,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-guests (0.3.3)
-      devise
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.24)
@@ -331,7 +329,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   country_select
   devise
-  devise-guests
   factory_girl_rails
   faker!
   haml-rails (~> 0.9)

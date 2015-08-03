@@ -9,8 +9,8 @@ RSpec.feature "Cart", type: :feature do
 
     # Change quantity
     visit cart_path(:intro)
-    fill_in "#items__quantity", with: 5
+    fill_in "items__quantity", with: 5
     click_button "Update"
-    expect(find_field('#items__quantity').value).to eq 5
+    expect(find_field('items__quantity').value).to eq "5"
   end
 end
