@@ -34,7 +34,7 @@ class Order < ActiveRecord::Base
     end
 
     event :cancel do
-      transitions from: [:in_queue, :in_delivery, :delivered], to: :canceled
+      transitions from: [:in_queue, :in_delivery], to: :canceled
     end
   end
 
@@ -45,6 +45,12 @@ class Order < ActiveRecord::Base
     edit do
       field :state, :state
     end
+
+    state({
+              events: {confirm: 'btn-warning', finish: 'btn-success', cancel: 'btn-danger'},
+              states: {in_queue: 'label-info', in_delivery: 'label-warning', delivered: 'label-success'},
+              disable: [:checkout]
+          })
   end
 
   def notify_user

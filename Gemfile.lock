@@ -5,6 +5,14 @@ GIT
     faker (1.4.3)
       i18n (~> 0.5)
 
+GIT
+  remote: https://github.com/zcpdog/rails_admin_aasm.git
+  revision: 753bdc6290d32c56377c07f93a88b4b4b806287c
+  specs:
+    rails_admin_aasm (0.0.5)
+      aasm
+      rails_admin
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -221,9 +229,6 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
-    rails_admin_aasm (0.0.5)
-      aasm
-      rails_admin
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.3)
     railties (4.2.3)
@@ -344,7 +349,7 @@ DEPENDENCIES
   rails (= 4.2.3)
   rails_12factor
   rails_admin
-  rails_admin_aasm
+  rails_admin_aasm!
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
