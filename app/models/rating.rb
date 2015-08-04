@@ -1,5 +1,5 @@
 class Rating < ActiveRecord::Base
-  include AASM
+  # include AASM
 
   before_validation do
     # Default values
@@ -17,18 +17,33 @@ class Rating < ActiveRecord::Base
   belongs_to :book
   belongs_to :user
 
-  aasm column: "state" do
-    state :pending, initial: true
-    state :approved
-    state :rejected
+  # aasm column: "state" do
+  #   state :pending, initial: true
+  #   state :approved
+  #   state :rejected
+  #
+  #   event :approve do
+  #     transitions from: :pending, to: :approved
+  #   end
+  #
+  #   event :reject do
+  #     transitions from: [:pending, :approved], to: :rejected
+  #   end
+  # end
+
+  state_machine :state, initial: :pending do
 
     event :approve do
-      transitions from: [:pending, :rejected], to: :approved
+      transition :pending => :approved
     end
 
     event :reject do
-      transitions from: [:pending, :approved], to: :rejected
+      transition [:pending, :approved] => :rejected
     end
+
+    state :pending
+    state :approved
+    state :rejected
   end
 
   rails_admin do

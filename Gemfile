@@ -36,7 +36,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem "haml-rails", "~> 0.9"
 gem 'devise'
 gem 'cancancan', '~> 1.10'
-gem 'aasm'
+# gem 'aasm'
 gem 'omniauth-facebook'
 gem 'wicked'
 gem 'simple_form'
@@ -46,7 +46,9 @@ gem 'cloudinary'
 gem 'rails_admin'
 gem 'kaminari'
 gem "paranoia", "~> 2.0"
-gem 'rails_admin_aasm', git: "https://github.com/zcpdog/rails_admin_aasm.git"
+# gem 'rails_admin_aasm', git: "https://github.com/zcpdog/rails_admin_aasm.git"
+gem 'state_machines-activerecord'
+gem 'rails_admin_state'
 gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 
 

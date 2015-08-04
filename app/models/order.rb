@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  include AASM
+  # include AASM
 
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
@@ -14,28 +14,53 @@ class Order < ActiveRecord::Base
   scope :in_delivery, -> { where(state: :in_delivery) }
   scope :delivered, -> { where(state: :delivered) }
 
-  aasm column: "state" do
-    state :in_progress, initial: true
-    state :in_queue
-    state :in_delivery, before_enter: :take_books
-    state :delivered, after_enter: :notify_user
-    state :canceled, after_enter: :restore_books
+  # aasm column: "state" do
+  #   state :in_progress, initial: true
+  #   state :in_queue
+  #   state :in_delivery, before_enter: :take_books
+  #   state :delivered, after_enter: :notify_user
+  #   state :canceled, after_enter: :restore_books
+  #
+  #   event :checkout do
+  #     transitions from: :in_progress, to: :in_queue
+  #   end
+  #
+  #   event :confirm do
+  #     transitions from: :in_queue, to: :in_delivery
+  #   end
+  #
+  #   event :finish do
+  #     transitions from: :in_delivery, to: :delivered
+  #   end
+  #
+  #   event :cancel do
+  #     transitions from: [:in_queue, :in_delivery], to: :canceled
+  #   end
+  # end
+
+  state_machine :state, initial: :in_progress do
+    before_transition any => :in_delivery, do: :take_books
+    after_transition any => :delivered, do: :notify_user
+    after_transition any => :canceled, do: :restore_books
 
     event :checkout do
-      transitions from: :in_progress, to: :in_queue
+      transition :in_progress => :in_queue
     end
-
     event :confirm do
-      transitions from: :in_queue, to: :in_delivery
+      transition :in_queue => :in_delivery
     end
-
     event :finish do
-      transitions from: :in_delivery, to: :delivered
+      transition :in_delivery => :delivered
+    end
+    event :cancel do
+      transition [:in_queue, :in_delivery] => :canceled
     end
 
-    event :cancel do
-      transitions from: [:in_queue, :in_delivery], to: :canceled
-    end
+    state :in_progress
+    state :in_queue
+    state :in_delivery
+    state :delivered
+    state :canceled
   end
 
   rails_admin do
