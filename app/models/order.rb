@@ -61,6 +61,10 @@ class Order < ActiveRecord::Base
     order_items.map(&:take_books)
   end
 
+  def books_count
+    order_items.map(&:quantity).inject(&:+) || 0
+  end
+
   def restore_books
     order_items.map(&:restore_books)
   end
@@ -78,7 +82,7 @@ class Order < ActiveRecord::Base
 
   def calculate_total_price
     result = 0
-    result += order_items.map(&:price).inject(&:+) if self.order_items.exists?
+    result += order_items.map(&:price).inject(&:+) || 0
     result += delivery_service.price if self.delivery_service
     result
   end
