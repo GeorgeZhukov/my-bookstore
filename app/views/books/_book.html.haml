@@ -1,5 +1,9 @@
-.book
-  %strong= book.title
-  = image_tag book.cover
+.book.col-sm-4
+  = link_to book do
+    = image_tag book.cover.thumbnail.url, class: "book-cover"
+  %h4
+    = link_to book do
+      = book.title
   %p= book.short_description
-  = link_to "more", book
+  %span.amount= "$#{book.price}"
+  = link_to "Add to Cart", "#"

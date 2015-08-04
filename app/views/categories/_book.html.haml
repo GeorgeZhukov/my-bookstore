@@ -1,0 +1,38 @@
+%li.animate
+  .product_thumbnail_wrapper
+    .product_thumbnail.with_second_image.second_image_loaded{:style => "background-size: cover;"}
+      = link_to book_path(book) do
+        %span.product_thumbnail_background{:style => "background-image:url(http://shopkeeper.getbowtied.com/wp-content/uploads/2014/09/02_sun-350x435.jpg)"}
+        %img.attachment-shop_catalog.wp-post-image{:alt => "01_sun", :height => "435", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/09/01_sun-350x435.jpg", :style => "opacity: 1;", :width => "350"}/
+    / .product_thumbnail
+    .yith-wcwl-add-to-wishlist.add-to-wishlist-6031
+      .yith-wcwl-add-button.show{:style => "display:block"}
+        %a.add_to_wishlist{"data-product-id" => "6031", "data-product-type" => "simple", :href => "/product-category/accessories/?add_to_wishlist=6031", :rel => "nofollow"}
+          Add to Wishlist
+        %img.ajax-loading{:alt => "loading", :height => "16", :src => "http://shopkeeper.getbowtied.com/wp-admin/images/wpspin_light.gif", :style => "visibility: hidden; opacity: 1;", :width => "16"}/
+      .yith-wcwl-wishlistaddedbrowse.hide{:style => "display:none;"}
+        %span.feedback Product added!
+        %a{:href => "http://shopkeeper.getbowtied.com/wishlist/view/"}
+          Browse Wishlist
+      .yith-wcwl-wishlistexistsbrowse.hide{:style => "display:none"}
+        %span.feedback The product is already in the wishlist!
+        %a{:href => "http://shopkeeper.getbowtied.com/wishlist/view/"}
+          Browse Wishlist
+      %div{:style => "clear:both"}
+      .yith-wcwl-wishlistaddresponse
+    .clear
+  / .product_thumbnail_wrapper
+  %h3
+    = link_to book.title, book_path(book), class: "product-title-link"
+  .archive-product-rating
+    .star-rating{:title => "Rated 4.00 out of 5"}
+      %span{:style => "width:80%"}
+        %strong.rating 4.00
+        out of 5
+  .product_after_shop_loop
+    .product_after_shop_loop_switcher
+      .product_after_shop_loop_price
+        %span.price
+          %span.amount $660.00
+      .product_after_shop_loop_buttons
+        %a.button.add_to_cart_button.product_type_simple{"data-product_id" => "6031", "data-product_sku" => "659878", "data-quantity" => "1", :href => "/product-category/accessories/?add-to-cart=6031", :rel => "nofollow"} Add to cart

@@ -12,9 +12,12 @@
     .container
       .row
         .col-md-3
-          - @categories.each do |category|
-            = link_to category.title, category
-            %br/
+          %aside
+            %h3.category-title Product Categories
+            %ul.book-categories
+              - @categories.each do |category|
+                %li.category-item
+                  = link_to category.title, category
         .col-md-9
           - flash.each do |k,v|
             = content_tag :div, v, class: "flash #{k}"

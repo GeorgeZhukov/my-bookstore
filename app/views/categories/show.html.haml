@@ -1,4 +1,20 @@
-%h1 Categories#show
-%p Find me in app/views/categories/show.html.haml
+.xlarge-10.large-9.columns
+  .row
+    .large-12.columns
+      .row
+        .large-12.columns
+          %ul#products-grid.products.products-grid.small-block-grid-2.medium-block-grid-3.large-block-grid-4.xlarge-block-grid-6.xxlarge-block-grid-6.columns-6
+            = render partial: "book", collection: @category.books
 
-= render partial: "books/book", collection: @category.books
+  / .columns
+  / .row
+  / .columns
+  .woocommerce-after-shop-loop-wrapper
+    %nav.woocommerce-pagination
+      %ul.page-numbers
+        %li
+          %span.page-numbers.current 1
+        %li
+          %a.page-numbers{:href => "http://shopkeeper.getbowtied.com/product-category/accessories/page/2/"} 2
+        %li
+          %a.next.page-numbers{:href => "http://shopkeeper.getbowtied.com/product-category/accessories/page/2/"} →

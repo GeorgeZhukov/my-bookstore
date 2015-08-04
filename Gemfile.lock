@@ -341,6 +341,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker!
+  font-awesome-rails
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails

@@ -16,11 +16,11 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.model Book do
-    edit do
-      field :description, :wysihtml5
-    end
-  end
+  # config.model Book do
+  #   edit do
+  #     field :description, :wysihtml5
+  #   end
+  # end
 
   config.actions do
     dashboard # mandatory
