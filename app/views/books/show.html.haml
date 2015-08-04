@@ -1,184 +1,21 @@
-= image_tag @book.cover.standard.url
--#.row
--#  .large-12.xlarge-10.xxlarge-9.large-centered.columns
--#    .product_content_wrapper
--#      .row
--#
--#        .large-5.columns
--#          .product-images-wrapper
--#            .featured_img_temp{:style => "display: none;"}
--#              %img.attachment-shop_single.wp-post-image{:alt => "jacket_01", :height => "708", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_01-570x708.jpg", :width => "570"}/
--#            .images
--#              .product_images
--#                #product-images-carousel.owl-carousel.owl-theme{:style => "opacity: 1; display: block;"}
--#                  .owl-wrapper-outer.autoHeight{:style => "height: 568px;"}
--#                    .owl-wrapper{:style => "width: 2742px; left: 0px; display: block;"}
--#                      .owl-item{:style => "width: 457px;"}
--#                        .easyzoom.el_zoom.is-ready
--#                          %a.zoom{"data-fresco-group" => "product-gallery", "data-fresco-options" => "fit: 'width'", :href => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_01.jpg"}
--#                            %img.attachment-shop_single.wp-post-image{:alt => "jacket_01", :height => "708", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_01-570x708.jpg", :width => "570"}/
--#                      .owl-item.loading{:style => "width: 457px;"}
--#                        .easyzoom.el_zoom
--#                          %a.zoom{"data-fresco-group" => "product-gallery", "data-fresco-options" => "fit: 'width'", :href => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_02.jpg"}
--#                            %img.lazyOwl{:alt => "jacket_02", "data-src" => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_02-570x708.jpg", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_02-190x236.jpg", :style => "display: none;"}/
--#                      .owl-item.loading{:style => "width: 457px;"}
--#                        .easyzoom.el_zoom
--#                          %a.zoom{"data-fresco-group" => "product-gallery", "data-fresco-options" => "fit: 'width'", :href => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_03.jpg"}
--#                            %img.lazyOwl{:alt => "jacket_03", "data-src" => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_03-570x708.jpg", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/jacket_03-190x236.jpg", :style => "display: none;"}/
--#                  .owl-controls.clickable{:style => "display: block;"}
--#                    .owl-pagination
--#                      .owl-page.active
--#                        %span
--#                      .owl-page
--#                        %span
--#                      .owl-page
--#                        %span
--#
--#        .xxlarge-1.columns.show-for-xxlarge-only  
--#        .large-6.xxlarge-5.large-push-0.columns
--#          .product_infos
--#            .product_summary_top
--#              .woocommerce-product-rating{:itemprop => "aggregateRating", :itemscope => "", :itemtype => "http://schema.org/AggregateRating"}
--#                .star-rating{:title => "Rated 3.57 out of 5"}
--#                  %span{:style => "width:71.4%"}
--#                    %strong.rating{:itemprop => "ratingValue"} 3.57
--#                    out of
--#                    %span{:itemprop => "bestRating"} 5
--#                    based on
--#                    %span.rating{:itemprop => "ratingCount"} 7
--#                    customer ratings
--#                %a.woocommerce-review-link{:href => "#reviews", :rel => "nofollow"}
--#                  (
--#                  %span.count{:itemprop => "reviewCount"} 7
--#                  customer reviews)
--#              %h1.product_title.entry-title{:itemprop => "name"}= @book.title
--#
--#            %div{:itemprop => "offers", :itemscope => "", :itemtype => "http://schema.org/Offer"}
--#              %p.price
--#                %span.amount $256.35
--#              %meta{:content => "256.35", :itemprop => "price"}/
--#              %meta{:content => "USD", :itemprop => "priceCurrency"}/
--#              %link{:href => "http://schema.org/InStock", :itemprop => "availability"}/
--#            .product_description{:itemprop => "description"}
--#              %p= @book.description.html_safe
--#            .clearfix
--#            .qty Qty
--#
--#            = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, class: "cart" do |f|
--#              .quantity
--#                = f.input :quantity, as: :integer, input_html: {value: 1, class: "input-text qty text"}
--#              = f.button :submit, "add to cart", class: "single_add_to_cart_button button alt"
--#            .yith-wcwl-add-to-wishlist.add-to-wishlist-6996
--#              .yith-wcwl-add-button.show{:style => "display:block"}
--#                %a.add_to_wishlist{"data-product-id" => "6996", "data-product-type" => "simple", :href => "/shop/dresses/biker-leather-jacket-with-multi-quilted-details/?add_to_wishlist=6996", :rel => "nofollow"}
--#                  Add to Wishlist
--#                %img.ajax-loading{:alt => "loading", :height => "16", :src => "http://shopkeeper.getbowtied.com/wp-admin/images/wpspin_light.gif", :style => "visibility:hidden", :width => "16"}/
--#              .yith-wcwl-wishlistaddedbrowse.hide{:style => "display:none;"}
--#                %span.feedback Product added!
--#                %a{:href => "http://shopkeeper.getbowtied.com/wishlist/view/"}
--#                  Browse Wishlist
--#              .yith-wcwl-wishlistexistsbrowse.hide{:style => "display:none"}
--#                %span.feedback The product is already in the wishlist!
--#                %a{:href => "http://shopkeeper.getbowtied.com/wishlist/view/"}
--#                  Browse Wishlist
--#              %div{:style => "clear:both"}
--#              .yith-wcwl-wishlistaddresponse
--#            .clear
--#
--#            #tab-reviews.panel.entry-content.current{:style => "display: block;"}
--#.row
--#  .large-8.xlarge-6.large-centered.xlarge-centered.columns
--#    .row
--#      .large-12.large-centered.columns
--#        #reviews
--#          #comments
--#            %h2 9 reviews for Variable Product
--#            %ol.commentlist
--#              %li#li-comment-164.comment.even.thread-even.depth-1{:itemprop => "reviews", :itemscope => "", :itemtype => "http://schema.org/Review"}
--#                #comment-164.comment_container
--#                  %img.avatar.avatar-140.photo{:alt => "Stuart", :height => "140", :src => "http://1.gravatar.com/avatar/7a6df00789e50714fcde1b759befcc84?s=140&d=mm&r=g", :srcset => "http://1.gravatar.com/avatar/7a6df00789e50714fcde1b759befcc84?s=280&d=mm&r=g 2x", :width => "140"}/
--#                  .comment-text
--#                    .star-rating{:itemprop => "reviewRating", :itemscope => "", :itemtype => "http://schema.org/Rating", :title => "Rated 4 out of 5"}
--#                      %span{:style => "width:80%"}
--#                        %strong{:itemprop => "ratingValue"} 4
--#                        out of 5
--#                    %h3.comment-author{:itemprop => "author"} Stuart
--#                    .comment-metadata
--#                      %a{:href => "http://shopkeeper.getbowtied.com/shop/accessories/variable-product/#comment-164"}
--#                        %time{:datetime => "2013-06-07T13:03:29+00:00", :itemprop => "datePublished"} June 7, 2013
--#                    / .comment-metadata
--#                    .description{:itemprop => "description"}
--#                      %p Another great quality product that anyone who see’s me wearing has asked where to purchase one of their own.
--#              / #comment-##
--#              %li#li-comment-165.comment.odd.alt.thread-odd.thread-alt.depth-1{:itemprop => "reviews", :itemscope => "", :itemtype => "http://schema.org/Review"}
--#                #comment-165.comment_container
--#                  %img.avatar.avatar-140.photo{:alt => "Ryan", :height => "140", :src => "http://1.gravatar.com/avatar/4cd8db29cac75b73697e8bbe9da98f5d?s=140&d=mm&r=g", :srcset => "http://1.gravatar.com/avatar/4cd8db29cac75b73697e8bbe9da98f5d?s=280&d=mm&r=g 2x", :width => "140"}/
--#                  .comment-text
--#                    .star-rating{:itemprop => "reviewRating", :itemscope => "", :itemtype => "http://schema.org/Rating", :title => "Rated 5 out of 5"}
--#                      %span{:style => "width:100%"}
--#                        %strong{:itemprop => "ratingValue"} 5
--#                        out of 5
--#                    %h3.comment-author{:itemprop => "author"} Ryan
--#                    .comment-metadata
--#                      %a{:href => "http://shopkeeper.getbowtied.com/shop/accessories/variable-product/#comment-165"}
--#                        %time{:datetime => "2013-06-07T13:24:52+00:00", :itemprop => "datePublished"} June 7, 2013
--#                    / .comment-metadata
--#                    .description{:itemprop => "description"}
--#                      %p This hoodie gets me lots of looks while out in public, I got the blue one and it’s awesome. Not sure if people are looking at my hoodie only, or also at my rocking bod.
--#
--#          / #comment-##
--#          #review_form_wrapper
--#            #review_form
--#              #respond.comment-respond
--#                %h3#reply-title.comment-reply-title
--#                  Add a review
--#                  %small
--#                    %a#cancel-comment-reply-link{:href => "/shop/accessories/variable-product/#respond", :rel => "nofollow", :style => "display:none;"} Cancel reply
--#                %form#commentform.comment-form{:action => "http://shopkeeper.getbowtied.com/wp-comments-post.php", :method => "post"}
--#                  %p.comment-form-author.form-row-first
--#                    %label{:for => "author"}
--#                      Name
--#                      %span.required *
--#                    %input#author{"aria-required" => "true", :name => "author", :size => "30", :type => "text", :value => ""}/
--#                  %p.comment-form-email.form-row-last
--#                    %label{:for => "email"}
--#                      Email
--#                      %span.required *
--#                    %input#email{"aria-required" => "true", :name => "email", :size => "30", :type => "text", :value => ""}/
--#                  .clear
--#                  %p.comment-form-rating
--#                    %label{:for => "rating"} Your Rating
--#                  %p.stars
--#                    %span
--#                      %a.star-1{:href => "#"} 1
--#                      %a.star-2{:href => "#"} 2
--#                      %a.star-3{:href => "#"} 3
--#                      %a.star-4{:href => "#"} 4
--#                      %a.star-5{:href => "#"} 5
--#                  %select#rating{:name => "rating", :style => "display: none;"}
--#                    %option{:value => ""} Rate…
--#                    %option{:value => "5"} Perfect
--#                    %option{:value => "4"} Good
--#                    %option{:value => "3"} Average
--#                    %option{:value => "2"} Not that bad
--#                    %option{:value => "1"} Very Poor
--#                  %p.comment-form-comment
--#                    %label{:for => "comment"} Your Review
--#                    %textarea#comment{"aria-required" => "true", :cols => "45", :name => "comment", :rows => "8"}
--#                  %p.form-submit
--#                    %input#submit.submit{:name => "submit", :type => "submit", :value => "Submit"}/
--#                    %input#comment_post_ID{:name => "comment_post_ID", :type => "hidden", :value => "40"}/
--#                    %input#comment_parent{:name => "comment_parent", :type => "hidden", :value => "0"}/
--#                  %p.antispam-group.antispam-group-q{:style => "clear: both; display: none;"}
--#                    %label
--#                      Current ye@r
--#                      %span.required *
--#                    %input.antispam-control.antispam-control-a{:name => "antspm-a", :type => "hidden", :value => "2015"}/
--#                    %input.antispam-control.antispam-control-q{:autocomplete => "off", :name => "antspm-q", :type => "text", :value => "3.5"}/
--#                  %p.antispam-group.antispam-group-e{:style => "display: none;"}
--#                    %label Leave this field empty
--#                    %input.antispam-control.antispam-control-e{:autocomplete => "off", :name => "antspm-e-email-url-website", :type => "text", :value => ""}/
--#          / #respond
--#          .clear
--#            / .large-9
--#            / .row
+.row
+  .col-sm-4
+    = image_tag @book.cover.standard.url
+  .col-sm-1
+  .col-sm-7
+    %h1= @book.title
+    %p= @book.description.html_safe
+    = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, class: "cart" do |f|
+      = f.input :quantity, as: :integer, input_html: {value: 1, max: @book.books_in_stock}
+      = f.button :submit, "add to cart", class: "btn btn-primary"
+
+%h1 Ratings
+.row
+  .col-md-6
+    = render partial: "rating", collection: @book.ratings.approved.latest
+  .col-md-6
+    %h2 Write your review
+    = simple_form_for @new_rating, url: book_ratings_path(@book) do |f|
+      = f.input :number
+      = f.input :review
+      = f.button :submit

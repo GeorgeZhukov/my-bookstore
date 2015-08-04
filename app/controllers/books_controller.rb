@@ -21,8 +21,7 @@ class BooksController < ApplicationController
     @cart.add_book(book, quantity)
     @cart.save
     flash[:notice] = "Book was successfully added to cart."
-    # redirect_to action: "show"
-    redirect_to action: :index
+    redirect_to cart_path(:intro)
   end
 
 

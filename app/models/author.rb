@@ -6,4 +6,8 @@ class Author < ActiveRecord::Base
   has_many :books
 
   mount_uploader :photo, AuthorPhotoUploader
+
+  def to_s
+    "#{first_name} #{last_name}"
+  end
 end
