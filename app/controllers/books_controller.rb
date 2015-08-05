@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   load_and_authorize_resource
+  add_breadcrumb "Books", :books_path
 
   def index
     if params[:search]
@@ -9,6 +10,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    add_breadcrumb @book.title, @book
     @ratings = @book.ratings.approved.latest
     @new_rating = current_user.ratings.build
   end

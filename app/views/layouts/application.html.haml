@@ -22,6 +22,9 @@
           - flash.each do |k,v|
             .alert.alert-info{:role=>"alert"}= v
 
+          %ol.breadcrumb
+            = render_breadcrumbs tag: :li, separator: ""
+
           = yield
 
   .modal#signOutModal

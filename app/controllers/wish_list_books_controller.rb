@@ -1,6 +1,8 @@
 class WishListBooksController < ApplicationController
   # before_action :authenticate_user!
 
+  add_breadcrumb "Wish list books", :wish_list_books_path
+
   def index
     @books = current_user.get_wish_list.books
   end

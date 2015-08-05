@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  add_breadcrumb "Home", :root_path
+
   def current_user
     super || guest_user
   end

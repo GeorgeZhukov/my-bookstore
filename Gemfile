@@ -49,7 +49,7 @@ gem 'state_machines-activerecord'
 gem 'rails_admin_state'
 gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 gem "font-awesome-rails"
-
+gem "breadcrumbs_on_rails"
 
 
 group :development, :test do

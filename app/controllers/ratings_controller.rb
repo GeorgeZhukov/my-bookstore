@@ -3,6 +3,8 @@ class RatingsController < ApplicationController
   load_and_authorize_resource :book
   load_and_authorize_resource :rating, through: :book
 
+  add_breadcrumb "Ratings", :ratings_path
+
   def index
     @ratings = @ratings.approved.latest.page params[:page]
   end

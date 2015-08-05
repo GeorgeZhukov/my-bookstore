@@ -8,6 +8,13 @@ RSpec.feature "Cart", type: :feature do
     click_button "Add to Cart"
   end
 
+  scenario "A user should see 'Your cart is empty' when no items in cart" do
+    OrderItem.all.destroy_all
+
+    visit cart_path(:intro)
+    expect(page).to have_content "Your cart is empty."
+  end
+
   scenario "A user can change quantity of order item" do
 
     # Change quantity

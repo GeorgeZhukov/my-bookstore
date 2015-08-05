@@ -1,27 +1,31 @@
-= render partial: "steps"
-= form_tag wizard_path, method: :put do
-  %table.table
-    %thead
-      %tr
-        %th Book
-        %th Price
-        %th Qty
-        %th Total
-        %th
-    %tbody
-      - @cart.order_items.each do |order_item|
-        %tr.cart_item
-          = hidden_field_tag("items[][id]", order_item.id)
-          %td
-            = image_tag order_item.book.cover.thumbnail.url
-            = link_to order_item.book.title, order_item.book
-          %td
-            %span.amount= "$#{order_item.book.price}"
-          %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock, class: "input-text qty text"})
-          %td
-            %span.amount= "$#{order_item.price}"
-          %td
-            = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
-              %i.fa.fa-times
-  = submit_tag 'Update', class: "btn btn-default"
-  = submit_tag 'Checkout', name: "checkout", class: "btn btn-primary"
+- if @cart.order_items.exists?
+
+  = render partial: "steps"
+  = form_tag wizard_path, method: :put do
+    %table.table
+      %thead
+        %tr
+          %th Book
+          %th Price
+          %th Qty
+          %th Total
+          %th
+      %tbody
+        - @cart.order_items.each do |order_item|
+          %tr.cart_item
+            = hidden_field_tag("items[][id]", order_item.id)
+            %td
+              = image_tag order_item.book.cover.thumbnail.url
+              = link_to order_item.book.title, order_item.book
+            %td
+              %span.amount= "$#{order_item.book.price}"
+            %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock, class: "input-text qty text"})
+            %td
+              %span.amount= "$#{order_item.price}"
+            %td
+              = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
+                %i.fa.fa-times
+    = submit_tag 'Update', class: "btn btn-default"
+    = submit_tag 'Checkout', name: "checkout", class: "btn btn-primary"
+- else
+  %p.lead Your cart is empty.

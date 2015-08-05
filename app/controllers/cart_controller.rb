@@ -3,6 +3,8 @@ class CartController < ApplicationController
 
   steps :intro, :address, :delivery, :payment, :confirm, :checkout
 
+  add_breadcrumb "Cart", :cart_path
+
   def show
     @cart = current_user.cart
     case step
