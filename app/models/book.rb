@@ -28,4 +28,8 @@ class Book < ActiveRecord::Base
     # an array of books
     OrderItem.group(:book).order("sum(quantity) DESC").count.map { |item| item.first }
   end
+
+  def to_s
+    title
+  end
 end

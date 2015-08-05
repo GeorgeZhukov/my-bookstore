@@ -37,7 +37,7 @@
         %li
           = link_to cart_path(:intro) do
             %i.fa.fa-shopping-cart
-            Cart
+            = "Cart (#{current_user.cart.books_count} items) $#{current_user.cart.calculate_total_price}"
         %li
           = link_to edit_user_registration_path do
             %i.fa.fa-shopping-cart
