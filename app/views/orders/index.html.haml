@@ -1,9 +1,15 @@
+- if current_user.cart.order_items.exists?
+  %h2 In progress
+  = render partial: "order", object: current_user.cart
 
-%h2 Waiting for processing
-= render partial: "orders", object: @orders.in_queue
+- if @orders.in_queue
+  %h2 Waiting for processing
+  = render partial: "orders", object: @orders.in_queue
 
-%h2 In delivery
-= render partial: "orders", object: @orders.in_delivery
+- if @orders.in_delivery
+  %h2 In delivery
+  = render partial: "orders", object: @orders.in_delivery
 
-%h2 Delivered
-= render partial: "orders", object: @orders.delivered
+- if @orders.delivered
+  %h2 Delivered
+  = render partial: "orders", object: @orders.delivered
