@@ -3,28 +3,38 @@
 
 .row
   .col-md-4
-    %h3 Shipping address
-    %p= @cart.shipping_address.address
-    %p= @cart.shipping_address.city
-    %p= @cart.shipping_address.zip_code
-    %p= link_to 'Edit', wizard_path(:address)
-
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title Shipping address
+      .panel-body
+        %p= @cart.shipping_address.address
+        %p= @cart.shipping_address.city
+        %p= @cart.shipping_address.zip_code
+        %p= link_to 'Edit', wizard_path(:address)
   .col-md-4
-    %h3 Billing address
-    %p= @cart.billing_address.address
-    %p= @cart.billing_address.city
-    %p= @cart.billing_address.zip_code
-    %p= link_to 'Edit', wizard_path(:address)
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title Billing address
+      .panel-body
+        %p= @cart.billing_address.address
+        %p= @cart.billing_address.city
+        %p= @cart.billing_address.zip_code
+        %p= link_to 'Edit', wizard_path(:address)
+  .col-md-2
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title Delivery
+      .panel-body
+        %p= @cart.delivery_service.name
+        %p= link_to 'Edit', wizard_path(:delivery)
 
   .col-md-2
-    %h3 Delivery
-    %p= @cart.delivery_service.name
-    %p= link_to 'Edit', wizard_path(:delivery)
-
-  .col-md-2
-    %h3 Credit Card
-    %p= @cart.credit_card.number
-    %p= link_to 'Edit', wizard_path(:payment)
+    .panel.panel-success
+      .panel-heading
+        %h3.panel-title Credit Card
+      .panel-body
+        %p= @cart.credit_card.number
+      %p= link_to 'Edit', wizard_path(:payment)
 
 %table.table.table-stripped
   %thead
