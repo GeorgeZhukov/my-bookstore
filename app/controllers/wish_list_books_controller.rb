@@ -1,5 +1,5 @@
 class WishListBooksController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def index
     @books = current_user.get_wish_list.books

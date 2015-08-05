@@ -16,7 +16,11 @@ class BooksController < ApplicationController
   def add_to_cart
     book = Book.find(params[:id])
     authorize! :read, book
-    quantity = params[:add_to_cart].fetch(:quantity, 1).to_i
+    if params[:add_to_cart]
+      quantity = params[:add_to_cart].fetch(:quantity, 1).to_i
+    else
+      quantity = 1
+    end
     @cart = current_user.cart
     @cart.add_book(book, quantity)
     @cart.save

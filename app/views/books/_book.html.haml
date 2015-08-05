@@ -6,4 +6,4 @@
       = book.title
   %p= book.short_description
   %span.amount= "$#{book.price}"
-  = link_to "Add to Cart", "#"
+  = link_to "Add to Cart", add_to_cart_book_path(book), method: :put
