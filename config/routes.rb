@@ -26,7 +26,11 @@ Rails.application.routes.draw do
   resources :wish_list_books, only: [:index]
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
-  resources :cart, only: [:show, :update]
+  resources :cart, only: [:show, :update] do
+    member do
+      delete 'remove-item'
+    end
+  end
   resources :orders, only: [:index, :show]
 
   # Example of regular route:

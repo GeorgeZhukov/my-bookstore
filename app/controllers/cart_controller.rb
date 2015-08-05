@@ -51,11 +51,16 @@ class CartController < ApplicationController
 
   def clear
     current_user.cart.clear
-    render_wizard
   end
 
   def address
 
+  end
+
+  def remove_item
+    order_item = current_user.cart.order_items.find params[:item_id]
+    order_item.destroy
+    redirect_to wizard_path(:intro)
   end
 
   private

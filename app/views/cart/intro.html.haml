@@ -30,8 +30,7 @@
               %td.product-subtotal
                 %span.amount= "$#{order_item.price}"
               %td.product-remove
-                %a.remove{:href => "http://shopkeeper.getbowtied.com/cart/?remove_item=312f1ba2a72318edaaa995a67835fad5&_wpnonce=26d4fba51b", :title => "Remove this item"}
+                = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
                   %i.fa.fa-times
-
   = submit_tag 'Update'
   = submit_tag 'Checkout', name: "checkout"

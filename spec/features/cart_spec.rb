@@ -17,7 +17,15 @@ RSpec.feature "Cart", type: :feature do
     expect(find_field('items__quantity').value).to eq "5"
   end
 
-  scenario "A user can remove item from cart"
+  scenario "A user can remove item from cart" do
+    pending "can't click 'remove' button"
+    # Get order item
+    cart = User.first.cart
+    order_item = cart.order_items.first
+    visit cart_path(:intro)
+    page.driver.submit :delete, remove_item_cart_path(cart, item_id: order_item.id), {}
+    expect(page).not_to have_content order_item.book.title
+  end
 
   scenario "A user should put his shipping and billing address" do
     address = FactoryGirl.create :address
