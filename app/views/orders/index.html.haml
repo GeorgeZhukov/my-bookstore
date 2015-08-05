@@ -1,9 +1,9 @@
 
 %h2 Waiting for processing
-= render @orders.in_queue
+= render partial: "orders", object: @orders.in_queue
 
 %h2 In delivery
-= render @orders.in_delivery
+= render partial: "orders", object: @orders.in_delivery
 
 %h2 Delivered
-= render @orders.delivered
+= render partial: "orders", object: @orders.delivered

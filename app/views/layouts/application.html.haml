@@ -11,14 +11,14 @@
 
     .container
       .row
-        .col-md-3
+        .col-sm-3
           %aside
-            %h3.category-title Product Categories
+            %h3.categories-title Categories
             %ul.book-categories
               - @categories.each do |category|
                 %li.category-item
                   = link_to category.title, category
-        .col-md-9
+        .col-sm-9
           - flash.each do |k,v|
             .alert.alert-info{:role=>"alert"}= v
 

@@ -5,9 +5,9 @@
   .col-sm-7
     %h1= @book.title
     %p= @book.description.html_safe
-    = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, class: "cart" do |f|
+    = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, html: {class: "cart form-horizontal"}, wrapper: :horizontal_form do |f|
       = f.input :quantity, as: :integer, input_html: {value: 1, max: @book.books_in_stock}
-      = f.button :submit, "add to cart", class: "btn btn-primary"
+      = f.button :submit, "Add to Cart", class: "btn btn-primary"
 
     = link_to "Add to wish list", book_wish_list_books_path(@book), method: :post
 

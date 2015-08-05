@@ -14,6 +14,7 @@ class Order < ActiveRecord::Base
   scope :delivered, -> { where(state: :delivered) }
 
   state_machine :state, initial: :in_progress do
+    before_transition :in_progress => :in_queue, do: :generate_number
     before_transition any => :in_delivery, do: :take_books
     after_transition any => :delivered, do: :notify_user
     after_transition any => :canceled, do: :restore_books
@@ -21,12 +22,15 @@ class Order < ActiveRecord::Base
     event :checkout do
       transition :in_progress => :in_queue
     end
+
     event :confirm do
       transition :in_queue => :in_delivery
     end
+
     event :finish do
       transition :in_delivery => :delivered
     end
+
     event :cancel do
       transition [:in_queue, :in_delivery] => :canceled
     end
@@ -51,6 +55,13 @@ class Order < ActiveRecord::Base
               states: {in_queue: 'label-info', in_delivery: 'label-warning', delivered: 'label-success'},
               disable: [:checkout]
           })
+  end
+
+  def generate_number
+    unless number
+      self.number = "R#{rand(100000000..999999999)}"
+      self.save
+    end
   end
 
   def notify_user
@@ -81,10 +92,13 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_total_price
-    result = 0
-    result += order_items.map(&:price).inject(&:+) || 0
-    result += delivery_service.price if self.delivery_service
-    result
+    subtotal = order_items.map(&:price).inject(&:+) || 0
+    if delivery_service
+      shipping = delivery_service.price
+    else
+      shipping = 0
+    end
+    subtotal + shipping
   end
 end
 

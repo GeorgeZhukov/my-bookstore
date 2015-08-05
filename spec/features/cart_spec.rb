@@ -5,7 +5,7 @@ RSpec.feature "Cart", type: :feature do
     # Add book
     book = FactoryGirl.create :book
     visit book_path(book)
-    click_button "add to cart"
+    click_button "Add to Cart"
   end
 
   scenario "A user can change quantity of order item" do

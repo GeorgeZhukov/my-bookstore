@@ -1,1 +1,21 @@
-= order
+%table.table
+  %thead
+    %tr
+      %th Book
+      %th Price
+      %th QTY
+      %th Total
+  %tbody
+    - order.order_items.each do |order_item|
+      %tr
+        %td= link_to order_item.book.title, order_item.book
+        %td= "$#{order_item.book.price}"
+        %td= order_item.quantity
+        %td= "$#{order_item.price}"
+
+
+%hr/
+
+%p
+  Order total:
+  %strong= "$#{order.calculate_total_price}"

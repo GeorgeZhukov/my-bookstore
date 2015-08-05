@@ -29,7 +29,7 @@ RSpec.feature "Books", type: :feature do
   scenario "A user can add book to cart" do
     book = FactoryGirl.create :book
     visit book_path(book)
-    click_button "add to cart"
+    click_button "Add to Cart"
     visit cart_path(:intro)
     expect(page).to have_content book.title
   end

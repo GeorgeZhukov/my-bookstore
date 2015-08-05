@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default
+%nav.navbar
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -6,15 +6,15 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Brand', root_path, class: "navbar-brand"
+      = link_to 'Bookstore', root_path, class: "navbar-brand"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          = link_to :books, books_path
+          = link_to "Books", books_path
         %li
-          = link_to :authors, authors_path
+          = link_to "Authors", authors_path
         %li
-          = link_to :orders, orders_path
+          = link_to "Orders", orders_path
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Dropdown
@@ -34,6 +34,14 @@
               %a{:href => "#"} One more separated link
 
       %ul.nav.navbar-nav.navbar-right
+        %li
+          .cart-contents
+            %span.cart-items.glyphicon.glyphicon-shopping-cart
+            %span.cart-items-total= 0
+            .cart-content-list
+              .cart-lower
+                1
+                2
         %li
           = link_to cart_path(:intro) do
             %i.fa.fa-shopping-cart
