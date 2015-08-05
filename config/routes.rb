@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :users, controllers: {
                        registrations: 'registrations',
                        omniauth_callbacks: 'users/omniauth_callbacks'
@@ -13,13 +14,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
+
   resources :welcome, only: [:index]
   resources :books, only: [:index, :show] do
     resources :ratings, only: [:index, :create]
+    resources :wish_list_books, only: [:create]
     member do
       put 'add-to-cart'
     end
   end
+  resources :wish_list_books, only: [:index]
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :cart, only: [:show, :update]

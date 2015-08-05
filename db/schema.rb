@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803110134) do
+ActiveRecord::Schema.define(version: 20150804222756) do
 
   create_table "addresses", force: :cascade do |t|
     t.text     "address"
@@ -55,6 +55,11 @@ ActiveRecord::Schema.define(version: 20150803110134) do
   add_index "books", ["author_id"], name: "index_books_on_author_id"
   add_index "books", ["category_id"], name: "index_books_on_category_id"
   add_index "books", ["deleted_at"], name: "index_books_on_deleted_at"
+
+  create_table "books_wish_lists", id: false, force: :cascade do |t|
+    t.integer "wish_list_id", null: false
+    t.integer "book_id",      null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -129,6 +134,19 @@ ActiveRecord::Schema.define(version: 20150803110134) do
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
+  create_table "rich_rich_files", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        default: "file"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -157,5 +175,13 @@ ActiveRecord::Schema.define(version: 20150803110134) do
   add_index "users", ["provider"], name: "index_users_on_provider"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["uid"], name: "index_users_on_uid"
+
+  create_table "wish_lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wish_lists", ["user_id"], name: "index_wish_lists_on_user_id"
 
 end

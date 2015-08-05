@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   has_many :orders
   has_many :ratings
+  has_one :wish_list
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
 
@@ -35,5 +36,10 @@ class User < ActiveRecord::Base
       "http://gravatar.com/avatar/#{gravatar_id}.png?s=128"
     end
   end
+
+  def get_wish_list
+    wish_list || WishList.create(user: self)
+  end
+
 
 end

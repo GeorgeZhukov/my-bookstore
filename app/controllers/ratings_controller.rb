@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+  before_action :create, :authenticate_user!
   load_and_authorize_resource :book
   load_and_authorize_resource :rating, through: :book
 
