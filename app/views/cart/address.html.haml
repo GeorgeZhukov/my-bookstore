@@ -11,4 +11,4 @@
       = simple_fields_for :billing_address, @cart.billing_address do |f|
         = render partial: "address_form", locals: {f: f}
 
-  = submit_tag
+  = submit_tag "Save", class: "btn btn-warning"

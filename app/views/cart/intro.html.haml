@@ -1,36 +1,27 @@
 = render partial: "steps"
 = form_tag wizard_path, method: :put do
-  .large-7.columns
-    .cart_left_wrapper
-      %table.shop_table.cart{:cellspacing => "0"}
-        %thead
-          %tr
-            %th.product-thumbnail-thead Product
-            %th.product-name-thead  
-            %th.product-price-thead  
-            %th.product-quantity-thead
-              %span.show-for-small-only.text-center.product_quantity_mobile Qty
-              %span.show-for-medium-up Qty
-            %th.product-subtotal-thead Total
-            %th.product-remove-thead  
-        %tbody
-          - @cart.order_items.each do |order_item|
-            %tr.cart_item
-              = hidden_field_tag("items[][id]", order_item.id)
-              %td.product-thumbnail
-                %a{:href => "http://shopkeeper.getbowtied.com/shop/petite/black-and-white-varsity-jacket/"}
-                  %img.attachment-shop_thumbnail.wp-post-image{:alt => "varsity_01", :height => "87", :src => "http://shopkeeper.getbowtied.com/wp-content/uploads/2014/10/varsity_01-100x125.jpg", :width => "70"}/
-              %td.product-name
-                = link_to order_item.book.title, book_path(order_item.book)
-              %td.product-price
-                %span.amount= "$#{order_item.book.price}"
-              %td.product-quantity
-                .quantity
-                  = number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock, class: "input-text qty text"})
-              %td.product-subtotal
-                %span.amount= "$#{order_item.price}"
-              %td.product-remove
-                = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
-                  %i.fa.fa-times
-  = submit_tag 'Update'
-  = submit_tag 'Checkout', name: "checkout"
+  %table.table
+    %thead
+      %tr
+        %th Book
+        %th Price
+        %th Qty
+        %th Total
+        %th
+    %tbody
+      - @cart.order_items.each do |order_item|
+        %tr.cart_item
+          = hidden_field_tag("items[][id]", order_item.id)
+          %td
+            = image_tag order_item.book.cover.thumbnail.url
+            = link_to order_item.book.title, order_item.book
+          %td
+            %span.amount= "$#{order_item.book.price}"
+          %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock, class: "input-text qty text"})
+          %td
+            %span.amount= "$#{order_item.price}"
+          %td
+            = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
+              %i.fa.fa-times
+  = submit_tag 'Update', class: "btn btn-default"
+  = submit_tag 'Checkout', name: "checkout", class: "btn btn-primary"

@@ -2,14 +2,14 @@
   %h2 In progress
   = render partial: "order", object: current_user.cart
 
-- if @orders.in_queue
+- if @orders.in_queue.exists?
   %h2 Waiting for processing
   = render partial: "orders", object: @orders.in_queue
 
-- if @orders.in_delivery
+- if @orders.in_delivery.exists?
   %h2 In delivery
   = render partial: "orders", object: @orders.in_delivery
 
-- if @orders.delivered
+- if @orders.delivered.exists?
   %h2 Delivered
   = render partial: "orders", object: @orders.delivered

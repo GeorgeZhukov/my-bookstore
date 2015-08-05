@@ -1,11 +1,17 @@
 @import "bootstrap-sprockets";
+@import "variables";
 @import "bootstrap";
-@import "bootstrap/theme";
+@import "bootswatch";
 @import "font-awesome";
 @import "*";
 
 .categories-title {
   font-size: 20px;
+}
+
+#logo {
+  padding: 0 20px;
+  height: 22px;
 }
 
 .book-categories {

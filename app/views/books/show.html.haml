@@ -1,8 +1,8 @@
-.row
-  .col-sm-4
-    = image_tag @book.cover.standard.url
-  .col-sm-1
-  .col-sm-7
+.row.book-details
+  .col-md-3
+    = image_tag @book.cover.standard.url, class: "book-cover"
+  .col-md-2
+  .col-md-7
     %h1= @book.title
     %p= @book.description.html_safe
     = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, html: {class: "cart form-horizontal"}, wrapper: :horizontal_form do |f|

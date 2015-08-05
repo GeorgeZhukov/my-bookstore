@@ -1,6 +1,13 @@
 // Place all the styles related to the books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.book-details {
+  .book-cover {
+    width: 300px;
+  }
+}
+
 .book {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -26,3 +33,4 @@
     background-color: #fafafa;
   }
 }
+

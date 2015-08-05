@@ -14,9 +14,9 @@
         .col-sm-3
           %aside
             %h3.categories-title Categories
-            %ul.book-categories
+            %ul.nav.nav-pills.nav-stacked
               - @categories.each do |category|
-                %li.category-item
+                %li
                   = link_to category.title, category
         .col-sm-9
           - flash.each do |k,v|

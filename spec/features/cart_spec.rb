@@ -44,7 +44,7 @@ RSpec.feature "Cart", type: :feature do
     fill_in "billing_address_city", with: address.city
     fill_in "billing_address_phone", with: address.phone
     select "Ukraine", from: "billing_address_country"
-    click_button "Save changes"
+    click_button "Save"
     expect(page).to have_content "Delivery"
   end
 
@@ -55,7 +55,7 @@ RSpec.feature "Cart", type: :feature do
 
     visit cart_path(:delivery)
     choose("delivery_#{delivery_services[1].id}")
-    click_button "Save changes"
+    click_button "Save"
     expect(page).to have_content "Payment"
   end
 
@@ -78,7 +78,7 @@ RSpec.feature "Cart", type: :feature do
     fill_in "billing_address_city", with: address.city
     fill_in "billing_address_phone", with: address.phone
     select "Ukraine", from: "billing_address_country"
-    click_button "Save changes"
+    click_button "Save"
 
     # put delivery service
 
@@ -88,7 +88,7 @@ RSpec.feature "Cart", type: :feature do
 
     visit cart_path(:delivery)
     choose("delivery_#{delivery_services[1].id}")
-    click_button "Save changes"
+    click_button "Save"
 
     # Actually code to test current scenario
     visit cart_path(:payment)
@@ -99,7 +99,7 @@ RSpec.feature "Cart", type: :feature do
       select Date.today.year, from: "Expiration year"
       fill_in "First name", with: credit_card.first_name
       fill_in "Last name", with: credit_card.last_name
-      click_button "Save changes"
+      click_button "Save"
     end
     expect(page).to have_content "Place Order"
   end
@@ -135,7 +135,7 @@ RSpec.feature "Cart", type: :feature do
     fill_in "billing_address_city", with: address.city
     fill_in "billing_address_phone", with: address.phone
     select "Ukraine", from: "billing_address_country"
-    click_button "Save changes"
+    click_button "Save"
 
     # put delivery service
 
@@ -145,7 +145,7 @@ RSpec.feature "Cart", type: :feature do
 
     visit cart_path(:delivery)
     choose("delivery_#{delivery_services[1].id}")
-    click_button "Save changes"
+    click_button "Save"
 
     # Actually code to test current scenario
     visit cart_path(:payment)
@@ -156,7 +156,7 @@ RSpec.feature "Cart", type: :feature do
       select Date.today.year, from: "Expiration year"
       fill_in "First name", with: credit_card.first_name
       fill_in "Last name", with: credit_card.last_name
-      click_button "Save changes"
+      click_button "Save"
     end
     click_link "Place Order"
     expect(page).to have_content "COmplete"

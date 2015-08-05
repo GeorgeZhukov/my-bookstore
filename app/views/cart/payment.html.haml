@@ -2,4 +2,4 @@
 = render partial: "steps"
 = simple_form_for @cart.credit_card, url: wizard_path, method: :put do |f|
   = render partial: "credit_card_form", locals: {f: f}
-  = submit_tag
+  = submit_tag "Save", class: "btn btn-warning"
