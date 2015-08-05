@@ -20,6 +20,6 @@
                   = link_to category.title, category
         .col-md-9
           - flash.each do |k,v|
-            = content_tag :div, v, class: "flash #{k}"
+            .alert.alert-info{:role=>"alert"}= v
 
           = yield
