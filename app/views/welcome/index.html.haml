@@ -1,3 +1,9 @@
-- @books.each do |book|
-  .item
-    %p= book.title
+.best-sellers-books
+  = render partial: "book", collection: @books
+
+%p.lead.text-center
+  Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!
+:javascript
+  $(function(){
+    $(".best-sellers-books").slick();
+  });

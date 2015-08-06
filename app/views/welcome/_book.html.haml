@@ -1,0 +1,12 @@
+.best-seller
+  %h3= book.title
+  .row
+    .col-sm-3
+      = image_tag book.cover.thumbnail.url
+    .col-sm-9
+      %p.lead= book.short_description
+      = simple_form_for :add_to_cart, url: add_to_cart_book_path(book), method: :put, html: {class: "cart form-horizontal"}, wrapper: :horizontal_form do |f|
+        = f.input :quantity, as: :integer, input_html: {value: 1, max: book.books_in_stock}
+        = button_tag(type: "submit", class: "btn btn-primary") do
+          %i.fa.fa-cart-plus
+          Add to Cart
