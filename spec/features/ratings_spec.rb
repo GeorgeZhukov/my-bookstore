@@ -32,7 +32,7 @@ RSpec.feature "Ratings", type: :feature do
       fill_in "Number", with: 3
       fill_in "Review", with: "Some text"
     end
-    click_button "Create Rating"
-    expect(page).to have_content "Thank you. The rating sent to administrator for review."
+    click_button "Submit"
+    expect(page).to have_content "Your rating has been successfully sent to review."
   end
 end

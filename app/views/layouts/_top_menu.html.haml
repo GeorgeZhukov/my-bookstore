@@ -16,6 +16,11 @@
         = active_link_to authors_path, wrap_tag: :li do
           %i.fa.fa-users
           Authors
+      = form_tag books_path, method: :get, id: "search-form", class: "navbar-form navbar-left", role: "search" do
+        .form-group
+          %input.form-control{:type=>"text", :placeholder=>"Search"}
+        %button#search-button.btn.btn-default{:type=>"submit"}
+          %i.fa.fa-search
       %ul.nav.navbar-nav.navbar-right
         - if can? :access, :rails_admin
           %li

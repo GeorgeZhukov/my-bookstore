@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+
+
   before_action :authenticate_user!, only: [:create]
 
   load_and_authorize_resource :book
@@ -11,11 +13,14 @@ class RatingsController < ApplicationController
   end
 
   def create
-    rating = current_or_guest_user.ratings.build(rating_params) # todo: only authorized users
-    @book.ratings << rating
-    # create_response(rating, "Your rating has been successfully sent to review.", book_path(@book))
-    flash[:notice] = "Thank you. The rating sent to administrator for review."
-    redirect_to @book
+    rating = current_user.ratings.build(rating_params)
+    rating.book = @book
+    if rating.save
+      redirect_to @book, notice: "Your rating has been successfully sent to review."
+    else
+      redirect_to @book
+    end
+
   end
 
   private

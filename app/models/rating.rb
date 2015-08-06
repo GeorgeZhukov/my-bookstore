@@ -5,7 +5,7 @@ class Rating < ActiveRecord::Base
     self.state ||= :pending
   end
 
-  validates_inclusion_of :number, :in => 1..10
+  validates :number, presence: true, inclusion: {in: 1..10}
   # validates :state, inclusion: {in: POSSIBLE_STATES}
   validates :review, presence: true, length: {minimum: 4, maximum: 100}
 

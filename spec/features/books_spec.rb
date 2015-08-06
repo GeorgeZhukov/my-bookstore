@@ -33,4 +33,13 @@ RSpec.feature "Books", type: :feature do
     visit cart_path(:intro)
     expect(page).to have_content book.title
   end
+
+  scenario "A user can search books by title" do
+    visit root_path
+    within "#search-form" do
+      fill_in "Search", with: book.title
+    end
+    page.find(:css, '#search-button').click
+    expect(page).to have_content book.title
+  end
 end
