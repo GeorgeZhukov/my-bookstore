@@ -5,7 +5,9 @@
   .col-md-4
     .panel.panel-success
       .panel-heading
-        %h3.panel-title Shipping address
+        %h3.panel-title
+          %i.fa.fa-map-marker
+          Shipping address
       .panel-body
         %p= @cart.shipping_address.address
         %p= @cart.shipping_address.city
@@ -14,7 +16,9 @@
   .col-md-4
     .panel.panel-success
       .panel-heading
-        %h3.panel-title Billing address
+        %h3.panel-title
+          %i.fa.fa-map-marker
+          Billing address
       .panel-body
         %p= @cart.billing_address.address
         %p= @cart.billing_address.city
@@ -23,7 +27,9 @@
   .col-md-2
     .panel.panel-success
       .panel-heading
-        %h3.panel-title Delivery
+        %h3.panel-title
+          %i.fa.fa-truck
+          Delivery
       .panel-body
         %p= @cart.delivery_service.name
         %p= link_to 'Edit', wizard_path(:delivery)

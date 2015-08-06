@@ -25,7 +25,12 @@
             %td
               = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
                 %i.fa.fa-times
-    = submit_tag 'Update', class: "btn btn-default"
-    = submit_tag 'Checkout', name: "checkout", class: "btn btn-primary"
+    %button.btn.btn-default{:type=>"submit"}
+      %i.fa.fa-refresh
+      Update
+
+    %button.btn.btn-primary{:name=>"checkout", :type=>"submit"}
+      Checkout
+      %i.fa.fa-arrow-right
 - else
   %p.lead Your cart is empty.

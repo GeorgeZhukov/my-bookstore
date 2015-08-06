@@ -5,4 +5,6 @@
     = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds)
     = ds.name
     %br/
-  = submit_tag "Save", class: "btn btn-warning"
+  %button.btn.btn-primary.pull-right{:type=>"submit"}
+    Next
+    %i.fa.fa-arrow-right

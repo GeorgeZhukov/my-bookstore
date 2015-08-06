@@ -16,6 +16,10 @@ class CartController < ApplicationController
         @delivery_services = DeliveryService.all
       when :payment
         @cart.credit_card ||= CreditCard.new
+      when :confirm
+        jump_to(:address) unless @cart.shipping_address and @cart.billing_address
+        jump_to(:delivery) unless @cart.delivery_service
+        jump_to(:payment) unless @cart.credit_card
       when :checkout
         @cart.checkout!
     end
