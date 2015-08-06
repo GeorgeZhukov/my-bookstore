@@ -59,7 +59,7 @@ class Order < ActiveRecord::Base
 
   def generate_number
     unless number
-      self.number = "R#{rand(100000000..999999999)}"
+      self.number = "R#{id.to_s.rjust(9, '0')}" # Get order id and fill it to with zeroes
       self.save
     end
   end
