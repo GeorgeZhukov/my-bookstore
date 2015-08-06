@@ -5,16 +5,22 @@ RSpec.feature "WishLists", type: :feature do
     user = FactoryGirl.create :user
     login_as(user, :scope => :user)
   end
+  let(:book) { FactoryGirl.create :book }
+
+  scenario "A guest will be redirected to login page if will try add book to wish list" do
+    logout(:user)
+    visit book_path(book)
+    click_link "Add to wish list"
+    expect(page).to have_content "Log in"
+  end
 
   scenario "A user can add book to wish list" do
-    book = FactoryGirl.create :book
     visit book_path(book)
     click_link "Add to wish list"
     expect(page).to have_content "The book successfully added to wish list."
   end
 
   scenario "A user can see books in wish list" do
-    book = FactoryGirl.create :book
     visit book_path(book)
     click_link "Add to wish list"
     visit wish_list_books_path

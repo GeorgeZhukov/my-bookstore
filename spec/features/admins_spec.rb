@@ -14,9 +14,10 @@ RSpec.feature "Admins", type: :feature do
   end
 
   context "ratings" do
+    let!(:book) { FactoryGirl.create :book }
+    let!(:rating) { FactoryGirl.create :rating, book: book }
+
     scenario "An admin can approve pending ratings" do
-      book = FactoryGirl.create :book
-      rating = FactoryGirl.create :rating, book: book
       visit rails_admin.index_path("Rating")
       within "#bulk_form" do
         click_link "approve"
@@ -25,8 +26,6 @@ RSpec.feature "Admins", type: :feature do
     end
 
     scenario "An admin can reject pending ratings" do
-      book = FactoryGirl.create :book
-      rating = FactoryGirl.create :rating, book: book
       visit rails_admin.index_path("Rating")
       within "#bulk_form" do
         click_link "reject"
@@ -36,11 +35,12 @@ RSpec.feature "Admins", type: :feature do
   end
 
   context "authors" do
+    let(:author) { FactoryGirl.create :author }
+
     scenario "An admin can create an author" do
       visit rails_admin.index_path("Author")
       click_link "Add new"
 
-      author = FactoryGirl.create :author
       within "#new_author" do
         fill_in "First name", with: author.first_name
         fill_in "Last name", with: author.last_name
@@ -58,7 +58,6 @@ RSpec.feature "Admins", type: :feature do
     end
 
     scenario "An admin can edit authors" do
-      author = FactoryGirl.create :author
       visit rails_admin.edit_path("Author", id: author.id)
       within "#edit_author" do
         fill_in "Last name", with: Faker::Name.last_name

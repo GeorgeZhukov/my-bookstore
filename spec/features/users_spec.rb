@@ -6,8 +6,9 @@ RSpec.feature "Users", type: :feature do
     login_as(user, :scope => :user)
   end
 
+  let(:address) { FactoryGirl.create :address }
+
   scenario "A user can edit billing address" do
-    address = FactoryGirl.create :address
     visit edit_user_registration_path
     within "#billing_address" do
       fill_in "Address", with: address.address
@@ -21,7 +22,6 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario "A user can edit shipping address" do
-    address = FactoryGirl.create :address
     visit edit_user_registration_path
     within "#shipping_address" do
       fill_in "Address", with: address.address

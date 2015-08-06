@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Books", type: :feature do
+  let(:book) { FactoryGirl.create :book }
+
   scenario "A user see best sellers on home page" do
     # Init best sellers
     items = []
@@ -20,14 +22,12 @@ RSpec.feature "Books", type: :feature do
   end
 
   scenario "A user can see book details" do
-    book = FactoryGirl.create :book
     visit book_path(book)
     expect(page).to have_content book.title
     expect(page).to have_content book.description
   end
 
   scenario "A user can add book to cart" do
-    book = FactoryGirl.create :book
     visit book_path(book)
     click_button "Add to Cart"
     visit cart_path(:intro)

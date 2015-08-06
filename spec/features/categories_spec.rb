@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Categories", type: :feature do
+  let!(:category) { FactoryGirl.create :category }
+  let!(:book) { FactoryGirl.create :book, category: category }
+
   scenario "A user can see categories on books page" do
     categories = []
     10.times { categories << FactoryGirl.create(:category) }
@@ -9,8 +12,7 @@ RSpec.feature "Categories", type: :feature do
   end
 
   scenario "A user can see books in selected category" do
-    category = FactoryGirl.create :category
-    book = FactoryGirl.create :book, category: category
+
     visit books_path
     click_link category.title
     expect(page).to have_content book.title
