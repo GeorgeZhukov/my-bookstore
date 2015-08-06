@@ -10,6 +10,8 @@
     = render partial: "layouts/top_menu"
 
     .container
+      %ol.breadcrumb
+        = render_breadcrumbs tag: :li, separator: ""
       .row
         .col-sm-3
           %aside
@@ -21,21 +23,6 @@
           - flash.each do |k,v|
             .alert.alert-info{:role=>"alert"}= v
 
-          %ol.breadcrumb
-            = render_breadcrumbs tag: :li, separator: ""
-
           = yield
 
-  .modal#signOutModal
-    .modal-dialog
-      .modal-content
-        .modal-header
-          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-          %h4.modal-title Sign Out
-        .modal-body
-          %p Are you sure want to sign out?
-        .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancel
-          = link_to destroy_user_session_path, method: :delete, class: "btn btn-danger" do
-            %i.fa.fa-sign-out
-            Sign Out
+  = render partial: "layouts/logout_modal"
