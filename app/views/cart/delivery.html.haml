@@ -3,7 +3,7 @@
 = form_tag wizard_path, method: :put do
   - @delivery_services.each do |ds|
     = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds)
-    = ds.name
+    = "#{ds.name} + $#{ds.price}"
     %br/
   %button.btn.btn-primary.pull-right{:type=>"submit"}
     Next

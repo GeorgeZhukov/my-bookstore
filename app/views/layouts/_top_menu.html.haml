@@ -10,30 +10,34 @@
         = image_tag "logo.png", id: "logo"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li.active
-          = link_to books_path do
-            %i.fa.fa-book
-            Books
-        %li
-          = link_to "Authors", authors_path
+        = active_link_to books_path, wrap_tag: :li do
+          %i.fa.fa-book
+          Books
+        = active_link_to authors_path, wrap_tag: :li do
+          %i.fa.fa-users
+          Authors
       %ul.nav.navbar-nav.navbar-right
-        %li
-          = link_to cart_path(:intro) do
-            %i.fa.fa-shopping-cart
-            = "Cart (#{current_user.cart.books_count} items) $#{current_user.cart.calculate_total_price}"
+
+        = active_link_to cart_path(:intro), wrap_tag: :li do
+          %i.fa.fa-shopping-cart
+          = "(#{current_user.cart.books_count}) $#{current_user.cart.calculate_total_price}"
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             = image_tag current_user.avatar_url, width: 20, class: "img-circle"
             %span.caret
           %ul.dropdown-menu
-            %li
-              = link_to edit_user_registration_path do
-                %i.fa.fa-pencil-square-o
-                Edit Profile
-            %li
-              = link_to orders_path do
-                %i.fa.fa-archive
-                Orders
+
+            = active_link_to edit_user_registration_path, wrap_tag: :li do
+              %i.fa.fa-pencil-square-o
+              Edit Profile
+
+            = active_link_to orders_path, wrap_tag: :li do
+              %i.fa.fa-archive
+              Orders
+
+            = active_link_to wish_list_books_path, wrap_tag: :li do
+              %i.fa.fa-book
+              Wish list
             %li.divider{:role => "separator"}
             %li
               %a{:href=>"#", "data-toggle"=>"modal", "data-target"=>"#signOutModal"}
