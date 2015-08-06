@@ -6,6 +6,13 @@ RSpec.feature "Admins", type: :feature do
     login_as(user, :scope => :user)
   end
 
+  scenario "An admin can navigate to admin panel by link on main layout" do
+    visit root_path
+    expect(page).to have_link "Admin Panel"
+    click_link "Admin Panel"
+    expect(page).to have_content "Site Administration"
+  end
+
   context "ratings" do
     scenario "An admin can approve pending ratings" do
       book = FactoryGirl.create :book

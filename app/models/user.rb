@@ -41,5 +41,33 @@ class User < ActiveRecord::Base
     wish_list || WishList.create(user: self)
   end
 
+  # def after_database_authentication
+  #   self.reassign_data_from_guest
+  # end
+
+  def reassign_data_from_guest(guest_id)
+    guest_user = User.find(guest_id)
+
+    # Move order
+    if guest_user.cart.order_items.exists?
+      cart = guest_user.cart
+      if self.cart.order_items.exists?
+        # Some items already in cart, so we just merge it
+        cart.order_items.each do |order_item| # todo: need mass-assignment
+          order_item.order=self.cart
+          order_item.save
+        end
+      else
+        # No order items, so we can just reassign guest cart
+        cart.user=self
+        cart.save
+      end
+    end
+
+    # todo: reassign wish list and maybe orders that has different state(not in progress)
+
+    # todo: destroy guest user
+  end
+
 
 end

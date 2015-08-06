@@ -1,5 +1,5 @@
 class WishListBooksController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   add_breadcrumb "Wish list books", :wish_list_books_path
 

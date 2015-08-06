@@ -17,29 +17,38 @@
           %i.fa.fa-users
           Authors
       %ul.nav.navbar-nav.navbar-right
-
+        - if can? :access, :rails_admin
+          %li
+            = link_to rails_admin_path do
+              %i.fa.fa-tachometer
+              Admin Panel
         = active_link_to cart_path(:intro), wrap_tag: :li do
           %i.fa.fa-shopping-cart
-          = "(#{current_user.cart.books_count}) $#{current_user.cart.calculate_total_price}"
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            = image_tag current_user.avatar_url, width: 20, class: "img-circle"
-            %span.caret
-          %ul.dropdown-menu
+          = "(#{current_or_guest_user.cart.books_count}) $#{current_or_guest_user.cart.calculate_total_price}"
+        - if current_user
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = image_tag current_or_guest_user.avatar_url, width: 20, class: "img-circle"
+              %span.caret
+            %ul.dropdown-menu
+              = active_link_to edit_user_registration_path, wrap_tag: :li do
+                %i.fa.fa-pencil-square-o
+                Edit Profile
 
-            = active_link_to edit_user_registration_path, wrap_tag: :li do
-              %i.fa.fa-pencil-square-o
-              Edit Profile
+              = active_link_to orders_path, wrap_tag: :li do
+                %i.fa.fa-archive
+                Orders
 
-            = active_link_to orders_path, wrap_tag: :li do
-              %i.fa.fa-archive
-              Orders
-
-            = active_link_to wish_list_books_path, wrap_tag: :li do
-              %i.fa.fa-book
-              Wish list
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href=>"#", "data-toggle"=>"modal", "data-target"=>"#signOutModal"}
-                %i.fa.fa-sign-out
-                Sign Out
+              = active_link_to wish_list_books_path, wrap_tag: :li do
+                %i.fa.fa-book
+                Wish list
+              %li.divider{:role => "separator"}
+              %li
+                %a{:href=>"#", "data-toggle"=>"modal", "data-target"=>"#signOutModal"}
+                  %i.fa.fa-sign-out
+                  Sign Out
+        - else
+          %li
+            = link_to new_user_session_path do
+              %i.fa.fa-sign-in
+              Sign In

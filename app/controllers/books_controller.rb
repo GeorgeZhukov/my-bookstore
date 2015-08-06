@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   def show
     add_breadcrumb @book.title, @book
     @ratings = @book.ratings.approved.latest
-    @new_rating = current_user.ratings.build
+    @new_rating = current_or_guest_user.ratings.build
   end
 
   def add_to_cart
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
     else
       quantity = 1
     end
-    @cart = current_user.cart
+    @cart = current_or_guest_user.cart
     @cart.add_book(book, quantity)
     @cart.save
     flash[:notice] = "Book was successfully added to cart."

@@ -1,6 +1,6 @@
-- if current_user.cart.order_items.exists?
+- if current_or_guest_user.cart.order_items.exists?
   %h2 In progress
-  = render partial: "order", object: current_user.cart
+  = render partial: "order", object: current_or_guest_user.cart
 
 - if @orders.in_queue.exists?
   %h2 Waiting for processing

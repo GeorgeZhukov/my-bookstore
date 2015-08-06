@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     if user.is_admin
       can :manage, :all
+      can :access, :rails_admin
     else
       can [:read, :add_to_cart], Book
       can [:read], Category

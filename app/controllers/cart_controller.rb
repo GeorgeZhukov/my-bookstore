@@ -6,12 +6,12 @@ class CartController < ApplicationController
   add_breadcrumb "Cart", :cart_path
 
   def show
-    @cart = current_user.cart
+    @cart = current_or_guest_user.cart
     case step
       when :intro
       when :address
-        @cart.shipping_address ||= current_user.shipping_address || Address.new
-        @cart.billing_address ||= current_user.billing_address || Address.new
+        @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
+        @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
       when :delivery
         @delivery_services = DeliveryService.all
       when :payment
@@ -27,7 +27,7 @@ class CartController < ApplicationController
   end
 
   def update
-    @cart = current_user.cart
+    @cart = current_or_guest_user.cart
     case step
       when :intro
         params[:items].each do |item|
@@ -56,7 +56,7 @@ class CartController < ApplicationController
   end
 
   def clear
-    current_user.cart.clear
+    current_or_guest_user.cart.clear
   end
 
   def address
@@ -64,7 +64,7 @@ class CartController < ApplicationController
   end
 
   def remove_item
-    order_item = current_user.cart.order_items.find params[:item_id]
+    order_item = current_or_guest_user.cart.order_items.find params[:item_id]
     order_item.destroy
     redirect_to wizard_path(:intro)
   end
