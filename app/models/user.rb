@@ -50,25 +50,31 @@ class User < ActiveRecord::Base
   # end
 
   def reassign_data_from_guest(guest_id)
+    # todo: need to refactor
     guest_user = User.find(guest_id)
 
-    # Move order
-    if guest_user.cart.order_items.exists?
-      cart = guest_user.cart
-      if self.cart.order_items.exists?
-        # Some items already in cart, so we just merge it
-        cart.order_items.each do |order_item| # todo: need mass-assignment
-          order_item.order=self.cart
-          order_item.save
+    guest_cart = guest_user.cart
+    user_cart = self.cart
+
+    if guest_cart.order_items.exists?
+
+      if user_cart.order_items.exists?
+
+        guest_cart_book_ids = guest_cart.order_items.pluck(:book_id)
+        user_cart_book_ids = user_cart.order_items.pluck(:book_id)
+        same_books_ids = guest_cart_book_ids & user_cart_book_ids
+
+        if same_books_ids.empty?
+          guest_cart.order_items.update_all(order_id: user_cart.id)
+        else
+          guest_cart.order_items.each do |order_item|
+            user_cart.add_book(order_item.book, order_item.quantity)
+          end
         end
       else
-        # No order items, so we can just reassign guest cart
-        cart.user=self
-        cart.save
+        guest_cart.order_items.update_all(order_id: user_cart.id)
       end
     end
-
-    # todo: reassign wish list and maybe orders that has different state(not in progress)
 
     # todo: destroy guest user
   end
