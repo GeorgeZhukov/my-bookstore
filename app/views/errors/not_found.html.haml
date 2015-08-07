@@ -1,0 +1,20 @@
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to root_path, class: "navbar-brand" do
+        = image_tag "logo.png", id: "logo"
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        = active_link_to "Books", books_path, wrap_tag: :li
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "#"} Already a member?
+#error
+  %h1.text-center Page not found.
+.container
+  %hr/
+  %p.centered The Awesome Bookstore

@@ -51,7 +51,7 @@ gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 gem "font-awesome-rails"
 gem "breadcrumbs_on_rails"
 gem 'active_link_to'
-
+gem 'gaffe'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
