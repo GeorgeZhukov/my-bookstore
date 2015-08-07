@@ -1,15 +1,17 @@
-%h2 Address
 = render partial: "steps"
 
+%h2 Address
 = form_tag wizard_path, method: :put do
   .row
     .col-md-5
+      %h4 Shipping Address
       = simple_fields_for :shipping_address, @cart.shipping_address do |f|
-        = render partial: "address_form", locals: {f: f}
+        = render partial: "users/registrations/address_form", object: f
 
     .col-md-5
+      %h4 Billing Address
       = simple_fields_for :billing_address, @cart.billing_address do |f|
-        = render partial: "address_form", locals: {f: f}
+        = render partial: "users/registrations/address_form", object: f
     :javascript
       var inputs = $("[type='tel']");
 

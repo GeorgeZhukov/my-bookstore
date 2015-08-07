@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     wish_list || WishList.create(user: self)
   end
 
+  def to_s
+    "#{first_name} #{last_name}"
+  end
+
   # def after_database_authentication
   #   self.reassign_data_from_guest
   # end

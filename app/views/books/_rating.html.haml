@@ -1,6 +1,11 @@
-.rating.row
-  .col-sm-5
-    = image_tag rating.user.avatar_url, class: "avatar"
-  .col-sm-7
-    .rating-stars{"data-score"=>rating.number/2}
-    = rating.review
+%li.rating
+  .rating_container
+    = image_tag rating.user.avatar_url, class: "avatar photo", height: 140, width: 140
+    .rating-review
+      %h3.rating-author= rating.user.to_s
+
+      .rating-stars{"data-score"=>rating.number/2}
+      .review-metadata
+        bla bla
+
+      .description= rating.review

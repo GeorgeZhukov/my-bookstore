@@ -1,5 +1,6 @@
-%h2 Delivery
 = render partial: "steps"
+
+%h2 Delivery
 = form_tag wizard_path, method: :put do
   - @delivery_services.each do |ds|
     = radio_button_tag(:delivery, ds.id, @selected == ds)

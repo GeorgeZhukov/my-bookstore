@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.raty
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require slick
+//= require jquery.raty
 //= require intlTelInput
 //= require_tree .

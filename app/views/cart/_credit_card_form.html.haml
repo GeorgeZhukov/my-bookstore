@@ -1,17 +1,9 @@
-.form-group
-  = f.input :number
-
-.form-group
-  = f.input :CVV
-
-.form-group
-  = f.input :expiration_month, collection: 1..12
-
-.form-group
-  = f.input :expiration_year, collection: Date.today.year..(Date.today.year + 10)
-
-.form-group
-  = f.input :first_name
-
-.form-group
-  = f.input :last_name
+= f.input :number
+.row
+  .col-sm-2= f.input :CVV, input_html: {class: "cvv"}
+  .col-sm-2= f.input :expiration_month, collection: 1..12, input_html: {class: "expiry-month"}
+  .col-sm-2= f.input :expiration_year, collection: Date.today.year..(Date.today.year + 10), input_html: {class: "expiry-year"}
+  .col-sm-6
+.row
+  .col-sm-6= f.input :first_name
+  .col-sm-6= f.input :last_name
