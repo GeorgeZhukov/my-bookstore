@@ -23,13 +23,12 @@ RSpec.feature "Ratings", type: :feature do
 
   scenario "A user can add a new rating" do
     user = FactoryGirl.create :admin
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
 
     book = FactoryGirl.create :book
 
     visit book_path(book)
     within "#new_rating" do
-      fill_in "Number", with: 3
       fill_in "Review", with: "Some text"
     end
     click_button "Submit"

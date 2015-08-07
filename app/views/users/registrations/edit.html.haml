@@ -6,11 +6,7 @@
     = form_tag registration_path(resource_name), method: :put, id: "billing_address" do
       %h3 Billing address
       = simple_fields_for :billing_address, current_user.billing_address do |f|
-        = f.input :address, autofocus: true
-        = f.input :zip_code
-        = f.input :city
-        = f.input :phone
-        = f.input :country
+        = render partial: "address_form", object: f
         %button.btn.btn-primary{:type=>"submit"}
           %i.fa.fa-floppy-o
           Save
@@ -18,15 +14,25 @@
     = form_tag registration_path(resource_name), method: :put, id: "shipping_address" do
       %h3 Shipping address
       = simple_fields_for :shipping_address, current_user.shipping_address do |f|
-        = f.input :address
-        = f.input :zip_code
-        = f.input :city
-        = f.input :phone
-        = f.input :country
+        = render partial: "address_form", object: f
         %button.btn.btn-primary{:type=>"submit"}
           %i.fa.fa-floppy-o
           Save
 
+  :javascript
+      var inputs = $("[type='tel']");
+
+      inputs.each(function(){
+        // Insert new line after label
+        var input = $(this);
+        var label = $("[for='" + input.attr("id") + "']");
+        $(label).after("<br />");
+        // Mark input as phone number
+        $(input).intlTelInput();
+      });
+
+%hr
+%h3 General Info
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f|
   = f.error_notification
   .form-inputs

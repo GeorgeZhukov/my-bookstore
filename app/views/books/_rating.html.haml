@@ -1,5 +1,6 @@
-.rating
+.rating.row
   .col-sm-5
     = image_tag rating.user.avatar_url, class: "avatar"
   .col-sm-7
+    .rating-stars{"data-score"=>rating.number/2}
     = rating.review

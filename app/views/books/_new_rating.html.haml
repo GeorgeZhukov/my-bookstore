@@ -1,0 +1,15 @@
+%h3 Write your review
+= simple_form_for new_rating, url: book_ratings_path(book) do |f|
+  #rating-stars
+  :javascript
+      $("#rating-stars").raty({
+        score: 5,
+        click: function(score, evt) {
+          $("#rating_number").val(score * 2);
+        }
+      });
+  = f.input :number, as: :hidden, input_html: {min: 1, max: 10, value: 10}
+  = f.input :review
+  %button.btn.btn-warning{:type=>"submit"}
+    %i.fa.fa-comment
+    Submit

@@ -10,6 +10,17 @@
     .col-md-5
       = simple_fields_for :billing_address, @cart.billing_address do |f|
         = render partial: "address_form", locals: {f: f}
+    :javascript
+      var inputs = $("[type='tel']");
+
+      inputs.each(function(){
+        // Insert new line after label
+        var input = $(this);
+        var label = $("[for='" + input.attr("id") + "']");
+        $(label).after("<br />");
+        // Mark input as phone number
+        $(input).intlTelInput();
+      });
 
   %button.btn.btn-primary.pull-right{:type=>"submit"}
     Next
