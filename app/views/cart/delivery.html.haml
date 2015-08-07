@@ -2,7 +2,7 @@
 = render partial: "steps"
 = form_tag wizard_path, method: :put do
   - @delivery_services.each do |ds|
-    = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds)
+    = radio_button_tag(:delivery, ds.id, @selected == ds)
     = "#{ds.name} + $#{ds.price}"
     %br/
   %button.btn.btn-primary.pull-right{:type=>"submit"}

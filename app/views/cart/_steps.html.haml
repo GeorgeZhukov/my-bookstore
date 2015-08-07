@@ -1,9 +1,5 @@
 %ul.nav.nav-pills
-  %li
-    = link_to 'Intro', wizard_path(:intro)
-  %li
-    = link_to 'Address', wizard_path(:address)
-  %li
-    = link_to 'Delivery', wizard_path(:delivery)
-  %li
-    = link_to 'Payment', wizard_path(:payment)
+	= active_link_to 'Intro', wizard_path(:intro), wrap_tag: :li
+	= active_link_to 'Address', wizard_path(:address), wrap_tag: :li
+	= active_link_to 'Delivery', wizard_path(:delivery), wrap_tag: :li
+	= active_link_to 'Payment', wizard_path(:payment), wrap_tag: :li

@@ -14,6 +14,7 @@ class CartController < ApplicationController
         @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
       when :delivery
         @delivery_services = DeliveryService.all
+        @selected = @cart.delivery_service || @delivery_services[0]
       when :payment
         @cart.credit_card ||= CreditCard.new
       when :confirm
@@ -47,7 +48,9 @@ class CartController < ApplicationController
           return render_wizard
         end
       when :delivery
-        @cart.delivery_service = DeliveryService.find(params[:delivery])
+        ds = DeliveryService.find_by_id(params[:delivery])
+        return redirect_to :back, notice: "Check delivery service" unless ds
+        @cart.delivery_service = ds
       when :payment
         @credit_card = @cart.credit_card ||= CreditCard.new
         return render_wizard unless @cart.credit_card.update(credit_card_params)
