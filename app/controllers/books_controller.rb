@@ -4,7 +4,6 @@ class BooksController < ApplicationController
 
   def index
     if params[:search]
-      flash[:notice]=params[:search]
       @books = @books.search params[:search]
     end
     @books = @books.page params[:page]
