@@ -15,6 +15,12 @@ RSpec.feature "Cart", type: :feature do
     expect(page).to have_content "Your cart is empty."
   end
 
+  scenario "A user can clear the cart" do
+    visit cart_path(:intro)
+    click_link "Empty Cart"
+    expect(page).to have_content "Your cart is cleared."
+  end
+
   scenario "A user can change quantity of order item" do
 
     # Change quantity

@@ -60,6 +60,7 @@ class CartController < ApplicationController
 
   def clear
     current_or_guest_user.cart.clear
+    redirect_to wizard_path(:intro), notice: "Your cart is cleared."
   end
 
   def address

@@ -25,6 +25,9 @@
             %td
               = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
                 %i.fa.fa-times
+
+    = link_to "Empty Cart", clear_cart_path, method: :delete, class: "btn btn-default"
+
     %button.btn.btn-default{:type=>"submit"}
       %i.fa.fa-refresh
       Update

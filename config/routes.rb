@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :cart, only: [:show, :update] do
     member do
       delete 'remove-item'
+      delete 'clear'
     end
   end
   resources :orders, only: [:index, :show]

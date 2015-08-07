@@ -68,6 +68,14 @@ class Order < ActiveRecord::Base
     !order_items.exists?
   end
 
+  def clear
+    order_items.destroy_all
+    self.shipping_address=nil
+    self.billing_address=nil
+    self.delivery_service=nil
+    save
+  end
+
   def notify_user
     # todo: send email
   end
