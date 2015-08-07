@@ -35,9 +35,18 @@ RSpec.feature "Books", type: :feature do
   end
 
   scenario "A user can search books by title" do
-    visit root_path
+    visit books_path
     within "#search-form" do
       fill_in "Search", with: book.title
+    end
+    page.find(:css, '#search-button').click
+    expect(page).to have_content book.title
+  end
+
+  scenario "A user can search books by author" do
+    visit books_path
+    within "#search-form" do
+      fill_in "Search", with: book.author.to_s
     end
     page.find(:css, '#search-button').click
     expect(page).to have_content book.title

@@ -1,9 +1,98 @@
-.best-sellers-books
-  = render partial: "book", collection: @books
-
-%p.lead.text-center
-  Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!
-:javascript
-  $(function(){
-    $(".best-sellers-books").slick();
-  });
+-#.best-sellers-books
+-#  = render partial: "book", collection: @books
+-#
+-#%p.lead.text-center
+-#  Welcome to our amazing Bookstore! Choose anything you wish, we'll ship it anywhere!
+-#:javascript
+-#  $(function(){
+-#    $(".best-sellers-books").slick();
+-#  });
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to root_path, class: "navbar-brand" do
+        = image_tag "logo.png", id: "logo"
+    .navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        = active_link_to "Books", books_path, wrap_tag: :li
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "#"} Already a member?
+#headerwrap
+  .container
+    .row
+      .col-lg-6
+        %h1
+          Buy awesome books from anywhere in the world.
+      .col-lg-6
+        %img.img-responsive{:alt => "", :src => "assets/img/ipad-hand.png"}/
+.container
+  .row.mt.centered
+    .col-lg-6.col-lg-offset-3
+      %h1 Books is for Everyone.
+      %h3 Best sellers books
+  .row.mt.centered
+    .col-lg-6.col-lg-offset-3
+      #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+        .carousel-inner
+          = render partial: "book", collection: @books
+.steps
+  .container
+    .row.mt.centered
+      .col-lg-6.col-lg-offset-3
+        %h2
+          You're more powerful then you think.
+        %h3 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+    .row.mt.centered
+      .col-lg-4
+        %img{:alt => "", :src => "assets/img/ser01.png", :width => "180"}/
+        %h4 1 - Choose your book
+        %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+      .col-lg-4
+        %img{:alt => "", :src => "assets/img/ser02.png", :width => "180"}/
+        %h4 2 - Choose your delivery
+        %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+      .col-lg-4
+        %img{:alt => "", :src => "assets/img/ser03.png", :width => "180"}/
+        %h4 3 - Enjoy!
+        %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+.container
+  .row.mt.centered
+    .col-lg-6.col-lg-offset-3
+      %h1
+        Our Awesome Team.
+        %br>/
+        Design Lovers.
+      %h3 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+  .row.mt.centered
+    .col-lg-4
+      %img.img-circle{:alt => "", :src => "assets/img/pic1.jpg", :width => "140"}/
+      %h4 Michael Robson
+      %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+      %p
+        %i.glyphicon.glyphicon-send
+        %i.glyphicon.glyphicon-phone
+        %i.glyphicon.glyphicon-globe
+    .col-lg-4
+      %img.img-circle{:alt => "", :src => "assets/img/pic2.jpg", :width => "140"}/
+      %h4 Pete Ford
+      %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+      %p
+        %i.glyphicon.glyphicon-send
+        %i.glyphicon.glyphicon-phone
+        %i.glyphicon.glyphicon-globe
+    .col-lg-4
+      %img.img-circle{:alt => "", :src => "assets/img/pic3.jpg", :width => "140"}/
+      %h4 Angelica Finning
+      %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
+      %p
+        %i.glyphicon.glyphicon-send
+        %i.glyphicon.glyphicon-phone
+        %i.glyphicon.glyphicon-globe
+.container
+  %hr/
+  %p.centered Created by George

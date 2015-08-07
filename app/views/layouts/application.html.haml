@@ -3,26 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title MyBookstore
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    - if content_for(:styles)
+      = yield(:styles)
+    - else
+      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render partial: "layouts/top_menu"
-
-    .container
-      %ol.breadcrumb
-        = render_breadcrumbs tag: :li, separator: ""
-      .row
-        .col-sm-3
-          %aside
-            %h3.categories-title Categories
-            %ul.nav.nav-pills.nav-stacked
-              - @categories.each do |category|
-                = active_link_to category.title, category, wrap_tag: :li
-        .col-sm-9
-          - flash.each do |k,v|
-            .alert.alert-info{:role=>"alert"}= v
-
-          = yield
-
-  = render partial: "layouts/logout_modal"
+    = content_for(:content) ? yield(:content) : yield

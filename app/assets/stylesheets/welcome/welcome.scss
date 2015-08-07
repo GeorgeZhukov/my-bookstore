@@ -1,0 +1,18 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "landing";
+@import "font-awesome";
+
+#logo {
+  padding: 0 20px;
+  height: 22px;
+}
+
+.steps {
+  background-color: #83FFC6;
+  //color: #fafafa;
+}

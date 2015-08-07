@@ -7,7 +7,7 @@ RSpec.feature "Admins", type: :feature do
   end
 
   scenario "An admin can navigate to admin panel by link on main layout" do
-    visit root_path
+    visit books_path
     expect(page).to have_link "Admin Panel"
     click_link "Admin Panel"
     expect(page).to have_content "Site Administration"

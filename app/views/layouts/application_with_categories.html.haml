@@ -1,0 +1,22 @@
+= content_for :content do
+  = render partial: "layouts/top_menu"
+
+  .container
+    %ol.breadcrumb
+      = render_breadcrumbs tag: :li, separator: ""
+    .row
+      .col-sm-3
+        %aside
+          %h3.categories-title Categories
+          %ul.nav.nav-pills.nav-stacked
+            - @categories.each do |category|
+              = active_link_to category.title, category, wrap_tag: :li
+      .col-sm-9
+        - flash.each do |k,v|
+          .alert.alert-info{:role=>"alert"}= v
+
+        = yield
+
+  = render partial: "layouts/logout_modal"
+
+= render template: "layouts/application"
