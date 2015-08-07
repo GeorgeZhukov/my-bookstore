@@ -64,6 +64,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def empty?
+    !order_items.exists?
+  end
+
   def notify_user
     # todo: send email
   end

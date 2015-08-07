@@ -51,7 +51,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "#calculate_total_price" do
+  describe ".calculate_total_price" do
     subject { FactoryGirl.create :order }
 
     xit "returns zero when no books in order" do
@@ -78,6 +78,19 @@ RSpec.describe Order, type: :model do
       subject.add_book(@book2, 3)
       expected_total_price = @book1.price * 2 + @book2.price * 3
       expect(subject.calculate_total_price).to eq expected_total_price+ subject.delivery_service.price
+    end
+  end
+
+  describe ".empty?" do
+    subject { FactoryGirl.create :order }
+
+    it "returns true when no order items" do
+      expect(subject).to be_empty
+    end
+
+    it "returns false when has some order items" do
+      subject.add_book FactoryGirl.create(:book)
+      expect(subject).not_to be_empty
     end
   end
 end
