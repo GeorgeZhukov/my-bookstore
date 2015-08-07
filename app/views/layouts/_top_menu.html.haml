@@ -18,7 +18,7 @@
           Authors
       = form_tag books_path, method: :get, id: "search-form", class: "navbar-form navbar-left", role: "search" do
         .form-group
-          %input.form-control{:type=>"text", :placeholder=>"Search"}
+          %input.form-control{:type=>"text", :placeholder=>"Search", :name=>"search"}
         %button#search-button.btn.btn-default{:type=>"submit"}
           %i.fa.fa-search
       %ul.nav.navbar-nav.navbar-right
