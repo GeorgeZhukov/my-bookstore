@@ -2,7 +2,9 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title MyBookstore
+    %title The Awesome Bookstore
+    %link{:href => "favicon.ico", :rel => "icon", :type => "image/x-icon"}/
+    %link{:href => "favicon.png", :rel => "apple-touch-icon-precomposed"}/
     - if content_for(:styles)
       = yield(:styles)
     - else
