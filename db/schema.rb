@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805131551) do
+ActiveRecord::Schema.define(version: 20150808145545) do
 
   create_table "addresses", force: :cascade do |t|
     t.text     "address"
@@ -108,13 +108,14 @@ ActiveRecord::Schema.define(version: 20150805131551) do
     t.string   "state"
     t.integer  "user_id"
     t.integer  "delivery_service_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "credit_card_id"
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"
     t.datetime "deleted_at"
     t.string   "number"
+    t.decimal  "total_price",         precision: 8, scale: 2
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
@@ -134,6 +135,19 @@ ActiveRecord::Schema.define(version: 20150805131551) do
 
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "rich_rich_files", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        default: "file"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -23,6 +23,29 @@ RSpec.describe Order, type: :model do
       order_item = OrderItem.first
       expect(order_item.quantity).to eq 2
     end
+
+    context "total price" do
+      before do
+        subject.clear
+      end
+
+      it "updates total price to book price" do
+        subject.add_book book
+        expect(subject.total_price).to eq book.price
+      end
+
+      it "updates total price to 2x book price" do
+        subject.add_book(book, 2)
+        expect(subject.total_price).to eq book.price * 2
+      end
+
+      it "updates total price with 2 different books" do
+        book2 = FactoryGirl.create :book
+        subject.add_book book
+        subject.add_book book2
+        expect(subject.total_price).to eq book.price + book2.price
+      end
+    end
   end
 
   describe ".books_count" do
@@ -44,33 +67,6 @@ RSpec.describe Order, type: :model do
       subject.order_items << FactoryGirl.create(:order_item, quantity: 3)
       subject.order_items << FactoryGirl.create(:order_item, quantity: 5)
       expect(subject.books_count).to eq 8
-    end
-  end
-
-  describe ".calculate_total_price" do
-
-    xit "returns zero when no books in order" do
-      expect(subject.calculate_total_price).to be_zero
-    end
-
-    it "returns price of one book when only one book in order" do
-      subject.add_book book
-      expect(subject.calculate_total_price).to eq book.price + subject.delivery_service.price
-    end
-
-    it "returns price of two book when two book in order" do
-      subject.add_book book
-      subject.add_book book
-      expect(subject.calculate_total_price).to eq book.price * 2+ subject.delivery_service.price
-    end
-
-    it "returns correct total price for different books" do
-      book1 = FactoryGirl.create :book
-      book2 = FactoryGirl.create :book
-      subject.add_book(book1, 2)
-      subject.add_book(book2, 3)
-      expected_total_price = book1.price * 2 + book2.price * 3
-      expect(subject.calculate_total_price).to eq expected_total_price+ subject.delivery_service.price
     end
   end
 
@@ -115,5 +111,21 @@ RSpec.describe Order, type: :model do
     it "removes delivery service" do
       expect(subject.delivery_service).to be_nil
     end
+
+    it "updates total price to 0" do
+      expect(subject.total_price).to be_zero
+    end
+  end
+
+  describe ".notify_user" do
+    it "sends an email"
+  end
+
+  describe ".take_books" do
+    it "decrease books_in_stock"
+  end
+
+  describe ".restore_books" do
+    it "increase books_in_stock"
   end
 end

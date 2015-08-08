@@ -73,7 +73,7 @@ class Order < ActiveRecord::Base
     # self.shipping_address=nil
     # self.billing_address=nil
     self.delivery_service=nil
-    save
+    calculate_total_price
   end
 
   def notify_user
@@ -101,8 +101,11 @@ class Order < ActiveRecord::Base
     end
     order_item.price = book.price * order_item.quantity
     order_item.save
+
+    calculate_total_price
   end
 
+  private
   def calculate_total_price
     subtotal = order_items.map(&:price).inject(&:+) || 0
     if delivery_service
@@ -110,7 +113,9 @@ class Order < ActiveRecord::Base
     else
       shipping = 0
     end
-    subtotal + shipping
+    self.total_price = subtotal + shipping
+    self.save
+    self.total_price
   end
 end
 
