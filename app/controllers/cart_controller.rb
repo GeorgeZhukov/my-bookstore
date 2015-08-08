@@ -31,12 +31,7 @@ class CartController < ApplicationController
     @cart = current_or_guest_user.cart
     case step
       when :intro
-        params[:items].each do |item|
-          # todo: check  id
-          order_item = @cart.order_items.find(item[:id])
-          order_item.quantity = item[:quantity]
-          order_item.save
-        end
+        update_cart
         return render_wizard unless params[:checkout]
       when :address
         @cart.billing_address ||= Address.new
@@ -82,6 +77,13 @@ class CartController < ApplicationController
   end
 
   private
+  def update_cart
+    params[:items].each do |item|
+      order_item = @cart.order_items.find(item[:id])
+      order_item.update(quantity: item[:quantity])
+    end
+  end
+
   def credit_card_params
     params.require(:credit_card).permit(:number, :CVV, :expiration_month, :expiration_year, :first_name, :last_name)
   end

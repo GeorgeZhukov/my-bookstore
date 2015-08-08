@@ -1,0 +1,5 @@
+%a.book.col-sm-4.col-md-3{:href=>book_path(book)}
+  = image_tag book.cover.thumbnail.url, class: "book-cover"
+  %h3.book-title= book.title
+  %h4.book-price= "$#{book.price}"
+  = link_to "remove", wish_list_book_path(book), method: :delete

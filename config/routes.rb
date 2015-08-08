@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       put 'add-to-cart'
     end
   end
-  resources :wish_list_books, only: [:index]
+  resources :wish_list_books, only: [:index, :destroy]
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :cart, only: [:show, :update] do
