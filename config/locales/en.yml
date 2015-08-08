@@ -76,7 +76,7 @@ en:
       empty_cart: "Empty Cart"
       update: "Update"
       checkout: "Checkout"
-      your_cart_is_empty: "Your cart is empty"
+      your_cart_is_empty: "Your cart is empty."
 
     payment:
       payment: "Payment"

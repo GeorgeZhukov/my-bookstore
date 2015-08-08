@@ -31,7 +31,7 @@ RSpec.feature "Ratings", type: :feature do
     within "#new_rating" do
       fill_in "Review", with: "Some text"
     end
-    click_button "Submit"
+    click_button I18n.t("books.new_rating.submit")
     expect(page).to have_content "Your rating has been successfully sent to review."
   end
 end

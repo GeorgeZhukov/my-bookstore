@@ -5,7 +5,7 @@ RSpec.feature "Cart", type: :feature do
     # Add book
     book = FactoryGirl.create :book
     visit book_path(book)
-    click_button "Add to Cart"
+    click_button I18n.t("books.show.add_to_cart")
   end
 
   scenario "A user should see 'Your cart is empty' when no items in cart" do
@@ -17,7 +17,7 @@ RSpec.feature "Cart", type: :feature do
 
   scenario "A user can clear the cart" do
     visit cart_path(:intro)
-    click_link "Empty Cart"
+    click_link I18n.t("cart.intro.empty_cart")
     expect(page).to have_content "Your cart is cleared."
   end
 
@@ -26,7 +26,7 @@ RSpec.feature "Cart", type: :feature do
     # Change quantity
     visit cart_path(:intro)
     fill_in "items__quantity", with: 5
-    click_button "Update"
+    click_button I18n.t("cart.intro.update")
     expect(find_field('items__quantity').value).to eq "5"
   end
 
@@ -57,8 +57,8 @@ RSpec.feature "Cart", type: :feature do
     fill_in "billing_address_city", with: address.city
     fill_in "billing_address_phone", with: address.phone
     select "Ukraine", from: "billing_address_country"
-    click_button "Save And Continue"
-    expect(page).to have_content "Delivery"
+    click_button I18n.t("cart.address.save_and_continue")
+    expect(page).to have_content I18n.t("cart.delivery.delivery")
   end
 
   scenario "A user should choose delivery service" do
@@ -68,8 +68,8 @@ RSpec.feature "Cart", type: :feature do
 
     visit cart_path(:delivery)
     choose("delivery_#{delivery_services[1].id}")
-    click_button "Save And Continue"
-    expect(page).to have_content "Payment"
+    click_button I18n.t("cart.delivery.save_and_continue")
+    expect(page).to have_content I18n.t("cart.payment.payment")
   end
 
   scenario "A user should put his credit card information" do
