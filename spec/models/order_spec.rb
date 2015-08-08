@@ -104,13 +104,13 @@ RSpec.describe Order, type: :model do
       expect(subject).to be_empty
     end
 
-    it "removes shipping address" do
-      expect(subject.shipping_address).to be_nil
-    end
-
-    it "removes billing address" do
-      expect(subject.billing_address).to be_nil
-    end
+    # it "removes shipping address" do
+    #   expect(subject.shipping_address).to be_nil
+    # end
+    #
+    # it "removes billing address" do
+    #   expect(subject.billing_address).to be_nil
+    # end
 
     it "removes delivery service" do
       expect(subject.delivery_service).to be_nil

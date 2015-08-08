@@ -70,8 +70,8 @@ class Order < ActiveRecord::Base
 
   def clear
     order_items.destroy_all
-    self.shipping_address=nil
-    self.billing_address=nil
+    # self.shipping_address=nil
+    # self.billing_address=nil
     self.delivery_service=nil
     save
   end

@@ -42,7 +42,12 @@ class CartController < ApplicationController
         @cart.billing_address ||= Address.new
         @cart.shipping_address ||= Address.new
         is_billing_updated = @cart.billing_address.update address_params(:billing_address)
-        is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
+
+        if params[:use_billing_address] == "yes"
+          is_shipping_updated = @cart.shipping_address.update address_params(:billing_address)
+        else
+          is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
+        end
 
         unless is_billing_updated and is_shipping_updated
           return render_wizard
@@ -60,7 +65,6 @@ class CartController < ApplicationController
 
   def clear
     current_or_guest_user.cart.clear
-    redirect_to wizard_path(:intro), notice: "Your cart is cleared."
   end
 
   def address

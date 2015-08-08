@@ -4,14 +4,20 @@
 = form_tag wizard_path, method: :put do
   .row
     .col-md-5
-      %h4 Shipping Address
-      = simple_fields_for :shipping_address, @cart.shipping_address do |f|
-        = render partial: "users/registrations/address_form", object: f
-
-    .col-md-5
       %h4 Billing Address
       = simple_fields_for :billing_address, @cart.billing_address do |f|
         = render partial: "users/registrations/address_form", object: f
+    .col-md-5
+      %h4 Shipping Address
+      #shipping-address
+        = simple_fields_for :shipping_address, @cart.shipping_address do |f|
+          = render partial: "users/registrations/address_form", object: f
+          = hidden_field_tag :use_billing_address, "no"
+      .checkbox
+        %label
+          %input#use-billing-address{:type=>"checkbox"} Use Billing Address
+
+
     :javascript
       var inputs = $("[type='tel']");
 
@@ -24,6 +30,16 @@
         $(input).intlTelInput();
       });
 
+      $("#use-billing-address").change(function() {
+          if(this.checked) {
+            $("#shipping-address").hide();
+            $("#use_billing_address").val("yes");
+          }else{
+            $("#shipping-address").show();
+            $("#use_billing_address").val("no");
+          }
+      });
+
   %button.btn.btn-primary.pull-right{:type=>"submit"}
-    Next
+    Save And Continue
     %i.fa.fa-arrow-right
