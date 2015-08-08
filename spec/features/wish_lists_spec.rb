@@ -22,7 +22,7 @@ RSpec.feature "WishLists", type: :feature do
       book2 = FactoryGirl.create :book
       visit book_path(book2)
       click_link I18n.t("books.show.add_to_wish_list")
-      expect(page).to have_content "The book successfully added to wish list."
+      expect(page).to have_content (I18n.t"wish_list_books.create.successfully_added")
     end
 
     scenario "A user can see books in wish list" do
@@ -33,7 +33,7 @@ RSpec.feature "WishLists", type: :feature do
     scenario "A user can remove book from wish list" do
       visit wish_list_books_path
       click_link "remove"
-      expect(page).to have_content "The book has been successfully destroyed."
+      expect(page).to have_content (I18n.t"wish_list_books.destroy.successfully_destroyed")
     end
   end
 

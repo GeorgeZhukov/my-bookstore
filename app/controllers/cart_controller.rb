@@ -3,7 +3,7 @@ class CartController < ApplicationController
 
   steps :intro, :address, :delivery, :payment, :confirm, :checkout
 
-  add_breadcrumb "Cart", :cart_path
+  add_breadcrumb (I18n.t"cart.cart"), :cart_path
 
   def show
     @cart = current_or_guest_user.cart
@@ -49,7 +49,7 @@ class CartController < ApplicationController
         end
       when :delivery
         ds = DeliveryService.find_by_id(params[:delivery])
-        return redirect_to :back, notice: "Check delivery service" unless ds
+        return redirect_to :back, notice: (I18n.t"cart.delivery.check_delivery") unless ds
         @cart.delivery_service = ds
       when :payment
         @credit_card = @cart.credit_card ||= CreditCard.new
@@ -60,7 +60,7 @@ class CartController < ApplicationController
 
   def clear
     current_or_guest_user.cart.clear
-    redirect_to wizard_path(:intro), notice: "Your cart is cleared."
+    redirect_to wizard_path(:intro), notice: (I18n.t"cart.clear.cart_is_cleared")
   end
 
   def address

@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
   load_and_authorize_resource :book
   load_and_authorize_resource :rating, through: :book
 
-  add_breadcrumb "Ratings", :ratings_path
+  add_breadcrumb (I18n.t"ratings.ratings"), :ratings_path
 
   def index
     @ratings = @ratings.approved.page params[:page]
@@ -16,7 +16,7 @@ class RatingsController < ApplicationController
     rating = current_user.ratings.build(rating_params)
     rating.book = @book
     if rating.save
-      redirect_to @book, notice: "Your rating has been successfully sent to review."
+      redirect_to @book, notice: (I18n.t"ratings.sent_to_review")
     else
       redirect_to @book
     end

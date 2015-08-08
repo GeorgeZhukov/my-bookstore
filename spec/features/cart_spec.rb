@@ -12,13 +12,13 @@ RSpec.feature "Cart", type: :feature do
     OrderItem.all.destroy_all
 
     visit cart_path(:intro)
-    expect(page).to have_content "Your cart is empty."
+    expect(page).to have_content (I18n.t"cart.intro.your_cart_is_empty")
   end
 
   scenario "A user can clear the cart" do
     visit cart_path(:intro)
     click_link I18n.t("cart.intro.empty_cart")
-    expect(page).to have_content "Your cart is cleared."
+    expect(page).to have_content (I18n.t"cart.clear.cart_is_cleared")
   end
 
   scenario "A user can change quantity of order item" do
@@ -114,7 +114,7 @@ RSpec.feature "Cart", type: :feature do
       fill_in "Last name", with: credit_card.last_name
       click_button "Save And Continue"
     end
-    expect(page).to have_content "Place Order"
+    expect(page).to have_content (I18n.t"cart.confirm.place_order")
   end
 
   scenario "When user visit addresses step its init form with user addresses" do

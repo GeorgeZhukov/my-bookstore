@@ -21,6 +21,8 @@
 
 en:
   authors:
+    authors: "Authorssss"
+
     author:
       more: "Yes"
 
@@ -28,6 +30,11 @@ en:
       biography: "YEAH"
 
   books:
+    books: "Booksssss"
+
+    add_to_cart:
+      books_was_successfully_added_to_cart: "Books was successfully added to cart."
+
     new_rating:
       write_your_review: "Write your revaiew"
       submit: "Submmit"
@@ -37,7 +44,27 @@ en:
       add_to_wish_list: "Add to Wish List"
       ratings: "Ratings"
 
+  categories:
+    categories: "Categories"
+
+  ratings:
+    ratings: "Ratings"
+    sent_to_review: "Your rating has been successfully sent to review."
+
+  wish_list_books:
+    wish_list_books: "Wish list books"
+
+    create:
+      already_in_wish_list: "The book already in wish list."
+      successfully_added: "The book successfully added to wish list."
+
+    destroy:
+      successfully_destroyed: "The book has been successfully destroyed."
+
   cart:
+
+    cart: "Cart"
+
     steps:
       intro: "Intro"
       address: "Address"
@@ -67,6 +94,10 @@ en:
     delivery:
       delivery: "Delivery"
       save_and_continue: "Save And Continue"
+      check_delivery: "Check delivery service"
+
+    clear:
+      cart_is_cleared: "Your cart is cleared."
 
     intro:
       book: "Book"
@@ -87,6 +118,8 @@ en:
       page_not_found: "Page not found"
 
   orders:
+    orders: "Orders"
+
     order:
       book: "Book"
       price: "Price"
