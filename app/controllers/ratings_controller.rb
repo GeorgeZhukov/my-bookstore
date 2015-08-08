@@ -9,7 +9,7 @@ class RatingsController < ApplicationController
   add_breadcrumb "Ratings", :ratings_path
 
   def index
-    @ratings = @ratings.approved.latest.page params[:page]
+    @ratings = @ratings.approved.page params[:page]
   end
 
   def create

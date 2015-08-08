@@ -9,7 +9,8 @@ class Rating < ActiveRecord::Base
   # validates :state, inclusion: {in: POSSIBLE_STATES}
   validates :review, presence: true, length: {minimum: 4, maximum: 100}
 
-  scope :latest, -> { order(created_at: :desc) }
+  default_scope { order(created_at: :desc) }
+
   scope :pending, -> { where(state: :pending) }
   scope :approved, -> { where(state: :approved) }
 

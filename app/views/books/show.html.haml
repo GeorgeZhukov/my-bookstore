@@ -19,7 +19,7 @@
 .row
   .col-md-6
     %ol.ratings
-      = render partial: "rating", collection: @book.ratings.approved.latest
+      = render partial: "rating", collection: @book.ratings.approved
       :javascript
         $(".rating-stars").raty({
           readOnly: true,

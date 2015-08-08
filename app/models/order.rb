@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
   belongs_to :credit_card
   has_many :order_items
 
+  default_scope { order(created_at: :desc) }
+
   scope :in_progress, -> { where(state: :in_progress) }
   scope :in_queue, -> { where(state: :in_queue) }
   scope :in_delivery, -> { where(state: :in_delivery) }
