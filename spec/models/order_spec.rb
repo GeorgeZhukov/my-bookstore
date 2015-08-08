@@ -8,6 +8,10 @@ RSpec.describe Order, type: :model do
   it { expect(subject).to belong_to :delivery_service }
   it { expect(subject).to have_many :order_items }
 
+  it "init total_price" do
+    expect(subject.total_price).not_to be_nil
+  end
+
   describe "#add_book" do
 
     it "creates order item with given book and sets quantity to one by default" do

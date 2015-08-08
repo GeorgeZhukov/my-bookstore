@@ -15,6 +15,10 @@ class Order < ActiveRecord::Base
   scope :in_delivery, -> { where(state: :in_delivery) }
   scope :delivered, -> { where(state: :delivered) }
 
+  after_create do
+    calculate_total_price
+  end
+
   state_machine :state, initial: :in_progress do
     before_transition :in_progress => :in_queue, do: :generate_number
     before_transition any => :in_delivery, do: :take_books

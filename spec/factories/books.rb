@@ -5,6 +5,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     price { Faker::Commerce.price }
     books_in_stock { Faker::Number.between(50, 200) }
+    cover Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/images/atlascover.jpg')))
     association :author, factory: :author
     association :category, factory: :category
   end

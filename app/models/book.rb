@@ -10,6 +10,7 @@ class Book < ActiveRecord::Base
   validates :books_in_stock, presence: true
   validates :short_description, presence: true
   validates :description, presence: true
+  validates :cover, presence: true
 
   mount_uploader :cover, BookCoverUploader
 
