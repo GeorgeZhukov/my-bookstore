@@ -21,23 +21,23 @@
 
 en:
   authors:
-    authors: "Authorssss"
+    authors: "Authors"
 
     author:
-      more: "Yes"
+      more: "more"
 
     show:
-      biography: "YEAH"
+      biography: "Biography"
 
   books:
-    books: "Booksssss"
+    books: "Books"
 
     add_to_cart:
-      books_was_successfully_added_to_cart: "Books was successfully added to cart."
+      books_was_successfully_added_to_cart: "Book was successfully added to cart."
 
     new_rating:
-      write_your_review: "Write your revaiew"
-      submit: "Submmit"
+      write_your_review: "Write your review"
+      submit: "Submit"
 
     show:
       add_to_cart: "Add to Cart"
@@ -79,7 +79,7 @@ en:
       save_and_continue: "Save And Continue"
 
     confirm:
-      confirm: "Confirmm"
+      confirm: "Confirm"
       shipping_address: "Shipping Address"
       edit: "Edit"
       billing_address: "Billing Address"
@@ -131,6 +131,9 @@ en:
       total: "Total"
       actions: "Actions"
       view: "View"
+
+    show:
+      order_number: "Order %{number}"
 
     index:
       in_progress: "In progress"

@@ -1,7 +1,7 @@
 class CartController < ApplicationController
   include Wicked::Wizard
 
-  steps :intro, :address, :delivery, :payment, :confirm, :checkout
+  steps :intro, :address, :delivery, :payment, :confirm
 
   add_breadcrumb (I18n.t"cart.cart"), :cart_path
 
@@ -21,8 +21,6 @@ class CartController < ApplicationController
         jump_to(:address) unless @cart.shipping_address and @cart.billing_address
         jump_to(:delivery) unless @cart.delivery_service
         jump_to(:payment) unless @cart.credit_card
-      when :checkout
-        @cart.checkout!
     end
     render_wizard
   end
@@ -54,6 +52,9 @@ class CartController < ApplicationController
       when :payment
         @credit_card = @cart.credit_card ||= CreditCard.new
         return render_wizard unless @cart.credit_card.update(credit_card_params)
+      when :confirm
+        @cart.checkout!
+        return redirect_to order_path(@cart)
     end
     render_wizard @cart
   end

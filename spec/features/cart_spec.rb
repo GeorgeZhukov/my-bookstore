@@ -172,6 +172,6 @@ RSpec.feature "Cart", type: :feature do
       click_button "Save And Continue"
     end
     click_link "Place Order"
-    expect(page).to have_content "COmplete"
+    expect(page).to have_content "in_queue"
   end
 end

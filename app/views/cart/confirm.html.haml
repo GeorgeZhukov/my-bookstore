@@ -57,4 +57,4 @@
       %td= order_item.quantity
       %td= order_item.price
 
-= link_to (t".place_order"), next_wizard_path, class: "btn btn-success"
+= link_to (t".place_order"), wizard_path, class: "btn btn-success", method: :put

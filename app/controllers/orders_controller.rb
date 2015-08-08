@@ -8,6 +8,6 @@
   end
 
   def show
-    add_breadcrumb "Order ##{@order.number}", @order # todo i18n variable
+    add_breadcrumb (I18n.t("orders.show.order_number", number: @order.number)), @order # todo i18n variable
   end
 end

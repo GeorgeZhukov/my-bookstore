@@ -1,5 +1,5 @@
 %h1
-  = "Order #{@order.number}"
+  = t"orders.show.order_number", number: @order.number
   %small= @order.state
 
 = render @order
