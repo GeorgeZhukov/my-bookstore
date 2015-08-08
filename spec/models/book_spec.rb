@@ -23,12 +23,12 @@ RSpec.describe Book, type: :model do
       expect(book).to eq book
     end
 
-    it "returns correct result when search by author" do
+    it "returns correct result when search by author first name" do
       founded = Book.search(subject.author.first_name)
       expect(founded.first).to eq subject
     end
 
-    it "returns correct result when search by author" do
+    it "returns correct result when search by author last name" do
       founded = Book.search(subject.author.last_name)
       expect(founded.first).to eq subject
     end

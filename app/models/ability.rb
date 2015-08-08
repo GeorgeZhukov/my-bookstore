@@ -5,11 +5,17 @@ class Ability
     if user.is_admin
       can :manage, :all
       can :access, :rails_admin
-    else
+    elsif user.guest
       can [:read, :add_to_cart], Book
       can [:read], Category
       can [:read], Author
       can :create, Rating, user_id: user.id
+      can :read, Rating, Rating.approved
+      can :read, Order, user_id: user.id
+    else
+      can [:read, :add_to_cart], Book
+      can [:read], Category
+      can [:read], Author
       can :read, Rating, Rating.approved
       can :read, Order, user_id: user.id
     end
