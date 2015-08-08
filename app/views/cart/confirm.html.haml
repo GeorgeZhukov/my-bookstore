@@ -45,10 +45,10 @@
 %table.table.table-stripped
   %thead
     %tr
-      %th =t".book"
-      %th =t".price"
-      %th =t".qty"
-      %th =t".total"
+      %th=t".book"
+      %th=t".price"
+      %th=t".qty"
+      %th=t".total"
   %tbody
   - @cart.order_items.each do |order_item|
     %tr

@@ -26,26 +26,31 @@ en:
 
     show:
       biography: "YEAH"
+
   books:
     new_rating:
       write_your_review: "Write your revaiew"
       submit: "Submmit"
+
     show:
       add_to_cart: "Add to Cart"
       add_to_wish_list: "Add to Wish List"
       ratings: "Ratings"
+
   cart:
     steps:
       intro: "Intro"
       address: "Address"
       delivery: "Delivery"
       payment: "Payment"
+
     address:
       address: "Address"
       billing_address: "Billing Address"
       shipping_address: "Shipping Address"
       use_billing_address: "Use Billing Address"
       save_and_continue: "Save And Continue"
+
     confirm:
       confirm: "Confirmm"
       shipping_address: "Shipping Address"
@@ -58,9 +63,11 @@ en:
       price: "Price"
       qty: "QTY"
       total: "Total"
+
     delivery:
       delivery: "Delivery"
       save_and_continue: "Save And Continue"
+
     intro:
       book: "Book"
       price: "Price"
@@ -70,26 +77,30 @@ en:
       update: "Update"
       checkout: "Checkout"
       your_cart_is_empty: "Your cart is empty"
+
     payment:
       payment: "Payment"
       save_and_continue: "Save And Continue"
+
   errors:
-      not_found:
-        page_not_found: "Page not found"
+    not_found:
+      page_not_found: "Page not found"
+
   orders:
-      order:
-        book: "Book"
-        price: "Price"
-        qty: "QTY"
-        total: "Total"
-        order_total: "Order Total"
-        number: "Number"
-        completed_at: "Completed At"
-        total: "Total"
-        actions: "Actions"
-        view: "View"
-      index:
-        in_progress: "In progress"
-        waiting_for_processing: "Waiting for processing"
-        in_delivery: "In delivery"
-        delivered: "Delivered"
+    order:
+      book: "Book"
+      price: "Price"
+      qty: "QTY"
+      total: "Total"
+      order_total: "Order Total"
+      number: "Number"
+      completed_at: "Completed At"
+      total: "Total"
+      actions: "Actions"
+      view: "View"
+
+    index:
+      in_progress: "In progress"
+      waiting_for_processing: "Waiting for processing"
+      in_delivery: "In delivery"
+      delivered: "Delivered"
