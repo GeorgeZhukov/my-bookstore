@@ -42,7 +42,7 @@ class CartController < ApplicationController
         @cart.billing_address ||= Address.new
         @cart.shipping_address ||= Address.new
         is_billing_updated = @cart.billing_address.update address_params(:billing_address)
-        
+
         if params[:use_billing_address] == "yes"
           is_shipping_updated = @cart.shipping_address.update address_params(:billing_address)
         else

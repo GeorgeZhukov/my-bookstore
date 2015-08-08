@@ -1,54 +1,54 @@
 = render partial: "steps"
 
-%h2 Confirm
+%h2= t".confirm"
 .row
   .col-md-4
     .panel.panel-success
       .panel-heading
         %h3.panel-title
           %i.fa.fa-map-marker
-          Shipping address
+          =t ".shipping_address"
       .panel-body
         %p= @cart.shipping_address.address
         %p= @cart.shipping_address.city
         %p= @cart.shipping_address.zip_code
-        %p= link_to 'Edit', wizard_path(:address)
+        %p= link_to (t".edit"), wizard_path(:address)
   .col-md-4
     .panel.panel-success
       .panel-heading
         %h3.panel-title
           %i.fa.fa-map-marker
-          Billing address
+          =t ".billing_address"
       .panel-body
         %p= @cart.billing_address.address
         %p= @cart.billing_address.city
         %p= @cart.billing_address.zip_code
-        %p= link_to 'Edit', wizard_path(:address)
+        %p= link_to (t".edit"), wizard_path(:address)
   .col-md-2
     .panel.panel-success
       .panel-heading
         %h3.panel-title
           %i.fa.fa-truck
-          Delivery
+          = t".delivery"
       .panel-body
         %p= @cart.delivery_service.name
-        %p= link_to 'Edit', wizard_path(:delivery)
+        %p= link_to (t".edit"), wizard_path(:delivery)
 
   .col-md-2
     .panel.panel-success
       .panel-heading
-        %h3.panel-title Credit Card
+        %h3.panel-title=t ".credit_card"
       .panel-body
         %p= @cart.credit_card.number
-      %p= link_to 'Edit', wizard_path(:payment)
+      %p= link_to (t".edit"), wizard_path(:payment)
 
 %table.table.table-stripped
   %thead
     %tr
-      %th Book
-      %th Price
-      %th QTY
-      %th Total
+      %th =t".book"
+      %th =t".price"
+      %th =t".qty"
+      %th =t".total"
   %tbody
   - @cart.order_items.each do |order_item|
     %tr
@@ -57,4 +57,4 @@
       %td= order_item.quantity
       %td= order_item.price
 
-= link_to 'Place Order', next_wizard_path, class: "btn btn-success"
+= link_to (t".place_order"), next_wizard_path, class: "btn btn-success"

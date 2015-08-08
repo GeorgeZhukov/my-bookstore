@@ -1,10 +1,10 @@
 %table.table
   %thead
     %tr
-      %th Book
-      %th Price
-      %th QTY
-      %th Total
+      %th =t".book"
+      %th =t".price"
+      %th =t".qty"
+      %th =t".total"
   %tbody
     - order.order_items.each do |order_item|
       %tr
@@ -17,5 +17,5 @@
 %hr/
 
 %p
-  Order total:
+  =t ".order_total"
   %strong= "$#{order.calculate_total_price}"

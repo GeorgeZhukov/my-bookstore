@@ -10,12 +10,12 @@
       %input#add_to_cart_quantity.numeric.integer.required.qty.form-control{:type=>"number", :step=>1, :name=>"add_to_cart[quantity]", :value=>1, :max=>@book.books_in_stock, :min=>1}
       = button_tag(type: "submit", class: "btn btn-primary btn-lg") do
         %i.fa.fa-cart-plus
-        Add to Cart
+        = t ".add_to_cart"
     = link_to book_wish_list_books_path(@book), method: :post do
       %i.fa.fa-plus
-      Add to wish list
+      = t ".add_to_wish_list"
 
-%h3 Ratings
+%h3= t ".ratings"
 .row
   .col-md-6
     %ol.ratings

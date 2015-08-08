@@ -1,15 +1,15 @@
 - if current_or_guest_user.cart.order_items.exists?
-  %h2 In progress
+  %h2= t".in_progress"
   = render partial: "order", object: current_or_guest_user.cart
 
 - if @orders.in_queue.exists?
-  %h2 Waiting for processing
+  %h2= t".waiting_for_processing"
   = render partial: "orders", object: @orders.in_queue
 
 - if @orders.in_delivery.exists?
-  %h2 In delivery
+  %h2 =t".in_delivery"
   = render partial: "orders", object: @orders.in_delivery
 
 - if @orders.delivered.exists?
-  %h2 Delivered
+  %h2 =t".delivered"
   = render partial: "orders", object: @orders.delivered

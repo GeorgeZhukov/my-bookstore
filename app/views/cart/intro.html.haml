@@ -5,10 +5,10 @@
     %table.table
       %thead
         %tr
-          %th Book
-          %th Price
-          %th Qty
-          %th Total
+          %th =t".book"
+          %th =t".price"
+          %th =t".qty"
+          %th =t".total"
           %th
       %tbody
         - @cart.order_items.each do |order_item|
@@ -26,14 +26,14 @@
               = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
                 %i.fa.fa-times
 
-    = link_to "Empty Cart", clear_cart_path, method: :delete, class: "btn btn-default"
+    = link_to (t".empty_cart"), clear_cart_path, method: :delete, class: "btn btn-default"
 
     %button.btn.btn-default{:type=>"submit"}
       %i.fa.fa-refresh
-      Update
+      =t".update"
 
     %button.btn.btn-primary{:name=>"checkout", :type=>"submit"}
-      Checkout
+      =t".checkout"
       %i.fa.fa-arrow-right
 - else
-  %p.lead Your cart is empty.
+  %p.lead= t".your_cart_is_empty"

@@ -1,21 +1,21 @@
 = render partial: "steps"
 
-%h2 Address
+%h2= t".address"
 = form_tag wizard_path, method: :put do
   .row
     .col-md-5
-      %h4 Billing Address
+      %h4= t".billing_address"
       = simple_fields_for :billing_address, @cart.billing_address do |f|
         = render partial: "users/registrations/address_form", object: f
     .col-md-5
-      %h4 Shipping Address
+      %h4= t".shipping_address"
       #shipping-address
         = simple_fields_for :shipping_address, @cart.shipping_address do |f|
           = render partial: "users/registrations/address_form", object: f
           = hidden_field_tag :use_billing_address, "no"
       .checkbox
         %label
-          %input#use-billing-address{:type=>"checkbox"} Use Billing Address
+          %input#use-billing-address{:type=>"checkbox"}= t".use_billing_address"
 
 
     :javascript
@@ -41,5 +41,5 @@
       });
 
   %button.btn.btn-primary.pull-right{:type=>"submit"}
-    Save And Continue
+    = t".save_and_continue"
     %i.fa.fa-arrow-right

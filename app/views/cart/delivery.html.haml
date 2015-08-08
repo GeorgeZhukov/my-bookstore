@@ -1,11 +1,11 @@
 = render partial: "steps"
 
-%h2 Delivery
+%h2 =t ".delivery"
 = form_tag wizard_path, method: :put do
   - @delivery_services.each do |ds|
     = radio_button_tag(:delivery, ds.id, @selected == ds)
     = "#{ds.name} + $#{ds.price}"
     %br/
   %button.btn.btn-primary.pull-right{:type=>"submit"}
-    Save And Continue
+    =t".save_and_continue"
     %i.fa.fa-arrow-right

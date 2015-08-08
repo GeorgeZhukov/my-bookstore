@@ -1,14 +1,14 @@
 %table.table
   %thead
     %tr
-      %th Number
-      %th Completed At
-      %th Total
-      %th Actions
+      %th =t".number"
+      %th =t".completed_at"
+      %th =t".total"
+      %th =t".actions"
   %tbody
     - orders.each do |order|
       %tr
         %td= link_to order.number, order
         %td= order.completed_date
         %td= order.calculate_total_price
-        %td= link_to "View", order_path(order)
+        %td= link_to (t".view"), order_path(order)

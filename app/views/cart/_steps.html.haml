@@ -1,13 +1,13 @@
 %ul.nav.nav-pills
 	= active_link_to wizard_path(:intro), wrap_tag: :li do
 		%i.fa.fa-map-marker
-		Intro
+		= t".intro"
 	= active_link_to wizard_path(:address), wrap_tag: :li do
 		%i.fa.fa-map-marker
-		Address
+		= t".address"
 	= active_link_to wizard_path(:delivery), wrap_tag: :li do
 		%i.fa.fa-truck
-		Delivery
+		= t".delivery"
 	= active_link_to wizard_path(:payment), wrap_tag: :li do
 		%i.fa.fa-credit-card
-		Payment
+		= t".payment"
