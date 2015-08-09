@@ -32,10 +32,10 @@
 
       $("#use-billing-address").change(function() {
           if(this.checked) {
-            $("#shipping-address").hide();
+            $("#shipping-address").fadeOut();
             $("#use_billing_address").val("yes");
           }else{
-            $("#shipping-address").show();
+            $("#shipping-address").fadeIn();
             $("#use_billing_address").val("no");
           }
       });

@@ -40,6 +40,7 @@ gem 'omniauth-facebook'
 gem 'wicked'
 gem 'simple_form'
 gem 'country_select'
+gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'rails_admin'
@@ -47,7 +48,6 @@ gem 'kaminari'
 gem "paranoia", "~> 2.0"
 gem 'state_machines-activerecord'
 gem 'rails_admin_state'
-gem 'bootstrap-wysihtml5-rails', '> 0.3.1.24'
 gem "font-awesome-rails"
 gem "breadcrumbs_on_rails"
 gem 'active_link_to'

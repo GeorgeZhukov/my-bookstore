@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/nerian/bootstrap-wysihtml5-rails.git
+  revision: a48d020763a4dce8455589abe2782ca829b6cba4
+  specs:
+    bootstrap-wysihtml5-rails (0.3.3.7)
+      railties (>= 3.0)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: 7a144cfa29e395a55caed2cb418e77d253942a77
   specs:
@@ -56,8 +63,6 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bootstrap-wysihtml5-rails (0.3.3.7)
-      railties (>= 3.0)
     breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
     byebug (5.0.0)
@@ -335,7 +340,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   bootstrap-sass (~> 3.3.5)
-  bootstrap-wysihtml5-rails (> 0.3.1.24)
+  bootstrap-wysihtml5-rails!
   breadcrumbs_on_rails
   byebug
   cancancan (~> 1.10)
