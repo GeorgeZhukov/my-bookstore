@@ -71,9 +71,13 @@ class User < ActiveRecord::Base
             user_cart.add_book(order_item.book, order_item.quantity)
           end
         end
+
       else
         guest_cart.order_items.update_all(order_id: user_cart.id)
       end
+
+      # Refresh total price
+      user_cart.calculate_total_price
     end
 
     # todo: destroy guest user

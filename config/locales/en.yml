@@ -54,6 +54,9 @@ en:
   wish_list_books:
     wish_list_books: "Wish list books"
 
+    index:
+      no_books: "No books"
+
     create:
       already_in_wish_list: "The book already in wish list."
       successfully_added: "The book successfully added to wish list."

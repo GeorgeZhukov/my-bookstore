@@ -4,7 +4,7 @@ class WishListBooksController < ApplicationController
   add_breadcrumb (I18n.t"wish_list_books.wish_list_books"), :wish_list_books_path
 
   def index
-    @books = current_user.get_wish_list.books
+    @books = current_user.get_wish_list.books.page params[:page]
   end
 
   def create

@@ -174,4 +174,21 @@ RSpec.feature "Cart", type: :feature do
     click_link "Place Order"
     expect(page).to have_content "in_queue"
   end
+
+  scenario "When the guest authorizes its basket preserved" do
+    book = FactoryGirl.create :book
+    visit book_path(book)
+    click_button I18n.t("books.show.add_to_cart")
+
+    user = FactoryGirl.create :user
+    visit new_user_session_path
+    within "#new_user" do
+      fill_in "Email", with: user.email
+      fill_in "Password", with: "password"
+      click_button "Log in"
+    end
+
+    visit cart_path(:intro)
+    expect(page).to have_content book.title
+  end
 end

@@ -111,7 +111,6 @@ class Order < ActiveRecord::Base
     calculate_total_price
   end
 
-  private
   def calculate_total_price
     subtotal = order_items.map(&:price).inject(&:+) || 0
     if delivery_service

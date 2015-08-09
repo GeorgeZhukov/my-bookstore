@@ -18,6 +18,14 @@ RSpec.feature "WishLists", type: :feature do
       visit book_path(book)
       click_link I18n.t("books.show.add_to_wish_list")
     end
+
+    scenario "A user see 'No books' when wish list is empty" do
+      user = FactoryGirl.create :user
+      login_as(user, :scope => :user)
+      visit wish_list_books_path
+      expect(page).to have_content I18n.t("wish_list_books.index.no_books")
+    end
+
     scenario "A user can add book to wish list" do
       book2 = FactoryGirl.create :book
       visit book_path(book2)

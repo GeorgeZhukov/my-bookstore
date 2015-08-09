@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Users", type: :feature do
   before do
     user = FactoryGirl.create :user
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
   end
 
   let(:address) { FactoryGirl.create :address }

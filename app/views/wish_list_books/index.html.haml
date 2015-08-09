@@ -1,1 +1,5 @@
-= render partial: "book", collection: @books
+- if @books.exists?
+  = render partial: "book", collection: @books
+  = paginate @books
+- else
+  %p.lead= t".no_books"
