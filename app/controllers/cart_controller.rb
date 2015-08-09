@@ -14,7 +14,8 @@ class CartController < ApplicationController
         @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
       when :delivery
         @delivery_services = DeliveryService.all
-        @selected = @cart.delivery_service || @delivery_services[0]
+        @cart.delivery_service ||= @delivery_services[0]
+        @cart.save
       when :payment
         @cart.credit_card ||= CreditCard.new
       when :confirm

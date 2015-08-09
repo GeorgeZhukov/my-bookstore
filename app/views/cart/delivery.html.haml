@@ -1,11 +1,31 @@
 = render partial: "steps"
 
 %h2=t ".delivery"
-= form_tag wizard_path, method: :put do
-  - @delivery_services.each do |ds|
-    = radio_button_tag(:delivery, ds.id, @selected == ds)
-    = "#{ds.name} + $#{ds.price}"
+.row
+  .col-sm-6
+    = form_tag wizard_path, method: :put do
+      - @delivery_services.each do |ds|
+        = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds, options={onclick: "calculate_order_price(#{ds.price});"})
+        = "#{ds.name} + $#{ds.price}"
+        %br/
+  .col-sm-6
+    %h4=t ".order_summary"
+    %strong Item Total
+    = "$#{@cart.calculate_books_price}"
     %br/
+    %strong Shipping
+    %span#shipping= "$#{@cart.delivery_service.price}"
+    %br/
+    %strong Order Total
+    %span#total= "$#{@cart.calculate_total_price}"
+
+  :javascript
+    function calculate_order_price(shipping_price){
+      var item_total = #{@cart.calculate_books_price};//todo
+      var total = item_total + shipping_price;
+      $("#shipping").html("$" + shipping_price.toFixed(2));
+      $("#total").html("$" + total.toFixed(2));
+    }
   %button.btn.btn-primary.pull-right{:type=>"submit"}
     =t".save_and_continue"
     %i.fa.fa-arrow-right

@@ -111,8 +111,12 @@ class Order < ActiveRecord::Base
     calculate_total_price
   end
 
+  def calculate_books_price
+    order_items.map(&:price).inject(&:+) || 0
+  end
+
   def calculate_total_price
-    subtotal = order_items.map(&:price).inject(&:+) || 0
+    subtotal = calculate_books_price
     if delivery_service
       shipping = delivery_service.price
     else

@@ -98,6 +98,7 @@ en:
       delivery: "Delivery"
       save_and_continue: "Save And Continue"
       check_delivery: "Check delivery service"
+      order_summary: "Order Summary"
 
     clear:
       cart_is_cleared: "Your cart is cleared."
