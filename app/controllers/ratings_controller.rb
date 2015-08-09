@@ -1,6 +1,4 @@
 class RatingsController < ApplicationController
-
-
   before_action :authenticate_user!, only: [:create]
 
   load_and_authorize_resource :book

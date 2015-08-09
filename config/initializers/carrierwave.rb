@@ -6,6 +6,7 @@ if Rails.env.test? || Rails.env.cucumber?
 
   # make sure our uploader is auto-loaded
   BookCoverUploader
+  AuthorPhotoUploader
 
   # use different dirs when testing
   CarrierWave::Uploader::Base.descendants.each do |klass|

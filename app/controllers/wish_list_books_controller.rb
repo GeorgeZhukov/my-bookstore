@@ -8,7 +8,8 @@ class WishListBooksController < ApplicationController
   end
 
   def create
-    book = Book.find(params[:book_id])
+    book = Book.find params[:book_id]
+    authorize! :read, book
     wish_list = current_user.get_wish_list
 
     if wish_list.books.include?(book)

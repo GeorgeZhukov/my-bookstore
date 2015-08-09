@@ -2,3 +2,14 @@
 
 %h3= t ".biography"
 %p= @author.biography
+
+.books.autoplay
+  = render @author.books
+
+:javascript
+  $('.autoplay').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  });
