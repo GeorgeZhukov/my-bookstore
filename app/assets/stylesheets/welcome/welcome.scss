@@ -22,6 +22,20 @@
   //color: #fafafa;
 }
 
+.best-seller {
+  display: block;
+  margin: 20px;
+
+  .book-cover {
+    width: 200px;
+  }
+
+  .qty {
+    display: inline-block;
+    width: 70px;
+  }
+}
+
 /* HeaderWrap */
 #error {
   margin-top: -20px;
