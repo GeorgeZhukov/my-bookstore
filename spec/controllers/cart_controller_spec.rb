@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe CartController, type: :controller do
   login_user
 
+  before do
+    # Fill cart
+    book = FactoryGirl.create :book
+    @user.cart.add_book book
+  end
+
   describe "GET show" do
 
     context "intro" do

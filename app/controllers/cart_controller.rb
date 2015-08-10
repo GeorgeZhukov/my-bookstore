@@ -8,6 +8,7 @@ class CartController < ApplicationController
   add_breadcrumb (I18n.t"cart.cart"), :cart_path
 
   def show
+    jump_to(:intro) if @cart.empty? and step != :intro
     case step
       when :intro
       when :address

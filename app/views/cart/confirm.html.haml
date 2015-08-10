@@ -41,7 +41,7 @@
           %i.fa.fa-credit-card
           =t ".credit_card"
       .panel-body
-        %p= @cart.credit_card.number
+        %p= secure_credit_card_number(@cart.credit_card.number)
       %p= link_to (t".edit"), wizard_path(:payment)
 
 %table.table.table-stripped
@@ -53,8 +53,10 @@
       %th=t".total"
   %tbody
   - @cart.order_items.each do |order_item|
-    %tr
-      %td= order_item.book
+    %tr.cart_item
+      %td
+        = image_tag order_item.book.cover.thumbnail.url
+        = link_to order_item.book.title, order_item.book
       %td= "$#{order_item.book.price}"
       %td= order_item.quantity
       %td= "$#{order_item.price}"
