@@ -11,4 +11,8 @@ class Author < ActiveRecord::Base
   def to_s
     "#{first_name} #{last_name}"
   end
+
+  def name
+    to_s
+  end
 end

@@ -18,8 +18,9 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  home: "Home"
+
   authors:
     authors: "Authors"
 
@@ -118,6 +119,8 @@ en:
       save_and_continue: "Save And Continue"
 
   errors:
+    messages:
+      invalid_zipcode: "Check zip code please"
     not_found:
       page_not_found: "Page not found"
 

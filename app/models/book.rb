@@ -7,7 +7,7 @@ class Book < ActiveRecord::Base
 
   validates :title, presence: true
   validates :price, presence: true
-  validates :books_in_stock, presence: true
+  validates :books_in_stock, presence: true, numericality: {greater_than_or_equal_to: 1}
   validates :short_description, presence: true
   validates :description, presence: true
   validates :cover, presence: true

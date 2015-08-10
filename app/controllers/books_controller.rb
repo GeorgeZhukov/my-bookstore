@@ -25,9 +25,7 @@ class BooksController < ApplicationController
     end
     @cart = current_or_guest_user.cart
     @cart.add_book(book, quantity)
-    @cart.save
-    flash[:notice] = (I18n.t"books.add_to_cart.books_was_successfully_added_to_cart")
-    redirect_to cart_path(:intro)
+    redirect_to cart_path(:intro), notice: (I18n.t"books.add_to_cart.books_was_successfully_added_to_cart")
   end
 
 

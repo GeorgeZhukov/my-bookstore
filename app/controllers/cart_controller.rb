@@ -28,6 +28,7 @@ class CartController < ApplicationController
 
   def update
     @cart = current_or_guest_user.cart
+
     case step
       when :intro
         update_cart

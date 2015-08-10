@@ -52,6 +52,8 @@ gem "font-awesome-rails"
 gem "breadcrumbs_on_rails"
 gem 'active_link_to'
 gem 'gaffe'
+gem 'validates_zipcode'
+gem 'credit_card_validations'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

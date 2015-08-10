@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # helper_method :current_user
   helper_method :current_or_guest_user
 
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb (I18n.t("home")), :root_path
 
   def current_or_guest_user
     if current_user

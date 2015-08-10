@@ -16,7 +16,7 @@ class RatingsController < ApplicationController
     if rating.save
       redirect_to @book, notice: (I18n.t"ratings.sent_to_review")
     else
-      redirect_to @book
+      redirect_to @book # todo: msg
     end
 
   end

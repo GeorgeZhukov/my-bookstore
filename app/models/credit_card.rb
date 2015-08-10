@@ -1,5 +1,5 @@
 class CreditCard < ActiveRecord::Base
-  validates :number, presence: true
+  validates :number, presence: true, credit_card_number: true
   validates :CVV, presence: true
   validates :expiration_month,
             presence: true,
