@@ -1,4 +1,4 @@
-%a.book.col-sm-4.col-md-3{:href=>book_path(book)}
+%a.book{:href=>book_path(book), "data-toggle"=>"tooltip", "data-placement"=>"bottom", :title=>book.short_description}
   = image_tag book.cover.thumbnail.url, class: "book-cover"
   %h3.book-title= book.title
   %h4.book-price= "$#{book.price}"

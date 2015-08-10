@@ -1,14 +1,19 @@
 %h1= @author
 
-%h3= t ".biography"
-%p= @author.biography
+.row
+  .col-sm-5
+    = image_tag @author.photo.url
+  .col-sm-7
+    %h3= t ".biography"
+    %p= @author.biography
 
 .books.autoplay
+  %h2= t".books"
   = render @author.books
 
 :javascript
   $('.autoplay').slick({
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,

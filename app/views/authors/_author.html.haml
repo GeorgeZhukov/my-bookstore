@@ -1,4 +1,3 @@
-.author.col-sm-4
-  = image_tag author.photo.standard.url
-  %h4= author
-  = link_to (t ".more"), author
+= link_to author, class: "author" do
+  = image_tag(author.photo.standard.url, class: "author-photo")
+  %h4.author-name= author

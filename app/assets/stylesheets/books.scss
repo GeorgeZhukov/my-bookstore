@@ -24,28 +24,28 @@
 }
 
 .book {
-  padding-top: 20px;
-  padding-bottom: 20px;
   display: block;
+  float: left;
+  height: 300px;
+  margin: 20px;
+  padding: 20px;
   text-decoration: none !important;
-  text-align: center;
 
   .book-cover {
-    height: 200px;
+    width: 120px;
+    height: 180px;
   }
 
   .book-title {
+    width: 100px;
     font-size: 14px;
-    color: #464646;
-
   }
+
   .book-price {
-    font-size: 14px;
-    color: #646464;
+    font-size: 12px;
   }
 
   &:hover {
     background-color: #fafafa;
   }
 }
-

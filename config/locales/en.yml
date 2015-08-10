@@ -29,6 +29,7 @@ en:
 
     show:
       biography: "Biography"
+      books: "Books"
 
   books:
     books: "Books"
