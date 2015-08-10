@@ -50,10 +50,12 @@ class Order < ActiveRecord::Base
 
   rails_admin do
     list do
+      field :user
+      field :total_price
       field :state, :state
     end
     edit do
-      field :state, :state
+      configure :state, :state
     end
 
     state({

@@ -28,9 +28,10 @@
       %h3 Best sellers books
   .row.mt.centered
     .col-lg-6.col-lg-offset-3
-      #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
-        .carousel-inner
-          = render partial: "book", collection: @books
+      .best-sellers
+        = render partial: "book", collection: @books
+      :javascript
+        $(".best-sellers").slick();
 .steps
   .container
     .row.mt.centered
@@ -40,7 +41,7 @@
         %h3 It is easy as never before!
     .row.mt.centered
       .col-lg-4
-        %img{:alt => "", :src => "assets/img/ser01.png", :width => "180"}/
+        = image_tag "Books.png", width: 180
         %h4 1 - Choose your book
         %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.
       .col-lg-4

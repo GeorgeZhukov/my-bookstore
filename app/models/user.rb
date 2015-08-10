@@ -42,7 +42,16 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    "#{first_name} #{last_name}"
+    if guest
+      "Guest"
+    else
+      "#{first_name} #{last_name}"
+    end
+
+  end
+
+  def name
+    to_s
   end
 
   # def after_database_authentication

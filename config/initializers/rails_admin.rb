@@ -23,19 +23,11 @@ RailsAdmin.config do |config|
       end
     end
     edit do
-      # To configure the editor bar or the parser rules pass a hash of options:
-      # For RailsAdmin >= 0.5.0
       configure :description, :wysihtml5 do
         config_options toolbar: { fa: true, image: false, link: false }, # use font-awesome instead of glyphicon
                        html: true, # enables html editor
                        parserRules: { tags: { p:1 } } # support for <p> in html mode
       end
-      # field :description, :wysihtml5 do
-      #   config_options toolbar: { fa: true, image: false, link: false }, # use font-awesome instead of glyphicon
-      #                  html: true, # enables html editor
-      #                  parserRules: { tags: { p:1 } } # support for <p> in html mode
-      #
-      # end
     end
   end
 

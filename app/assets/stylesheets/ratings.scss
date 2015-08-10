@@ -1,3 +1,18 @@
 // Place all the styles related to the ratings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.ratings {
+  list-style-type: none;
+
+  .rating-author {
+    font-size: 14px;
+  }
+  .avatar {
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin: 0 10px;
+  }
+}

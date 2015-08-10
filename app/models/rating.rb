@@ -34,10 +34,13 @@ class Rating < ActiveRecord::Base
 
   rails_admin do
     list do
+      field :book
+      field :user
+      field :number
       field :state, :state
     end
     edit do
-      field :state, :state
+      configure :state, :state
     end
 
     state({
