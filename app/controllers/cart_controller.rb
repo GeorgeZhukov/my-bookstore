@@ -10,14 +10,11 @@ class CartController < ApplicationController
     case step
       when :intro
       when :address
-        @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
-        @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
+        init_addresses
       when :delivery
-        @delivery_services = DeliveryService.all
-        @cart.delivery_service ||= @delivery_services[0]
-        @cart.save
+        init_delivery
       when :payment
-        @cart.credit_card ||= CreditCard.new
+        init_credit_card
       when :confirm
         jump_to(:address) unless @cart.shipping_address and @cart.billing_address
         jump_to(:delivery) unless @cart.delivery_service
@@ -34,26 +31,11 @@ class CartController < ApplicationController
         update_cart
         return render_wizard unless params[:checkout]
       when :address
-        @cart.billing_address ||= Address.new
-        @cart.shipping_address ||= Address.new
-        is_billing_updated = @cart.billing_address.update address_params(:billing_address)
-
-        if params[:use_billing_address] == "yes"
-          is_shipping_updated = @cart.shipping_address.update address_params(:billing_address)
-        else
-          is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
-        end
-
-        unless is_billing_updated and is_shipping_updated
-          return render_wizard
-        end
+        return render_wizard unless update_addresses
       when :delivery
-        ds = DeliveryService.find_by_id(params[:delivery])
-        return redirect_to :back, notice: (I18n.t"cart.delivery.check_delivery") unless ds
-        @cart.delivery_service = ds
+        return redirect_to :back, notice: (I18n.t"cart.delivery.check_delivery") unless update_delivery_service
       when :payment
-        @credit_card = @cart.credit_card ||= CreditCard.new
-        return render_wizard unless @cart.credit_card.update(credit_card_params)
+        return render_wizard unless update_credit_card
       when :confirm
         @cart.checkout!
         return redirect_to order_path(@cart)
@@ -80,6 +62,44 @@ class CartController < ApplicationController
   end
 
   private
+
+  def init_addresses
+    @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
+    @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
+  end
+
+  def init_delivery
+    @delivery_services = DeliveryService.all
+    @cart.delivery_service ||= @delivery_services[0]
+    @cart.save
+  end
+
+  def init_credit_card
+    @cart.credit_card ||= CreditCard.new
+  end
+
+  def update_delivery_service
+    @cart.delivery_service = DeliveryService.find_by_id(params[:delivery])
+  end
+
+  def update_credit_card
+    @cart.credit_card ||= CreditCard.new
+    @cart.credit_card.update credit_card_params
+  end
+
+  def update_addresses
+    @cart.billing_address ||= Address.new
+    @cart.shipping_address ||= Address.new
+    is_billing_updated = @cart.billing_address.update address_params(:billing_address)
+
+    if params[:use_billing_address] == "yes"
+      is_shipping_updated = @cart.shipping_address.update address_params(:billing_address)
+    else
+      is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
+    end
+    is_shipping_updated && is_billing_updated
+  end
+
   def update_cart
     params[:items].each do |item|
       order_item = @cart.order_items.find(item[:id])
