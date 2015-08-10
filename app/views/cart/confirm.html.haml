@@ -2,7 +2,7 @@
 
 %h2= t".confirm"
 .row
-  .col-md-4
+  .col-md-3
     .panel.panel-success
       .panel-heading
         %h3.panel-title
@@ -13,7 +13,7 @@
         %p= @cart.shipping_address.city
         %p= @cart.shipping_address.zip_code
         %p= link_to (t".edit"), wizard_path(:address)
-  .col-md-4
+  .col-md-3
     .panel.panel-success
       .panel-heading
         %h3.panel-title
@@ -24,7 +24,7 @@
         %p= @cart.billing_address.city
         %p= @cart.billing_address.zip_code
         %p= link_to (t".edit"), wizard_path(:address)
-  .col-md-2
+  .col-md-3
     .panel.panel-success
       .panel-heading
         %h3.panel-title
@@ -34,10 +34,12 @@
         %p= @cart.delivery_service.name
         %p= link_to (t".edit"), wizard_path(:delivery)
 
-  .col-md-2
+  .col-md-3
     .panel.panel-success
       .panel-heading
-        %h3.panel-title=t ".credit_card"
+        %h3.panel-title
+          %i.fa.fa-credit-card
+          =t ".credit_card"
       .panel-body
         %p= @cart.credit_card.number
       %p= link_to (t".edit"), wizard_path(:payment)
@@ -53,8 +55,8 @@
   - @cart.order_items.each do |order_item|
     %tr
       %td= order_item.book
-      %td= order_item.book.price
+      %td= "$#{order_item.book.price}"
       %td= order_item.quantity
-      %td= order_item.price
+      %td= "$#{order_item.price}"
 
 = link_to (t".place_order"), wizard_path, class: "btn btn-success", method: :put

@@ -83,7 +83,7 @@ class Order < ActiveRecord::Base
   end
 
   def notify_user
-    UserMailer.delivered_email(user).deliver_later
+    UserMailer.delivered_email(user, self).deliver_later
   end
 
   def take_books
