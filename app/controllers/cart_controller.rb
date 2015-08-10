@@ -3,10 +3,11 @@ class CartController < ApplicationController
 
   steps :intro, :address, :delivery, :payment, :confirm
 
+  before_action :set_cart
+
   add_breadcrumb (I18n.t"cart.cart"), :cart_path
 
   def show
-    @cart = current_or_guest_user.cart
     case step
       when :intro
       when :address
@@ -24,8 +25,6 @@ class CartController < ApplicationController
   end
 
   def update
-    @cart = current_or_guest_user.cart
-
     case step
       when :intro
         update_cart
@@ -44,7 +43,7 @@ class CartController < ApplicationController
   end
 
   def clear
-    current_or_guest_user.cart.clear
+    @cart.clear
     redirect_to wizard_path(:intro), notice: (I18n.t"cart.clear.cart_is_cleared")
   end
 
@@ -53,15 +52,19 @@ class CartController < ApplicationController
   end
 
   def remove_item
-    order_item = current_or_guest_user.cart.order_items.find params[:item_id]
+    order_item = @cart.order_items.find params[:item_id]
     order_item.destroy
-    if current_or_guest_user.cart.empty?
-      current_or_guest_user.cart.clear
+    if @cart.empty?
+      @cart.clear
     end
     redirect_to wizard_path(:intro)
   end
 
   private
+
+  def set_cart
+    @cart = current_or_guest_user.cart
+  end
 
   def init_addresses
     @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new

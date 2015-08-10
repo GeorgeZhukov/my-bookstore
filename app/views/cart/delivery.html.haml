@@ -8,6 +8,9 @@
         = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds, options={onclick: "calculate_order_price(#{ds.price});"})
         = "#{ds.name} + $#{ds.price}"
         %br/
+      %button.btn.btn-primary.pull-right{:type=>"submit"}
+        =t".save_and_continue"
+        %i.fa.fa-arrow-right
   .col-sm-6
     %h4=t ".order_summary"
     %strong Item Total
@@ -26,6 +29,3 @@
       $("#shipping").html("$" + shipping_price.toFixed(2));
       $("#total").html("$" + total.toFixed(2));
     }
-  %button.btn.btn-primary.pull-right{:type=>"submit"}
-    =t".save_and_continue"
-    %i.fa.fa-arrow-right

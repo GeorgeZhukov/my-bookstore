@@ -21,6 +21,10 @@
 en:
   home: "Home"
 
+  user_mailer:
+    delivered_email:
+      order_delivered: "Your order %{number} has been delivered."
+
   authors:
     authors: "Authors"
 
