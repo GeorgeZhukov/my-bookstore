@@ -29,7 +29,7 @@
   .row.mt.centered
     .col-lg-6.col-lg-offset-3
       .best-sellers
-        = render partial: "book", collection: @books
+        = render @books
       :javascript
         $(".best-sellers").slick();
 .steps

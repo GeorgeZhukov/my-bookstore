@@ -54,12 +54,14 @@ gem 'active_link_to'
 gem 'gaffe'
 gem 'credit_card_validations'
 
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem "rails_best_practices", git: "https://github.com/railsbp/rails_best_practices.git"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -67,7 +69,9 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem 'rspec-rails', '~> 3.0'
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
   gem 'factory_girl_rails'
   gem 'faker', git: "https://github.com/stympy/faker.git"
 end

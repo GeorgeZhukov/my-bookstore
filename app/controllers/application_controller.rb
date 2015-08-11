@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_action :init_categories
   layout "application_with_categories"
 
-  # helper_method :current_user
   helper_method :current_or_guest_user
 
   add_breadcrumb (I18n.t("home")), :root_path

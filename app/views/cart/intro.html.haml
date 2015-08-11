@@ -1,6 +1,6 @@
 - if @cart.order_items.exists?
 
-  = render partial: "steps"
+  = render "steps"
   = form_tag wizard_path, method: :put do
     %table.table
       %thead
@@ -16,10 +16,10 @@
             = hidden_field_tag("items[][id]", order_item.id)
             %td
               = image_tag order_item.book.cover.thumbnail.url
-              = link_to order_item.book.title, order_item.book
+              = link_to order_item.book_title, order_item.book
             %td
               %span.amount= "$#{order_item.book.price}"
-            %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book.books_in_stock, class: "input-text qty text"})
+            %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book_books_in_stock, class: "input-text qty text"})
             %td
               %span.amount= "$#{order_item.price}"
             %td

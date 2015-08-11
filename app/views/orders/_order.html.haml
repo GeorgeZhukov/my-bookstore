@@ -8,7 +8,7 @@
   %tbody
     - order.order_items.each do |order_item|
       %tr
-        %td= link_to order_item.book.title, order_item.book
+        %td= link_to order_item.book_title, order_item.book
         %td= "$#{order_item.book.price}"
         %td= order_item.quantity
         %td= "$#{order_item.price}"

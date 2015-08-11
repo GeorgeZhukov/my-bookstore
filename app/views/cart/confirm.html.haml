@@ -1,4 +1,4 @@
-= render partial: "steps"
+= render "steps"
 
 %h2= t".confirm"
 .row
@@ -56,7 +56,7 @@
     %tr.cart_item
       %td
         = image_tag order_item.book.cover.thumbnail.url
-        = link_to order_item.book.title, order_item.book
+        = link_to order_item.book_title, order_item.book
       %td= "$#{order_item.book.price}"
       %td= order_item.quantity
       %td= "$#{order_item.price}"
