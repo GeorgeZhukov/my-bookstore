@@ -50,10 +50,6 @@ class User < ActiveRecord::Base
 
   end
 
-  def name
-    to_s
-  end
-
   # def after_database_authentication
   #   self.reassign_data_from_guest
   # end
@@ -93,4 +89,5 @@ class User < ActiveRecord::Base
   end
 
 
+  alias_method :name, :to_s
 end

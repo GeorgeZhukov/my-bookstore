@@ -31,4 +31,8 @@ class OrderItem < ActiveRecord::Base
   def restore_books
     book.books_in_stock += quantity
   end
+
+  def to_s
+    "#{book} x#{quantity}"
+  end
 end

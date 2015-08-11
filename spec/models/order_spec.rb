@@ -15,7 +15,7 @@ RSpec.describe Order, type: :model do
     expect(subject.total_price).not_to be_nil
   end
 
-  describe "#add_book" do
+  describe ".add_book" do
 
     it "creates order item with given book and sets quantity to one by default" do
       subject.add_book book
