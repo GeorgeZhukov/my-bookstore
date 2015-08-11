@@ -4,8 +4,8 @@ RSpec.describe CategoriesController, type: :controller do
   login_user
   let(:category) { FactoryGirl.create :category }
 
-  xdescribe "GET index" do
-    it "assigns @categories" do
+  describe "GET index" do
+    xit "assigns @categories" do
       get :index
       expect(assigns(:categories).to_a).to eq [category]
     end
@@ -16,7 +16,7 @@ RSpec.describe CategoriesController, type: :controller do
     end
   end
 
-  xdescribe "GET show" do
+  describe "GET show" do
     it "assigns @category" do
       get :show, id: category.id
       expect(assigns(:category)).to eq category

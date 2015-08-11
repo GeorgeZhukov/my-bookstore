@@ -4,8 +4,8 @@ RSpec.describe AuthorsController, type: :controller do
   login_user
   let(:author) { FactoryGirl.create :author }
 
-  xdescribe "GET index" do
-    it "assigns @authors" do
+  describe "GET index" do
+    xit "assigns @authors" do
       get :index
       expect(assigns(:authors).to_a).to eq [author]
     end
@@ -16,7 +16,7 @@ RSpec.describe AuthorsController, type: :controller do
     end
   end
 
-  xdescribe "GET show" do
+  describe "GET show" do
     it "assigns @author" do
       get :show, id: author.id
       expect(assigns(:author)).to eq author

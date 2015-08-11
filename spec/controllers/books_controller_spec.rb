@@ -5,7 +5,7 @@ RSpec.describe BooksController, type: :controller do
 
   let(:book) { FactoryGirl.create :book }
 
-  xdescribe "GET index" do
+  describe "GET index" do
     xit "assigns @books" do
       get :index
       expect(assigns(:books).to_a).to eq [book]
@@ -17,7 +17,7 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
-  xdescribe "GET show" do
+  describe "GET show" do
     it "assigns @book" do
       get :show, id: book.id
       expect(assigns(:book)).to eq book
