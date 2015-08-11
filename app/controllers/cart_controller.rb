@@ -68,8 +68,12 @@ class CartController < ApplicationController
   end
 
   def init_addresses
-    @cart.shipping_address ||= current_or_guest_user.shipping_address || Address.new
-    @cart.billing_address ||= current_or_guest_user.billing_address || Address.new
+    if current_user
+      @cart.shipping_address ||= current_user.shipping_address
+      @cart.billing_address ||= current_user.billing_address
+    end
+    @cart.shipping_address ||= Address.new
+    @cart.billing_address ||= Address.new
   end
 
   def init_delivery
@@ -101,6 +105,12 @@ class CartController < ApplicationController
     else
       is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
     end
+
+    if current_user
+      current_user.shipping_address ||= @cart.shipping_address
+      current_user.billing_address ||= @cart.billing_address
+    end
+
     is_shipping_updated && is_billing_updated
   end
 

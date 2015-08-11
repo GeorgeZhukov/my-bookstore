@@ -11,7 +11,6 @@ class BooksController < ApplicationController
 
   def show
     add_breadcrumb @book.title, @book
-    @ratings = @book.ratings.approved
     @new_rating = current_or_guest_user.ratings.build
   end
 

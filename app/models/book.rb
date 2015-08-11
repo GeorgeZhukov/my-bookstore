@@ -14,6 +14,8 @@ class Book < ActiveRecord::Base
 
   mount_uploader :cover, BookCoverUploader
 
+  delegate :approved, to: :ratings, prefix: true
+
   default_scope { order(created_at: :desc) }
 
   def self.search(query)

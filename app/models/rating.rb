@@ -9,6 +9,8 @@ class Rating < ActiveRecord::Base
   # validates :state, inclusion: {in: POSSIBLE_STATES}
   validates :review, presence: true, length: {minimum: 4, maximum: 100}
 
+  delegate :avatar_url, to: :user, prefix: true
+
   default_scope { order(created_at: :desc) }
 
   scope :pending, -> { where(state: :pending) }
