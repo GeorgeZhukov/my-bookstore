@@ -8,6 +8,11 @@ FactoryGirl.define do
     factory :admin do
       is_admin true
     end
+
+    factory :facebook_user do
+      provider "facebook"
+      uid { Faker::Number.number(15) }
+    end
   end
 
 end

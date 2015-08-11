@@ -51,4 +51,32 @@ RSpec.describe User, type: :model do
     it "returns current wish list if exists"
     it "creates a new wish list if current wish list is empty"
   end
+
+  describe "#from_omniauth" do
+    let(:user) { FactoryGirl.create :facebook_user }
+
+    it "returns the user with current credentials" do
+      auth = double("auth")
+      allow(auth).to receive(:provider).and_return(user.provider)
+      allow(auth).to receive(:uid).and_return(user.uid)
+      expect(User.from_omniauth(auth)).to eq user
+    end
+
+    it "returns creates a new user" do
+      user = FactoryGirl.build :facebook_user
+      auth = double("auth")
+      allow(auth).to receive(:provider).and_return(user.provider)
+      allow(auth).to receive(:uid).and_return(user.uid)
+
+      info = double("info")
+      allow(info).to receive(:email).and_return(user.email)
+      allow(info).to receive(:first_name).and_return(user.first_name)
+      allow(info).to receive(:last_name).and_return(user.last_name)
+      allow(info).to receive(:image).and_return(user.avatar)
+
+      allow(auth).to receive(:info).and_return(info)
+
+      expect { User.from_omniauth(auth) }.to change { User.count }.by(1)
+    end
+  end
 end
