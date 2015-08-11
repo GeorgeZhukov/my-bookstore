@@ -12,7 +12,5 @@ class Author < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def name
-    to_s
-  end
+  alias_method :name, :to_s
 end

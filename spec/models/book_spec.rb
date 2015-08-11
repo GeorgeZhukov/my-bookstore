@@ -8,9 +8,21 @@ RSpec.describe Book, type: :model do
   it { expect(subject).to validate_presence_of(:books_in_stock) }
   it { expect(subject).to validate_presence_of(:short_description) }
   it { expect(subject).to validate_length_of(:short_description) }
+  # it { expect(subject).to validate_presence_of(:description) }
+  # it { expect(subject).to validate_presence_of(:cover) }
+
   it { expect(subject).to belong_to :author }
   it { expect(subject).to belong_to :category }
   it { expect(subject).to have_many :ratings }
+
+  describe "default scope" do
+    it "returns books in descending order" do
+      Book.destroy_all
+      book1 = FactoryGirl.create :book
+      book2 = FactoryGirl.create :book
+      expect(Book.all.to_a).to eq [book2, book1]
+    end
+  end
 
   describe ".search" do
     it "returns all books when no query" do

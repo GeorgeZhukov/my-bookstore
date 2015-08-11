@@ -4,7 +4,10 @@ RSpec.describe Order, type: :model do
   subject { FactoryGirl.create :order }
   let(:book) { FactoryGirl.create :book }
 
+  it { expect(subject).to belong_to :billing_address }
+  it { expect(subject).to belong_to :shipping_address }
   it { expect(subject).to belong_to :credit_card }
+  it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :delivery_service }
   it { expect(subject).to have_many :order_items }
 
@@ -126,10 +129,30 @@ RSpec.describe Order, type: :model do
   end
 
   describe ".take_books" do
-    it "decrease books_in_stock"
+    xit "calls OrderItem.take_books" do
+      subject.take_books
+      # expect().to
+    end
   end
 
   describe ".restore_books" do
-    it "increase books_in_stock"
+    xit "calls OrderItem.restore_books" do
+
+    end
+  end
+
+  describe ".calculate_total_price" do
+    it "returns .calculate_books_price when no delivery service"
+    it "returns sum of .calculate_books_price and delivery service price"
+  end
+
+  describe ".calculate_books_price" do
+    it "returns 0 when no books"
+    it "returns price of one book multiple by quantity"
+    it "returns a sum of prices of different books multiply by quantity"
+  end
+
+  describe ".generate_number" do
+    it "generates number in format 'R000000000'"
   end
 end
