@@ -49,6 +49,7 @@ en:
       add_to_cart: "Add to Cart"
       add_to_wish_list: "Add to Wish List"
       ratings: "Ratings"
+      customer_reviews: "(%{number} customers reviews)"
 
   categories:
     categories: "Categories"

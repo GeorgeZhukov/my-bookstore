@@ -24,6 +24,34 @@ RSpec.describe Book, type: :model do
     end
   end
 
+  describe ".avg_rating" do
+    it "returns 0 if no ratings" do
+      expect(subject.avg_rating).to be_zero
+    end
+
+    it "returns 5 if one rating with number eq to 5" do
+      rating = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      expect(subject.avg_rating).to eq 5
+    end
+
+    it "returns 5 if two ratings with numbers eq to 5" do
+      rating1 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      rating2 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      expect(subject.avg_rating).to eq 5
+    end
+
+    it "returns 4 if two ratings with number 3 and 5" do
+      rating1 = FactoryGirl.create :rating, book: subject, number: 3, state: "approved"
+      rating2 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      expect(subject.avg_rating).to eq 4
+    end
+
+    it "returns 0 if one rating with number eq to 5 but state is pending" do
+      rating1 = FactoryGirl.create :rating, book: subject, number: 5
+      expect(subject.avg_rating).to be_zero
+    end
+  end
+
   describe ".search" do
     it "returns all books when no query" do
       books = Book.search(nil)

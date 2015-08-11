@@ -3,8 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .book-details {
+  .rating-stars {
+    display: inline-block;
+  }
+
   .book-cover {
     width: 300px;
+  }
+
+  .add-to-wish-list {
+    font-weight: bold;
+    color: #464646;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #646464;
+    }
   }
 
   .cart {
