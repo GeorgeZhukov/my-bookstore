@@ -118,9 +118,11 @@ ActiveRecord::Schema.define(version: 20150808145545) do
     t.decimal  "total_price",         precision: 8, scale: 2
   end
 
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
   add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
   add_index "orders", ["delivery_service_id"], name: "index_orders_on_delivery_service_id"
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "ratings", force: :cascade do |t|
@@ -160,9 +162,11 @@ ActiveRecord::Schema.define(version: 20150808145545) do
     t.boolean  "guest"
   end
 
+  add_index "users", ["billing_address_id"], name: "index_users_on_billing_address_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["provider"], name: "index_users_on_provider"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["shipping_address_id"], name: "index_users_on_shipping_address_id"
   add_index "users", ["uid"], name: "index_users_on_uid"
 
   create_table "wish_lists", force: :cascade do |t|
