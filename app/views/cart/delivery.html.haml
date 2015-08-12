@@ -12,20 +12,12 @@
         =t".save_and_continue"
         %i.fa.fa-arrow-right
   .col-sm-6
-    %h4=t ".order_summary"
-    %strong Item Total
-    = number_to_currency @cart.calculate_books_price
-    %br/
-    %strong Shipping
-    %span#shipping= number_to_currency @cart.delivery_service.price
-    %br/
-    %strong Order Total
-    %span#total= number_to_currency @cart.calculate_total_price
+    = render "summary", cart: @cart
 
-  :javascript
-    function calculate_order_price(shipping_price){
-      var item_total = #{@cart.calculate_books_price};//todo
-      var total = item_total + shipping_price;
-      $("#shipping").html("$" + shipping_price.toFixed(2));
-      $("#total").html("$" + total.toFixed(2));
-    }
+:javascript
+  function calculate_order_price(shipping_price){
+    var item_total = #{@cart.calculate_books_price};//todo
+    var total = item_total + shipping_price;
+    $("#shipping").html("$" + shipping_price.toFixed(2));
+    $("#total").html("$" + total.toFixed(2));
+  }

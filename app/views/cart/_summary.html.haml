@@ -1,1 +1,10 @@
 %h4= t"cart.order_summary"
+%strong Item Total
+= number_to_currency @cart.calculate_books_price
+%br/
+- if @cart.delivery_service
+  %strong Shipping
+  %span#shipping= number_to_currency @cart.delivery_service.price
+  %br/
+%strong Order Total
+%span#total= number_to_currency @cart.calculate_total_price

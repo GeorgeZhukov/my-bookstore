@@ -10,7 +10,7 @@ RSpec.describe OrderItem, type: :model do
 
   describe ".price" do
     it "returns correct price" do
-      expect(subject.price).to eq subject.book.price * subject.quantity
+      expect(subject.price).to eq subject.book_price * subject.quantity
     end
   end
 
