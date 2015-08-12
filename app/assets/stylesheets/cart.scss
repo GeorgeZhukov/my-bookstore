@@ -13,13 +13,10 @@
 
 }
 
-.edit_credit_card {
+.edit_credit_card, .new_credit_card {
   input, select {
     text-align: center;
     font-weight: bold;
-  }
-
-  select {
   }
 
   .expiry-year .expiry-month .cvv {

@@ -21,6 +21,10 @@
 en:
   home: "Home"
 
+  top_menu:
+    books: "Books"
+    authors: "Authors"
+
   user_mailer:
     delivered_email:
       order_delivered: "Your order %{number} has been delivered."

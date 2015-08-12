@@ -10,12 +10,8 @@
         = image_tag "logo.png", id: "logo"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        = active_link_to books_path, wrap_tag: :li do
-          %i.fa.fa-book
-          Books
-        = active_link_to authors_path, wrap_tag: :li do
-          %i.fa.fa-users
-          Authors
+        = active_link_to (t"top_menu.books"), books_path, wrap_tag: :li
+        = active_link_to (t"authors.authors"), authors_path, wrap_tag: :li
       = form_tag books_path, method: :get, id: "search-form", class: "navbar-form navbar-left", role: "search" do
         .form-group
           %input.form-control{:type=>"text", :placeholder=>"Search", :name=>"search"}

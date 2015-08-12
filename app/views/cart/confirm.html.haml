@@ -8,31 +8,36 @@
         %h3.panel-title
           %i.fa.fa-map-marker
           =t ".shipping_address"
+          %small= link_to (t".edit"), wizard_path(:address)
       .panel-body
-        %p= @cart.shipping_address.address
         %p= @cart.shipping_address.city
         %p= @cart.shipping_address.zip_code
-        %p= link_to (t".edit"), wizard_path(:address)
+        %p= @cart.shipping_address.country
+        %p= @cart.shipping_address.phone
+
   .col-md-3
     .panel.panel-success
       .panel-heading
         %h3.panel-title
           %i.fa.fa-map-marker
           =t ".billing_address"
+          %small= link_to (t".edit"), wizard_path(:address)
       .panel-body
-        %p= @cart.billing_address.address
         %p= @cart.billing_address.city
         %p= @cart.billing_address.zip_code
-        %p= link_to (t".edit"), wizard_path(:address)
+        %p= @cart.billing_address.country
+        %p= @cart.billing_address.phone
+
   .col-md-3
     .panel.panel-success
       .panel-heading
         %h3.panel-title
           %i.fa.fa-truck
           = t".delivery"
+          %small= link_to (t".edit"), wizard_path(:delivery)
       .panel-body
         %p= @cart.delivery_service.name
-        %p= link_to (t".edit"), wizard_path(:delivery)
+
 
   .col-md-3
     .panel.panel-success
@@ -40,9 +45,11 @@
         %h3.panel-title
           %i.fa.fa-credit-card
           =t ".credit_card"
+          %small= link_to (t".edit"), wizard_path(:payment)
       .panel-body
         %p= secure_credit_card_number(@cart.credit_card.number)
-      %p= link_to (t".edit"), wizard_path(:payment)
+        %p= "#{@cart.credit_card.expiration_month}/#{@cart.credit_card.expiration_year}"
+
 
 %table.table.table-stripped
   %thead
