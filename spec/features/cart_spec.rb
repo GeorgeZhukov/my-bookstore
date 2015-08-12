@@ -81,7 +81,7 @@ RSpec.feature "Cart", type: :feature do
     # Actually code to test current scenario
     fill_payment
     click_link I18n.t("cart.confirm.place_order")
-    expect(page).to have_content "in_queue"
+    expect(page).to have_content I18n.t("order_helper.in_queue")
   end
 
   scenario "When the guest authorizes its basket preserved" do
