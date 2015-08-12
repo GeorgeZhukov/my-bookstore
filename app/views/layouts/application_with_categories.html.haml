@@ -1,5 +1,5 @@
 = content_for :content do
-  = render partial: "layouts/top_menu"
+  = render "layouts/top_menu"
 
   .container
     %ol.breadcrumb
@@ -16,6 +16,6 @@
           .alert.alert-info{:role=>"alert"}= v
         = yield
 
-  = render partial: "layouts/logout_modal"
+  = render "layouts/logout_modal"
 
 = render template: "layouts/application"

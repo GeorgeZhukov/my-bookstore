@@ -12,6 +12,8 @@
   }
 
   .add-to-wish-list {
+    display: block;
+    margin: 6px 0;
     font-weight: bold;
     color: #464646;
     text-decoration: none;
@@ -20,6 +22,19 @@
     &:hover {
       color: #646464;
     }
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .amount {
+    font-size: 24px;
+    color: #464646;
+  }
+
+  .description {
+    margin: 20px 0;
   }
 
   .cart {

@@ -1,5 +1,6 @@
 class CartController < ApplicationController
   include Wicked::Wizard
+  layout "cart"
 
   steps :intro, :address, :delivery, :payment, :confirm
 

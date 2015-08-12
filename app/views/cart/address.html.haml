@@ -1,13 +1,12 @@
 = render "steps"
 
-%h2= t".address"
 = form_tag wizard_path, method: :put do
   .row
-    .col-md-5
+    .col-md-4
       %h4= t".billing_address"
       = simple_fields_for :billing_address, @cart.billing_address do |f|
         = render partial: "users/registrations/address_form", object: f
-    .col-md-5
+    .col-md-4
       %h4= t".shipping_address"
       #shipping-address
         = simple_fields_for :shipping_address, @cart.shipping_address do |f|
@@ -16,6 +15,7 @@
       .checkbox
         %label
           %input#use-billing-address{:type=>"checkbox"}= t".use_billing_address"
+    .col-md-4= render "summary", cart: @cart
 
 
     :javascript

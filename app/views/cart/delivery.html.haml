@@ -1,8 +1,8 @@
 = render "steps"
 
-%h2=t ".delivery"
 .row
   .col-sm-6
+    %h4=t ".delivery"
     = form_tag wizard_path, method: :put do
       - @delivery_services.each do |ds|
         = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds, options={onclick: "calculate_order_price(#{ds.price});"})

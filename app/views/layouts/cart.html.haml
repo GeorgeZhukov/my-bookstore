@@ -1,0 +1,14 @@
+= content_for :content do
+  = render "layouts/top_menu"
+
+  .container
+    %ol.breadcrumb
+      = render_breadcrumbs tag: :li, separator: ""
+    - flash.each do |k,v|
+      .alert.alert-info{:role=>"alert"}= v
+    = yield
+
+
+  = render "layouts/logout_modal"
+
+= render template: "layouts/application"
