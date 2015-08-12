@@ -18,10 +18,10 @@
               = image_tag order_item.book.cover.thumbnail.url
               = link_to order_item.book_title, order_item.book
             %td
-              %span.amount= "$#{order_item.book.price}"
+              %span.amount= number_to_currency order_item.book_price
             %td= number_field_tag("items[][quantity]", order_item.quantity, {min: 1, max: order_item.book_books_in_stock, class: "input-text qty text"})
             %td
-              %span.amount= "$#{order_item.price}"
+              %span.amount= number_to_currency order_item.price
             %td
               = link_to remove_item_cart_path(item_id: order_item.id), method: :delete do
                 %i.fa.fa-times

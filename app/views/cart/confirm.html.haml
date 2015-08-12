@@ -57,8 +57,8 @@
       %td
         = image_tag order_item.book.cover.thumbnail.url
         = link_to order_item.book_title, order_item.book
-      %td= "$#{order_item.book.price}"
+      %td= number_to_currency order_item.book_price
       %td= order_item.quantity
-      %td= "$#{order_item.price}"
+      %td= number_to_currency order_item.price
 
 = link_to (t".place_order"), wizard_path, class: "btn btn-success", method: :put

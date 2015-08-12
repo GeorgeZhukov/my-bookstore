@@ -18,7 +18,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :book
   belongs_to :order
 
-  delegate :title, :books_in_stock, to: :book, prefix: true
+  delegate :title, :books_in_stock, :price, to: :book, prefix: true
 
   def price
     book.price * quantity

@@ -2,4 +2,4 @@
   = image_tag book.cover.thumbnail.url, class: "book-cover"
   %h3.book-title= book.title
   .rating-stars{"data-score"=>book.avg_rating/2}
-  %h4.book-price= "$#{book.price}"
+  %h4.book-price= number_to_currency book.price

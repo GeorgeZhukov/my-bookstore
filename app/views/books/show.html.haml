@@ -8,7 +8,7 @@
       %span= t".customer_reviews", number: @book.ratings_approved.count
     %h2= @book.title
     %p= @book.description.html_safe
-
+    %span= number_to_currency @book.price
     = simple_form_for :add_to_cart, url: add_to_cart_book_path, method: :put, html: {class: "cart"} do |f|
       %input#add_to_cart_quantity.numeric.integer.required.qty.form-control{:type=>"number", :step=>1, :name=>"add_to_cart[quantity]", :value=>1, :max=>@book.books_in_stock, :min=>1}
       = button_tag(type: "submit", class: "btn btn-primary btn-lg") do

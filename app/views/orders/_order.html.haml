@@ -9,11 +9,11 @@
     - order.order_items.each do |order_item|
       %tr
         %td= link_to order_item.book_title, order_item.book
-        %td= "$#{order_item.book.price}"
+        %td= number_to_currency order_item.book_price
         %td= order_item.quantity
-        %td= "$#{order_item.price}"
+        %td= number_to_currency order_item.price
 %hr/
 
 %p
   =t ".order_total"
-  %strong= "$#{order.total_price}"
+  %strong= number_to_currency order.total_price
