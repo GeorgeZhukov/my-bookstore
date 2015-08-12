@@ -4,6 +4,7 @@
   .col-md-8
     %h4=t ".payment"
     = simple_form_for @cart.credit_card, url: wizard_path, method: :put do |f|
+      = f.error_notification
       = render "credit_card_form", f: f
       %button.btn.btn-primary.pull-right{:type=>"submit"}
         =t".save_and_continue"

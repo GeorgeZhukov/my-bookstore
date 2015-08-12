@@ -1,7 +1,7 @@
 class QuantityValidator < ActiveModel::Validator
   def validate(record)
     if record.book
-      unless (1..record.book.books_in_stock).include? record.quantity
+      unless (1..record.book_books_in_stock).include? record.quantity
         record.errors[:quantity] << 'Wrong quantity.'
       end
     end

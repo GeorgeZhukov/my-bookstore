@@ -14,6 +14,13 @@
     font-size: 24px;
   }
 
+  &-nav {
+    li {
+      a {
+        margin: 0 10px;
+      }
+    }
+  }
 
   &-inverse {
     .form-control {

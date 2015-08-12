@@ -9,6 +9,6 @@
     - orders.each do |order|
       %tr
         %td= link_to order.number, order
-        %td= order.completed_date
-        %td= "$#{order.total_price}"
+        %td= order.completed_date || (t "orders.in_progress")
+        %td= number_to_currency order.total_price
         %td= link_to (t".view"), order_path(order)

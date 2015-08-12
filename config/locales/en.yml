@@ -131,8 +131,16 @@ en:
     not_found:
       page_not_found: "Page not found"
 
+  order_helper:
+    in_progress: "In progress"
+    in_queue: "In queue"
+    in_delivery: "In delivery"
+    delivered: "Delivered"
+    canceled: "Canceled"
+
   orders:
     orders: "Orders"
+    in_progress: "In progress"
 
     order:
       book: "Book"

@@ -15,6 +15,9 @@
       .checkbox
         %label
           %input#use-billing-address{:type=>"checkbox"}= t".use_billing_address"
+      %button.btn.btn-primary.pull-right{:type=>"submit"}
+        = t".save_and_continue"
+        %i.fa.fa-arrow-right
     .col-md-4= render "summary", cart: @cart
 
 
@@ -40,6 +43,3 @@
           }
       });
 
-  %button.btn.btn-primary.pull-right{:type=>"submit"}
-    = t".save_and_continue"
-    %i.fa.fa-arrow-right

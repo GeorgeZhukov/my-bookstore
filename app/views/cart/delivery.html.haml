@@ -1,7 +1,7 @@
 = render "steps"
 
 .row
-  .col-sm-6
+  .col-md-8
     %h4=t ".delivery"
     = form_tag wizard_path, method: :put do
       - @delivery_services.each do |ds|
@@ -11,7 +11,7 @@
       %button.btn.btn-primary.pull-right{:type=>"submit"}
         =t".save_and_continue"
         %i.fa.fa-arrow-right
-  .col-sm-6
+  .col-md-4
     = render "summary", cart: @cart
 
 :javascript
