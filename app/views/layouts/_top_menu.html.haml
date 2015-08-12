@@ -27,7 +27,7 @@
             = link_to rails_admin_path do
               %i.fa.fa-tachometer
               Admin Panel
-        = active_link_to cart_path(:intro), wrap_tag: :li do
+        = active_link_to cart_path(:intro), id: "cart", wrap_tag: :li do
           %i.fa.fa-shopping-cart
           = "(#{current_or_guest_user.cart.books_count}) #{number_to_currency current_or_guest_user.cart.total_price}"
         - if current_user
