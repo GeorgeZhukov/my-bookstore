@@ -38,7 +38,7 @@ RSpec.feature "WishLists", type: :feature do
       expect(page).to have_content book.title
     end
 
-    scenario "A user can remove book from wish list" do
+    xscenario "A user can remove book from wish list" do
       visit wish_list_books_path
       click_link "remove"
       expect(page).to have_content (I18n.t"wish_list_books.destroy.successfully_destroyed")

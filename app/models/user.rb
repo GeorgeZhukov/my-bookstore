@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.create_guest
+    guest = create(email: "guest_#{Time.now.to_i}#{rand(100)}@example.com", guest: true)
+    guest.save!(validate: false)
+    guest
+  end
+
   def cart
     self.orders.in_progress.first_or_create
   end

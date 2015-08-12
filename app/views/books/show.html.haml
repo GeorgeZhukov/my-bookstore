@@ -20,9 +20,9 @@
       %i.fa.fa-heart
       = t ".add_to_wish_list"
 
-%h3= t ".ratings"
 .row
   .col-md-6
+    %h4= t ".ratings"
     %ul.ratings
       = render partial: "rating", collection: @book.ratings_approved
       :javascript

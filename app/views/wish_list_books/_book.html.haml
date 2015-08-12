@@ -1,7 +1,8 @@
-%a.book{:href=>book_path(book), "data-toggle"=>"tooltip", "data-placement"=>"bottom", :title=>book.short_description}
+.book.wish-book{"data-toggle"=>"tooltip", "data-placement"=>"bottom", :title=>book.short_description}
   = image_tag book.cover.thumbnail.url, class: "book-cover"
   %h3.book-title= book.title
   .rating-stars{"data-score"=>book.avg_rating/2}
   %h4.book-price= number_to_currency book.price
-  %span hi
-  = link_to "remove", wish_list_book_path(book), method: :delete
+  = link_to wish_list_book_path(book), class:"btn btn-xs btn-danger", method: :delete do
+    %i.fa.fa-times
+  = link_to 'details', book, class: "btn btn-xs btn-primary"

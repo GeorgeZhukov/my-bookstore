@@ -3,6 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .book-details {
+  padding-bottom: 40px;
+  
   .rating-stars {
     display: inline-block;
   }
@@ -80,4 +82,7 @@
   &:hover {
     background-color: #fafafa;
   }
+}
+
+.wish-book {
 }
