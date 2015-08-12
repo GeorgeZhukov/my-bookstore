@@ -1,3 +1,10 @@
 = render @books
+:javascript
+  $(".rating-stars").raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
 .clearfix
 = paginate @books
