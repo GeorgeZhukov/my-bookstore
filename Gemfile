@@ -53,6 +53,7 @@ gem "breadcrumbs_on_rails"
 gem 'active_link_to'
 gem 'gaffe'
 gem 'credit_card_validations'
+gem "bootstrap_flash_messages", "~> 1.0.1"
 
 
 group :development, :test do

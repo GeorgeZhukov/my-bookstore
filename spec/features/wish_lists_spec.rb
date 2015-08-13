@@ -11,8 +11,8 @@ RSpec.feature "WishLists", type: :feature do
 
   context "authorized user" do
     before do
-      user = FactoryGirl.create :user
-      login_as(user, :scope => :user)
+      @user = FactoryGirl.create :user
+      login_as(@user, scope: :user)
 
       # add book to wish list
       visit book_path(book)
@@ -21,7 +21,7 @@ RSpec.feature "WishLists", type: :feature do
 
     scenario "A user see 'No books' when wish list is empty" do
       user = FactoryGirl.create :user
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
       visit wish_list_books_path
       expect(page).to have_content I18n.t("wish_list_books.index.no_books")
     end
@@ -39,8 +39,7 @@ RSpec.feature "WishLists", type: :feature do
     end
 
     xscenario "A user can remove book from wish list" do
-      visit wish_list_books_path
-      click_link "remove"
+      page.driver.submit :delete, wish_list_book_path(book.id), {}
       expect(page).to have_content (I18n.t"wish_list_books.destroy.successfully_destroyed")
     end
   end

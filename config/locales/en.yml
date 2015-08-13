@@ -21,13 +21,17 @@
 en:
   home: "Home"
 
+  user_mailer:
+    delivered_email:
+      order_delivered: "Your order is successfully delivered."
+
   top_menu:
     books: "Books"
     authors: "Authors"
 
   user_mailer:
     delivered_email:
-      order_delivered: "Your order %{number} has been delivered."
+      order_delivered: "Your order %{number} was delivered."
 
   authors:
     authors: "Authors"
@@ -43,7 +47,7 @@ en:
     books: "Books"
 
     add_to_cart:
-      books_was_successfully_added_to_cart: "Book was successfully added to cart."
+      books_was_successfully_added_to_cart: "Book added to cart."
 
     new_rating:
       write_your_review: "Write your review"
@@ -60,7 +64,7 @@ en:
 
   ratings:
     ratings: "Ratings"
-    sent_to_review: "Your rating has been successfully sent to review."
+    sent_to_review: "Your review has been sent for review."
 
   wish_list_books:
     wish_list_books: "Wish list books"
@@ -69,11 +73,11 @@ en:
       no_books: "No books"
 
     create:
-      already_in_wish_list: "The book already in wish list."
-      successfully_added: "The book successfully added to wish list."
+      already_in_wish_list: "The book is already in the wish list."
+      successfully_added: "Book added to wish list."
 
     destroy:
-      successfully_destroyed: "The book has been successfully destroyed."
+      successfully_destroyed: "The book is removed from the wish list."
 
   cart:
 
@@ -113,7 +117,7 @@ en:
       order_summary: "Order Summary"
 
     clear:
-      cart_is_cleared: "Your cart is cleared."
+      cart_is_cleared: "Your shopping cart is emptied."
 
     intro:
       book: "Book"
@@ -123,7 +127,7 @@ en:
       empty_cart: "Empty Cart"
       update: "Update"
       checkout: "Checkout"
-      your_cart_is_empty: "Your cart is empty."
+      your_cart_is_empty: "Your shopping cart is empty."
 
     payment:
       payment: "Payment"

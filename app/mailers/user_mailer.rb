@@ -3,6 +3,6 @@ class UserMailer < ApplicationMailer
     @user = user
     @order = order
     @url  = order_url(order)
-    mail(to: @user.email, subject: 'Your order is delivered successfully.')
+    mail(to: @user.email, subject: I18n.t("user_mailer.delivered_email.order_delivered"))
   end
 end

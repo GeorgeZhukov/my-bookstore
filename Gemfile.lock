@@ -124,6 +124,7 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bootstrap_flash_messages (1.0.2)
     breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
     byebug (5.0.0)
@@ -393,6 +394,7 @@ DEPENDENCIES
   active_link_to
   bootstrap-sass (~> 3.3.5)
   bootstrap-wysihtml5-rails!
+  bootstrap_flash_messages (~> 1.0.1)
   breadcrumbs_on_rails
   byebug
   cancancan (~> 1.10)

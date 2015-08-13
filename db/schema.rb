@@ -118,9 +118,11 @@ ActiveRecord::Schema.define(version: 20150808145545) do
     t.decimal  "total_price",         precision: 8, scale: 2
   end
 
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
   add_index "orders", ["deleted_at"], name: "index_orders_on_deleted_at"
   add_index "orders", ["delivery_service_id"], name: "index_orders_on_delivery_service_id"
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "ratings", force: :cascade do |t|
@@ -135,19 +137,6 @@ ActiveRecord::Schema.define(version: 20150808145545) do
 
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
-
-  create_table "rich_rich_files", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "rich_file_file_name"
-    t.string   "rich_file_content_type"
-    t.integer  "rich_file_file_size"
-    t.datetime "rich_file_updated_at"
-    t.string   "owner_type"
-    t.integer  "owner_id"
-    t.text     "uri_cache"
-    t.string   "simplified_type",        default: "file"
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -173,9 +162,11 @@ ActiveRecord::Schema.define(version: 20150808145545) do
     t.boolean  "guest"
   end
 
+  add_index "users", ["billing_address_id"], name: "index_users_on_billing_address_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["provider"], name: "index_users_on_provider"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["shipping_address_id"], name: "index_users_on_shipping_address_id"
   add_index "users", ["uid"], name: "index_users_on_uid"
 
   create_table "wish_lists", force: :cascade do |t|

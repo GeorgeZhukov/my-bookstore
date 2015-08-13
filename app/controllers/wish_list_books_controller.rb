@@ -13,7 +13,7 @@ class WishListBooksController < ApplicationController
     wish_list = current_user.get_wish_list
 
     if wish_list.books.include?(book)
-      flash[:notice] = (I18n.t"wish_list_books.create.already_in_wish_list")
+      flash[:warning] = (I18n.t"wish_list_books.create.already_in_wish_list")
     else
       wish_list.books << book
       if wish_list.save

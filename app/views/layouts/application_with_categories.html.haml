@@ -12,8 +12,7 @@
             - @categories.each do |category|
               = active_link_to category.title, category, wrap_tag: :li
       .col-sm-9
-        - flash.each do |k,v|
-          .alert.alert-info{:role=>"alert"}= v
+        = flash_messages(:close, :fade)
         = yield
 
   = render "layouts/logout_modal"
