@@ -21,4 +21,11 @@ RSpec.describe Address, type: :model do
       expect(address1.eq(address1)).to be_truthy
     end
   end
+
+  describe ".country_name" do
+    it "returns United States when country is 'us'" do
+      subject.country = "us"
+      expect(subject.country_name).to eq "United States"
+    end
+  end
 end

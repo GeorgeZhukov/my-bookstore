@@ -12,7 +12,7 @@
       .panel-body
         %p= @cart.shipping_address.city
         %p= @cart.shipping_address.zip_code
-        %p= @cart.shipping_address.country
+        %p= @cart.shipping_address.country_name
         %p= @cart.shipping_address.phone
 
   .col-md-3
@@ -25,7 +25,7 @@
       .panel-body
         %p= @cart.billing_address.city
         %p= @cart.billing_address.zip_code
-        %p= @cart.billing_address.country
+        %p= @cart.billing_address.country_name
         %p= @cart.billing_address.phone
 
   .col-md-3
@@ -67,5 +67,13 @@
       %td= number_to_currency order_item.book_price
       %td= order_item.quantity
       %td= number_to_currency order_item.price
+
+%hr/
+= "Subtotal: #{number_to_currency @cart.calculate_books_price}"
+%br
+= "Shipping: #{number_to_currency @cart.delivery_service.price}"
+%hr/
+
+= "Order total: #{number_to_currency @cart.total_price}"
 
 = link_to (t".place_order"), wizard_path, class: "btn btn-success", method: :put

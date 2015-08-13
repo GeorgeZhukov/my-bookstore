@@ -8,7 +8,6 @@ class Address < ActiveRecord::Base
 
   belongs_to :user
 
-  # todo: refactor
   def eq(address)
     unless self.id && address.id && self.id == address.id
       fields_to_eq = [:address, :zip_code, :city, :phone, :country]
@@ -19,6 +18,11 @@ class Address < ActiveRecord::Base
     end
 
     true
+  end
+
+  def country_name
+    c = ISO3166::Country[country]
+    c.translations[I18n.locale.to_s] || c.name
   end
 
 end
