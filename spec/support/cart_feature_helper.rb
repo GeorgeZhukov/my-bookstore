@@ -1,14 +1,7 @@
 module CartFeatureHelper
-  def fill_address
+  def fill_address(use_shipping_as_billing=true)
     address = FactoryGirl.create :address
     visit cart_path(:address)
-    # click_button "Checkout"
-    # Shipping address
-    fill_in "shipping_address_address", with: address.address
-    fill_in "shipping_address_zip_code", with: address.zip_code
-    fill_in "shipping_address_city", with: address.city
-    fill_in "shipping_address_phone", with: address.phone
-    select "Ukraine", from: "shipping_address_country"
 
     # Billing address
     fill_in "billing_address_address", with: address.address
@@ -16,6 +9,16 @@ module CartFeatureHelper
     fill_in "billing_address_city", with: address.city
     fill_in "billing_address_phone", with: address.phone
     select "Ukraine", from: "billing_address_country"
+
+    unless use_shipping_as_billing
+      # Shipping address
+      fill_in "shipping_address_address", with: address.address
+      fill_in "shipping_address_zip_code", with: address.zip_code
+      fill_in "shipping_address_city", with: address.city
+      fill_in "shipping_address_phone", with: address.phone
+      select "Ukraine", from: "shipping_address_country"
+    end
+
     click_button I18n.t("cart.address.save_and_continue")
   end
 
