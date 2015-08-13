@@ -16,7 +16,7 @@ $gray:                   #666 !default;
 $gray-light:             #bbb !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary: #4681b0 !default;
+$brand-primary: #2954b0 !default;
 $brand-success:         #4CAF50 !default;
 $brand-info: #adafb0 !default;
 $brand-warning:         #ff9800 !default;
@@ -50,7 +50,7 @@ $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          16px !default;
+$font-size-base:          15px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -104,9 +104,9 @@ $padding-xs-horizontal:     5px !default;
 $line-height-large:         1.3333333 !default; // extra decimals for Win 8.1 Chrome
 $line-height-small:         1.5 !default;
 
-$border-radius-base:        2px !default;
-$border-radius-large:       3px !default;
-$border-radius-small:       1px !default;
+$border-radius-base:        1px !default;
+$border-radius-large:       2px !default;
+$border-radius-small:       0px !default;
 
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff !default;
@@ -359,7 +359,7 @@ $container-lg:                 $container-large-desktop !default;
 //##
 
 // Basics of a navbar
-$navbar-height:                    50px !default;
+$navbar-height:                    44px !default;
 $navbar-margin-bottom:             $line-height-computed !default;
 $navbar-border-radius:             $border-radius-base !default;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2)) !default;
@@ -367,14 +367,14 @@ $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2
 $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             $gray-light !default;
-$navbar-default-bg:                #fff !default;
+$navbar-default-bg:                #323232 !default;
 $navbar-default-border:            transparent !default;
 
 // Navbar links
-$navbar-default-link-color:                $gray !default;
+$navbar-default-link-color:                #ffffff !default;
 $navbar-default-link-hover-color:          $gray-dark !default;
 $navbar-default-link-hover-bg:             transparent !default;
-$navbar-default-link-active-color:         $gray-dark !default;
+$navbar-default-link-active-color:         #afafaf !default;
 $navbar-default-link-active-bg:            transparent !default;
 $navbar-default-link-disabled-color:       #ccc !default;
 $navbar-default-link-disabled-bg:          transparent !default;
