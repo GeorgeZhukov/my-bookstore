@@ -8,13 +8,14 @@
         = render partial: "users/registrations/address_form", object: f
     .col-md-4
       %h4= t".shipping_address"
-      #shipping-address{:style=>"display: none;"}
+      #shipping-address{:style=>compare_address(@cart, "display: none;", "")}
         = simple_fields_for :shipping_address, @cart.shipping_address do |f|
           = render partial: "users/registrations/address_form", object: f
-          = hidden_field_tag :use_billing_address, "yes"
+          = hidden_field_tag :use_billing_address, compare_address(@cart, "yes", "no")
       .checkbox
         %label
-          %input#use-billing-address{:type=>"checkbox", :checked=>"1"}= t".use_billing_address"
+          = check_box_tag "use-billing-address", "", compare_address(@cart, true, false), id: "use-billing-address"
+          = t".use_billing_address"
       %button.btn.btn-primary.pull-right{:type=>"submit"}
         = t".save_and_continue"
         %i.fa.fa-arrow-right

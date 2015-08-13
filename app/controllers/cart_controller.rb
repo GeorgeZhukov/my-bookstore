@@ -110,6 +110,7 @@ class CartController < ApplicationController
     if current_user
       current_user.shipping_address ||= @cart.shipping_address
       current_user.billing_address ||= @cart.billing_address
+      current_user.save
     end
 
     is_shipping_updated && is_billing_updated
