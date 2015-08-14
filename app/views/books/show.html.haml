@@ -3,9 +3,10 @@
     = image_tag @book.cover.standard.url, class: "book-cover"
   .col-md-2
   .col-md-7
-    .product-rating
-      .rating-stars{"data-score"=>@book.avg_rating/2}
-      %small= t".customer_reviews", number: @book.ratings_approved.count
+    - if @book.avg_rating > 0
+      .product-rating
+        .rating-stars{"data-score"=>@book.avg_rating/2}
+        %small= t".customer_reviews", number: @book.ratings_approved.count
     %h2.title= @book.title
     %small
       = "by"
@@ -27,14 +28,37 @@
 .row
   .col-md-6
     %h4= t ".ratings"
-    %ul.ratings
-      = render partial: "rating", collection: @book.ratings_approved
-      :javascript
-        $(".rating-stars").raty({
-          readOnly: true,
-          score: function() {
-            return $(this).attr('data-score');
-          }
-        });
+    - if @book.ratings_approved.exists?
+      %ul.ratings
+        = render partial: "rating", collection: @book.ratings_approved
+    - else
+      %p= t".no_ratings"
   .col-md-6
     = render "new_rating", new_rating: @new_rating, book: @book
+
+:javascript
+  $(".rating-stars").raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+  var bookDetailsBounce = new Bounce();
+  bookDetailsBounce
+    .scale({
+      from: { x: 1, y: .7 },
+      to: { x: 1, y: 1 },
+      easing: "bounce",
+      duration: 1000,
+      delay: 0,
+      bounces: 4
+    })
+    .scale({
+      from: { x: .7, y: 1 },
+      to: { x: 1, y: 1 },
+      easing: "bounce",
+      duration: 1000,
+      delay: 0,
+      bounces: 6
+    });
+  bookDetailsBounce.applyTo($(".book-details"));

@@ -1,5 +1,5 @@
 %li.rating
-  .rating_container.clearfix
+  .rating_container.clearfix{:class=>isMyRating(rating, "my-rating", "")}
     = image_tag rating.user_avatar_url, class: "avatar photo", height: 140, width: 140
     .rating-review
       %h3.rating-author= rating.user.to_s

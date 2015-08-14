@@ -23,4 +23,9 @@ RSpec.describe "books/show.html.haml", type: :view do
     render
     expect(rendered).to match(book.author.to_s)
   end
+
+  it "displays 'no ratings' book.ratings is empty" do
+    render
+    expect(rendered).to match(I18n.t("books.show.no_ratings"))
+  end
 end

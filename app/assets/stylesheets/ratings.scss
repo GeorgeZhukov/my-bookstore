@@ -8,8 +8,7 @@
   padding: 0;
 
   .rating_container {
-    margin-top: 20px;
-
+    padding: 10px;
   }
 
   .rating-author {
@@ -27,6 +26,22 @@
     width: 64px;
     height: 64px;
     float: left;
-    margin: 0 10px;
+    margin-right: 10px;
+  }
+
+  .my-rating {
+    @-webkit-keyframes blink {
+      0% { background: rgba(0, 255, 72, 0.2); }
+      25% { background: rgba(1, 255, 125, 0.2); }
+      50% { background: rgba(0, 255, 180, 0.2); }
+      75% { background: rgba(1, 255, 125, 0.2); }
+      100% { background: rgba(0, 255, 72, 0.2); }
+    }
+
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease;
   }
 }

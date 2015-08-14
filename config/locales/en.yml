@@ -58,6 +58,7 @@ en:
       add_to_wish_list: "Add to Wish List"
       ratings: "Ratings"
       customer_reviews: "(%{number} customers reviews)"
+      no_ratings: "No ratings"
 
   categories:
     categories: "Categories"

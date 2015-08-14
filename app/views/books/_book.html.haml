@@ -1,5 +1,6 @@
 %a.book{:href=>book_path(book), "data-toggle"=>"tooltip", "data-placement"=>"bottom", :title=>book.short_description}
   = image_tag book.cover.thumbnail.url, class: "book-cover"
   %h3.book-title= book.title
-  .rating-stars{"data-score"=>book.avg_rating/2}
+  - if book.avg_rating > 0
+    .rating-stars{"data-score"=>book.avg_rating/2}
   %h4.book-price= number_to_currency book.price
