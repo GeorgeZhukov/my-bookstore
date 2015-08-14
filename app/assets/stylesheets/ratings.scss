@@ -7,8 +7,21 @@
   list-style-type: none;
   padding: 0;
 
+  .rating_container {
+    margin-top: 20px;
+
+  }
+
   .rating-author {
-    font-size: 14px;
+    font-size: 11px;
+    margin: 0;
+  }
+  .rating-stars {
+    img {
+      width: 10px;
+    }
+
+    margin-top: -20px;
   }
   .avatar {
     width: 64px;

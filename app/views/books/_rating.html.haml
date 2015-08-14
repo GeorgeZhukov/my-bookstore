@@ -1,10 +1,10 @@
 %li.rating
-  .rating_container
+  .rating_container.clearfix
     = image_tag rating.user_avatar_url, class: "avatar photo", height: 140, width: 140
     .rating-review
       %h3.rating-author= rating.user.to_s
 
-      .rating-stars{"data-score"=>rating.number/2}
+      .rating-stars.pull-right{"data-score"=>rating.number/2}
       -#.review-metadata
         bla bla
 
