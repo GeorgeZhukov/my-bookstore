@@ -1,19 +1,19 @@
 ---
 development:
   cloud_name: dplfg2dnt
-  api_key: '388235819948588'
-  api_secret: 0AaSzK5n5s2e4VEMn1o5fCdYiCA
+  api_key: '<%= ENV['CLOUDINARY_API_KEY'] %>'
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_image_support: false
 production:
   cloud_name: dplfg2dnt
-  api_key: '388235819948588'
-  api_secret: 0AaSzK5n5s2e4VEMn1o5fCdYiCA
+  api_key: '<%= ENV['CLOUDINARY_API_KEY'] %>'
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_image_support: true
 test:
   cloud_name: dplfg2dnt
-  api_key: '388235819948588'
-  api_secret: 0AaSzK5n5s2e4VEMn1o5fCdYiCA
+  api_key: '<%= ENV['CLOUDINARY_API_KEY'] %>'
+  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
   enhance_image_tag: true
   static_image_support: false
