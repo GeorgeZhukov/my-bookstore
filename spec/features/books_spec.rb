@@ -29,7 +29,6 @@ RSpec.feature "Books", type: :feature do
 
   scenario "A user can add book to cart" do
     visit book_path(book)
-    puts page.body
     click_button I18n.t("books.details.add_to_cart")
     visit cart_path(:intro)
     expect(page).to have_content book.title

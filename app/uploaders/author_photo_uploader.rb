@@ -1,6 +1,6 @@
 # encoding: utf-8
-if Rails.env.production?
-  class AuthorPhotoUploader < CarrierWave::Uploader::Base
+class AuthorPhotoUploader < CarrierWave::Uploader::Base
+  if Rails.env.production?
     include Cloudinary::CarrierWave
 
     process convert: 'jpg'
@@ -11,20 +11,16 @@ if Rails.env.production?
       resize_to_fit(50, 50)
       cloudinary_transformation quality: 70
     end
-  end
-
-else
-  class AuthorPhotoUploader < CarrierWave::Uploader::Base
-    storage :file
+  else
 
     def store_dir
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
     version :thumbnail do
-      # process resize_to_fit: [120, 200]
-    end
 
+    end
   end
+
 
 end

@@ -21,6 +21,12 @@
 en:
   home: "Home"
 
+  logout_modal:
+    title: "Sign Out"
+    content: "Are you sure?"
+    cancel: "Cancel"
+    sign_out: "Sign Out"
+
   user_mailer:
     delivered_email:
       order_delivered: "Your order is successfully delivered."
