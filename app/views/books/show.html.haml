@@ -1,29 +1,4 @@
-.row.book-details
-  .col-md-3
-    = image_tag @book.cover.standard.url, class: "book-cover"
-  .col-md-2
-  .col-md-7
-    - if @book.avg_rating > 0
-      .product-rating
-        .rating-stars{"data-score"=>@book.avg_rating/2}
-        %small= t".customer_reviews", number: @book.ratings_approved.count
-    %h2.title= @book.title
-    %small
-      = "by"
-      = link_to @book.author, @book.author
-    %br
-    %span.amount= number_to_currency @book.price
-
-    %p.description= @book.description.html_safe
-    = simple_form_for :add_to_cart, url: add_to_cart_book_path(@book), method: :put, html: {class: "cart"} do |f|
-      = f.error_notification
-      %input#add_to_cart_quantity.numeric.integer.required.qty.form-control{:type=>"number", :step=>1, :name=>"add_to_cart[quantity]", :value=>1, :max=>@book.books_in_stock, :min=>1}
-      = button_tag(type: "submit", class: "btn btn-primary btn-lg") do
-        %i.fa.fa-cart-plus
-        = t ".add_to_cart"
-    = link_to book_wish_list_books_path(@book), method: :post, class: "add-to-wish-list" do
-      %i.fa.fa-heart
-      = t ".add_to_wish_list"
+= render partial: "details", locals: {book: @book}
 
 .row
   .col-md-6

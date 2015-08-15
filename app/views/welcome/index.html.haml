@@ -1,4 +1,5 @@
 .best-sellers
-  = render @books
+  - @books.each do |book|
+    = render partial: "books/details", locals: {book: book}
 :javascript
   animateLogo();

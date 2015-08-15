@@ -33,6 +33,6 @@
     duration: 300
     delay: 30
   $ ->
-    $('.best-sellers').slick()
+    $('.best-sellers').slick({autoplay: true})
     logoBounce.applyTo $('#logo')
     return
