@@ -8,5 +8,6 @@ class CategoriesController < ApplicationController
 
   def show
     add_breadcrumb @category.title, @caregory
+    @books = @category.books.page params[:page]
   end
 end
