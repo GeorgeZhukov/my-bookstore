@@ -7,7 +7,7 @@ FactoryGirl.define do
     expiration_year { Faker::Date.between(Date.today, Date.today + 10.years).year }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    association :user, factory: :user
+    user
   end
 
 end

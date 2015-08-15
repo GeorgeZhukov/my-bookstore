@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   belongs_to :delivery_service
   belongs_to :credit_card
   has_many :order_items
+  validates :user, presence: true
 
   default_scope { order(created_at: :desc) }
 

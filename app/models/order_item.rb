@@ -12,11 +12,12 @@ class OrderItem < ActiveRecord::Base
   include ActiveModel::Validations
   validates_with QuantityValidator
 
-  # validates :price, presence: true
-  validates :quantity, presence: true
-
   belongs_to :book
   belongs_to :order
+
+  validates :quantity, presence: true
+  validates :book, presence: true
+  # validates :order, presence: true
 
   delegate :title, :books_in_stock, :price, to: :book, prefix: true
 

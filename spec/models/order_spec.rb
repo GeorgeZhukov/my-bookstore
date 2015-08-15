@@ -9,6 +9,7 @@ RSpec.describe Order, type: :model do
   it { expect(subject).to belong_to :credit_card }
   it { expect(subject).to belong_to :user }
   it { expect(subject).to belong_to :delivery_service }
+  it { expect(subject).to validate_presence_of :user }
   it { expect(subject).to have_many :order_items }
 
   it "generates number" do
