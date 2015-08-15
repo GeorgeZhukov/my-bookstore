@@ -6,15 +6,12 @@ if Rails.env.production?
     include Cloudinary::CarrierWave
 
     process convert: 'jpg'
-
-    version :standard do
-      process eager: true
-      process resize_to_fill: [300, 400, :north]
-      # cloudinary_transformation quality: 80, width: 300, height: 400
-    end
+    process resize_to_fill: [300, 400, :north]
+    cloudinary_transformation quality: 90
 
     version :thumbnail do
       resize_to_fit(120, 200)
+      cloudinary_transformation quality: 70
     end
   end
 
