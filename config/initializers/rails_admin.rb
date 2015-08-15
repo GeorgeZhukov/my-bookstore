@@ -16,27 +16,12 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.model Book do
-    list do
-      configure :description do
-        hide
-      end
-    end
-    edit do
-      configure :description, :wysihtml5 do
-        config_options toolbar: { fa: true, image: false, link: false }, # use font-awesome instead of glyphicon
-                       html: true, # enables html editor
-                       parserRules: { tags: { p:1 } } # support for <p> in html mode
-      end
-    end
-  end
-
 
   config.actions do
     dashboard # mandatory
     index # mandatory
     new do
-      except ['Order', 'OrderItem', 'Address', 'Rating']
+      except ['Order', 'OrderItem', 'Address', 'Rating', 'WishList']
     end
     #export
     #bulk_delete

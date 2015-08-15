@@ -11,6 +11,10 @@ RSpec.describe Order, type: :model do
   it { expect(subject).to belong_to :delivery_service }
   it { expect(subject).to have_many :order_items }
 
+  it "generates number" do
+    expect(subject.number).not_to be_nil
+  end
+
   it "init total_price" do
     expect(subject.total_price).not_to be_nil
   end
@@ -176,5 +180,17 @@ RSpec.describe Order, type: :model do
 
   describe ".generate_number" do
     it "generates number in format 'R000000000'"
+  end
+
+  describe ".title" do
+    it "returns .to_s" do
+      expect(subject.title).to eq subject.to_s
+    end
+  end
+
+  describe ".to_s" do
+    it "returns Order #(number)" do
+      expect(subject.to_s).to eq "Order ##{subject.number}"
+    end
   end
 end

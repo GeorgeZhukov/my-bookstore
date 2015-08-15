@@ -18,6 +18,24 @@ class Book < ActiveRecord::Base
 
   default_scope { order(created_at: :desc) }
 
+  rails_admin do
+    list do
+      configure :description do
+        hide
+      end
+    end
+    edit do
+      configure :ratings do
+        hide
+      end
+      configure :description, :wysihtml5 do
+        config_options toolbar: { fa: true, image: false, link: false }, # use font-awesome instead of glyphicon
+                       html: true, # enables html editor
+                       parserRules: { tags: { p:1 } } # support for <p> in html mode
+      end
+    end
+  end
+
   def self.search(query)
     return all unless query
 

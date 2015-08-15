@@ -8,6 +8,8 @@ class Rating < ActiveRecord::Base
   validates :number, presence: true, inclusion: {in: 1..10}
   # validates :state, inclusion: {in: POSSIBLE_STATES}
   validates :review, presence: true, length: {minimum: 4, maximum: 100}
+  validates :user, presence: true
+  validates :book, presence: true
 
   delegate :avatar_url, to: :user, prefix: true
 

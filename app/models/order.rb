@@ -16,6 +16,7 @@ class Order < ActiveRecord::Base
 
   after_create do
     calculate_total_price
+    generate_number
   end
 
   state_machine :state, initial: :in_progress do
@@ -55,6 +56,15 @@ class Order < ActiveRecord::Base
     end
     edit do
       configure :state, :state
+      configure :completed_date do
+        read_only true
+      end
+      configure :number do
+        read_only true
+      end
+      configure :total_price do
+        read_only true
+      end
     end
 
     state({
@@ -128,6 +138,14 @@ class Order < ActiveRecord::Base
     raise StandardError.new("Wrong state, should be 'delivered'.") unless delivered?
     self.completed_date = DateTime.now
     notify_user
+  end
+
+  def to_s
+    "Order ##{number}"
+  end
+
+  def title
+    to_s
   end
 
   private
