@@ -46,6 +46,11 @@ en:
   books:
     books: "Books"
 
+    details:
+      add_to_cart: "Add to Cart"
+      add_to_wish_list: "Add to Wish List"
+      customer_reviews: "(%{number} customers reviews)"
+
     add_to_cart:
       books_was_successfully_added_to_cart: "Book added to cart."
 
@@ -54,11 +59,9 @@ en:
       submit: "Submit"
 
     show:
-      add_to_cart: "Add to Cart"
-      add_to_wish_list: "Add to Wish List"
       ratings: "Ratings"
-      customer_reviews: "(%{number} customers reviews)"
       no_ratings: "No ratings"
+
 
   categories:
     categories: "Categories"

@@ -5,7 +5,7 @@ RSpec.feature "WishLists", type: :feature do
 
   scenario "A guest will be redirected to login page if will try add book to wish list" do
     visit book_path(book)
-    click_link I18n.t("books.show.add_to_wish_list")
+    click_link I18n.t("books.details.add_to_wish_list")
     expect(page).to have_content "Log in"
   end
 
@@ -16,7 +16,7 @@ RSpec.feature "WishLists", type: :feature do
 
       # add book to wish list
       visit book_path(book)
-      click_link I18n.t("books.show.add_to_wish_list")
+      click_link I18n.t("books.details.add_to_wish_list")
     end
 
     scenario "A user see 'No books' when wish list is empty" do
@@ -29,7 +29,7 @@ RSpec.feature "WishLists", type: :feature do
     scenario "A user can add book to wish list" do
       book2 = FactoryGirl.create :book
       visit book_path(book2)
-      click_link I18n.t("books.show.add_to_wish_list")
+      click_link I18n.t("books.details.add_to_wish_list")
       expect(page).to have_content (I18n.t"wish_list_books.create.successfully_added")
     end
 

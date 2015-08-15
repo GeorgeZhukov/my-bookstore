@@ -8,9 +8,10 @@
         .rating-stars{"data-score"=>book.avg_rating/2}
         %small= t".customer_reviews", number: book.ratings_approved.count
     %h2.title= book.title
-    %small
-      = "by"
-      = link_to book.author, book.author
+    - if book.author
+      %small
+        = "by"
+        = link_to book.author, book.author
     %br
     %span.amount= number_to_currency book.price
 

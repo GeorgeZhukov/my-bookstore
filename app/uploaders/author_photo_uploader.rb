@@ -21,11 +21,6 @@ else
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    version :standard do
-      # process resize_to_fill: [300, 400, :north]
-      # process resize_to_fit: [300, 400, :north]
-    end
-
     version :thumbnail do
       # process resize_to_fit: [120, 200]
     end

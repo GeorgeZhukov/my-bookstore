@@ -9,7 +9,7 @@ RSpec.feature "Cart", type: :feature do
     # Add book
     book = FactoryGirl.create :book
     visit book_path(book)
-    click_button I18n.t("books.show.add_to_cart")
+    click_button I18n.t("books.details.add_to_cart")
   end
 
   scenario "A user should see 'Your cart is empty' when no items in cart" do
@@ -89,7 +89,7 @@ RSpec.feature "Cart", type: :feature do
   scenario "When the guest authorizes its basket preserved" do
     book = FactoryGirl.create :book
     visit book_path(book)
-    click_button I18n.t("books.show.add_to_cart")
+    click_button I18n.t("books.details.add_to_cart")
 
     user = FactoryGirl.create :user
     visit new_user_session_path
