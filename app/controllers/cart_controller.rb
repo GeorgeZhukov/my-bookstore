@@ -11,17 +11,10 @@ class CartController < ApplicationController
   def show
     jump_to(:intro) if @cart.empty? and step != :intro
     case step
-      when :intro
-      when :address
-        init_addresses
       when :delivery
         init_delivery
-      when :payment
-        init_credit_card
       when :confirm
-        jump_to(:address) unless @cart.shipping_address and @cart.billing_address
-        jump_to(:delivery) unless @cart.delivery_service
-        jump_to(:payment) unless @cart.credit_card
+        check_cart
     end
     render_wizard
   end
@@ -38,6 +31,7 @@ class CartController < ApplicationController
       when :payment
         return render_wizard unless update_credit_card
       when :confirm
+        check_cart
         @cart.checkout!
         return redirect_to order_path(@cart)
     end
@@ -47,10 +41,6 @@ class CartController < ApplicationController
   def clear
     @cart.clear
     redirect_to wizard_path(:intro), notice: (I18n.t"cart.clear.cart_is_cleared")
-  end
-
-  def address
-
   end
 
   def remove_item
@@ -66,6 +56,14 @@ class CartController < ApplicationController
 
   def set_cart
     @cart = current_or_guest_user.cart
+    init_addresses
+    init_credit_card
+  end
+
+  def check_cart
+    jump_to(:address) unless @cart.shipping_address and @cart.billing_address
+    jump_to(:delivery) unless @cart.delivery_service
+    jump_to(:payment) unless @cart.credit_card
   end
 
   def init_addresses
@@ -79,12 +77,11 @@ class CartController < ApplicationController
 
   def init_delivery
     @delivery_services = DeliveryService.all
-    @cart.delivery_service ||= @delivery_services[0]
-    @cart.save
+    # @cart.delivery_service ||= @delivery_services[0]
   end
 
   def init_credit_card
-    @cart.credit_card ||= CreditCard.new
+    @cart.credit_card ||= CreditCard.new(user: current_or_guest_user)
   end
 
   def update_delivery_service
@@ -92,7 +89,7 @@ class CartController < ApplicationController
   end
 
   def update_credit_card
-    @cart.credit_card ||= CreditCard.new
+    @cart.credit_card ||= CreditCard.new(user: current_or_guest_user)
     @cart.credit_card.update credit_card_params
   end
 
@@ -107,6 +104,7 @@ class CartController < ApplicationController
       is_shipping_updated = @cart.shipping_address.update address_params(:shipping_address)
     end
 
+    # Update user address
     if current_user
       current_user.shipping_address ||= @cart.shipping_address
       current_user.billing_address ||= @cart.billing_address

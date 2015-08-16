@@ -1,23 +1,23 @@
 = render "steps"
 
-.row
-  .col-md-8
-    %h4=t ".delivery"
-    = form_tag wizard_path, method: :put do
+= form_tag wizard_path, method: :put do
+  .row
+    .col-md-8
+      %h4=t ".delivery"
       - @delivery_services.each do |ds|
         = radio_button_tag(:delivery, ds.id, @cart.delivery_service == ds, options={onclick: "calculate_order_price(#{ds.price});"})
         = "#{ds.name} + #{number_to_currency ds.price}"
         %br/
-      %button.btn.btn-primary.pull-right{:type=>"submit"}
-        =t".save_and_continue"
-        %i.fa.fa-arrow-right
-  .col-md-4
-    = render "summary", cart: @cart
+    .col-md-4
+      = render "summary", cart: @cart
 
-:javascript
-  function calculate_order_price(shipping_price){
-    var item_total = #{@cart.calculate_books_price};//todo
-    var total = item_total + shipping_price;
-    $("#shipping").html("$" + shipping_price.toFixed(2));
-    $("#total").html("$" + total.toFixed(2));
-  }
+  %button.btn.btn-primary.pull-right{:type=>"submit"}
+    =t".save_and_continue"
+    %i.fa.fa-arrow-right
+  :javascript
+    function calculate_order_price(shipping_price){
+      var item_total = #{@cart.calculate_books_price};//todo
+      var total = item_total + shipping_price;
+      $("#shipping").html("$" + shipping_price.toFixed(2));
+      $("#total").html("$" + total.toFixed(2));
+    }

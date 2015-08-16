@@ -16,31 +16,30 @@
         %label
           = check_box_tag "use-billing-address", "", compare_address(@cart, true, false), id: "use-billing-address"
           = t".use_billing_address"
-      %button.btn.btn-primary.pull-right{:type=>"submit"}
-        = t".save_and_continue"
-        %i.fa.fa-arrow-right
     .col-md-4= render "summary", cart: @cart
 
+  %button.btn.btn-primary.pull-right{:type=>"submit"}
+    = t".save_and_continue"
+    %i.fa.fa-arrow-right
+  :javascript
+    var inputs = $("[type='tel']");
 
-    :javascript
-      var inputs = $("[type='tel']");
+    inputs.each(function(){
+      // Insert new line after label
+      var input = $(this);
+      var label = $("[for='" + input.attr("id") + "']");
+      $(label).after("<br />");
+      // Mark input as phone number
+      $(input).intlTelInput();
+    });
 
-      inputs.each(function(){
-        // Insert new line after label
-        var input = $(this);
-        var label = $("[for='" + input.attr("id") + "']");
-        $(label).after("<br />");
-        // Mark input as phone number
-        $(input).intlTelInput();
-      });
-
-      $("#use-billing-address").change(function() {
-          if(this.checked) {
-            $("#shipping-address").fadeOut();
-            $("#use_billing_address").val("yes");
-          }else{
-            $("#shipping-address").fadeIn();
-            $("#use_billing_address").val("no");
-          }
-      });
+    $("#use-billing-address").change(function() {
+        if(this.checked) {
+          $("#shipping-address").fadeOut();
+          $("#use_billing_address").val("yes");
+        }else{
+          $("#shipping-address").fadeIn();
+          $("#use_billing_address").val("no");
+        }
+    });
 

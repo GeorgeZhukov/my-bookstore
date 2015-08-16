@@ -1,4 +1,7 @@
 class CreditCard < ActiveRecord::Base
+  has_many :orders
+  belongs_to :user
+
   validates :number, presence: true, credit_card_number: true
   validates :CVV, presence: true
   validates :expiration_month,
@@ -17,7 +20,6 @@ class CreditCard < ActiveRecord::Base
             }
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :user, presence: true
 
-  has_many :orders
-  belongs_to :user
 end
