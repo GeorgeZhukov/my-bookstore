@@ -54,7 +54,7 @@ gem 'active_link_to'
 gem 'gaffe'
 gem 'credit_card_validations'
 gem "bootstrap_flash_messages", "~> 1.0.1"
-
+gem 'geocoder'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
