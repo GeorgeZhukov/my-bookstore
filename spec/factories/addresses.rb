@@ -5,6 +5,7 @@ FactoryGirl.define do
     city { Faker::Address.city }
     phone { Faker::PhoneNumber.cell_phone }
     country "us"
+    user
   end
 
 end
