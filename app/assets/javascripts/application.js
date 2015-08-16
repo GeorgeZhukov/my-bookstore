@@ -18,5 +18,4 @@
 //= require jquery.raty
 //= require intlTelInput
 //= require bounce.min
-//= require three.min
 //= require_tree .

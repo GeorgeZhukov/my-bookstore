@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def edit
-    current_user.billing_address ||= Address.new
-    current_user.shipping_address ||= Address.new
+    current_user.billing_address ||= Address.new(user: current_user)
+    current_user.shipping_address ||= Address.new(user: current_user)
     super
   end
 
@@ -26,16 +26,16 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def update_billing_address
-    current_user.billing_address ||= Address.new
+    current_user.billing_address ||= Address.new(user: current_user)
     is_updated = current_user.billing_address.update address_params(:billing_address)
-    flash[:notice] = "The billing address is saved." if is_updated
+    flash[:notice] = I18n.t("devise.registrations.billing_saved") if is_updated
     is_updated
   end
 
   def update_shipping_address
-    current_user.shipping_address ||= Address.new
+    current_user.shipping_address ||= Address.new(user: current_user)
     is_updated = current_user.shipping_address.update address_params(:shipping_address)
-    flash[:notice] = "The shipping address is saved." if is_updated
+    flash[:notice] = I18n.t("devise.registrations.shipping_saved") if is_updated
     is_updated
   end
 

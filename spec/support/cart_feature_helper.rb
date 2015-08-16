@@ -28,7 +28,7 @@ module CartFeatureHelper
 
     visit cart_path(:delivery)
     choose("delivery_#{delivery_services[1].id}")
-    click_button "Save And Continue"
+    click_button I18n.t("cart.delivery.save_and_continue")
   end
 
   def fill_payment
@@ -41,7 +41,7 @@ module CartFeatureHelper
       select Date.today.year, from: "Expiration year"
       fill_in "First name", with: credit_card.first_name
       fill_in "Last name", with: credit_card.last_name
-      click_button "Save And Continue"
+      click_button I18n.t("cart.payment.save_and_continue")
     end
   end
 end

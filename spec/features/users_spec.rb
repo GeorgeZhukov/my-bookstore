@@ -18,7 +18,7 @@ RSpec.feature "Users", type: :feature do
       select "Benin", from: "Country"
       click_button "Save"
     end
-    expect(page).to have_content 'The billing address is saved.'
+    expect(page).to have_content I18n.t("devise.registrations.billing_saved")
   end
 
   scenario "A user can edit shipping address" do
@@ -31,6 +31,6 @@ RSpec.feature "Users", type: :feature do
       select "Canada", from: "Country"
       click_button "Save"
     end
-    expect(page).to have_content 'The shipping address is saved.'
+    expect(page).to have_content I18n.t("devise.registrations.shipping_saved")
   end
 end

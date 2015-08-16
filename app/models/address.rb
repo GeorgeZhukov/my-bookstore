@@ -8,8 +8,6 @@ class Address < ActiveRecord::Base
   validates :country, presence: true
   validates :user, presence: true
 
-  geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
-
   def eq(address)
     unless self.id && address.id && self.id == address.id
       fields_to_eq = [:address, :zip_code, :city, :phone, :country]
