@@ -35,12 +35,11 @@ RSpec.feature "Cart", type: :feature do
   end
 
   scenario "A user can remove item from cart" do
-    pending "can't click 'remove' button"
     # Get order item
     cart = User.first.cart
     order_item = cart.order_items.first
     visit cart_path(:intro)
-    page.driver.submit :delete, remove_item_cart_path(cart, item_id: order_item.id), {}
+    page.driver.submit :delete, remove_item_cart_path(:intro, item_id: order_item.id), {}
     expect(page).not_to have_content order_item.book.title
   end
 
@@ -49,7 +48,30 @@ RSpec.feature "Cart", type: :feature do
     expect(page).to have_content I18n.t("cart.delivery.delivery")
   end
 
-  scenario "A user can use checkbox to use billing address as shipping address too"
+  scenario "Assigns addresses if needed" do
+    user = FactoryGirl.create :user
+    login_as(user, scope: :user)
+    fill_address
+    user.reload
+    expect(user.shipping_address).not_to be_nil
+    expect(user.billing_address).not_to be_nil
+  end
+
+  scenario "A user can use checkbox to use billing address as shipping address" do
+    address = FactoryGirl.create :address
+    visit cart_path(:address)
+
+    # Billing address
+    fill_in "billing_address_address", with: address.address
+    fill_in "billing_address_zip_code", with: address.zip_code
+    fill_in "billing_address_city", with: address.city
+    fill_in "billing_address_phone", with: address.phone
+    select "Ukraine", from: "billing_address_country"
+
+    check 'use-billing-address'
+    click_button I18n.t("cart.address.save_and_continue")
+    expect(page).to have_content I18n.t("cart.delivery.delivery")
+  end
 
   scenario "A user should choose delivery service" do
     fill_delivery

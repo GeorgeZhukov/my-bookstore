@@ -19,7 +19,7 @@ RSpec.feature "WishLists", type: :feature do
       click_link I18n.t("books.details.add_to_wish_list")
     end
 
-    scenario "A user see 'No books' when wish list is empty" do
+    scenario "A user should see 'No books' when wish list is empty" do
       user = FactoryGirl.create :user
       login_as(user, scope: :user)
       visit wish_list_books_path
@@ -38,8 +38,8 @@ RSpec.feature "WishLists", type: :feature do
       expect(page).to have_content book.title
     end
 
-    xscenario "A user can remove book from wish list" do
-      page.driver.submit :delete, wish_list_book_path(book.id), {}
+    scenario "A user can remove book from wish list" do
+      page.driver.submit :delete, wish_list_book_path(book), {}
       expect(page).to have_content (I18n.t"wish_list_books.destroy.successfully_destroyed")
     end
   end

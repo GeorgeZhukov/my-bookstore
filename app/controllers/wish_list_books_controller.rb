@@ -29,11 +29,7 @@ class WishListBooksController < ApplicationController
   def destroy
     wish_list = current_user.get_wish_list
     book = wish_list.books.find params[:id]
-    if book.destroy
-      redirect_to :back, notice: (I18n.t"wish_list_books.destroy.successfully_destroyed")
-    else
-      redirect_to :back, notice: "Unknown error occurs"
-    end
-
+    wish_list.books.destroy book
+    redirect_to :back, notice: (I18n.t"wish_list_books.destroy.successfully_destroyed")
   end
 end
