@@ -8,8 +8,7 @@ RSpec.describe Book, type: :model do
   it { expect(subject).to validate_presence_of(:books_in_stock) }
   it { expect(subject).to validate_presence_of(:short_description) }
   it { expect(subject).to validate_length_of(:short_description) }
-  # it { expect(subject).to validate_presence_of(:description) }
-  # it { expect(subject).to validate_presence_of(:cover) }
+  it { expect(subject).to validate_presence_of(:description) }
 
   it { expect(subject).to belong_to :author }
   it { expect(subject).to belong_to :category }

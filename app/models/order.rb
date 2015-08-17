@@ -88,8 +88,6 @@ class Order < ActiveRecord::Base
 
   def clear
     order_items.destroy_all
-    # self.shipping_address=nil
-    # self.billing_address=nil
     self.delivery_service=nil
     calculate_total_price
   end
@@ -113,7 +111,7 @@ class Order < ActiveRecord::Base
     else
       order_item = self.order_items.build(book: book, quantity: quantity)
     end
-    order_item.price = book.price * order_item.quantity
+    order_item.update_price!
     order_item.save
 
     calculate_total_price
@@ -125,11 +123,7 @@ class Order < ActiveRecord::Base
 
   def calculate_total_price
     subtotal = calculate_books_price
-    if delivery_service
-      shipping = delivery_service.price
-    else
-      shipping = 0
-    end
+    shipping = delivery_service ? delivery_service.price : 0
     self.total_price = subtotal + shipping
     self.save
     self.total_price
@@ -145,9 +139,7 @@ class Order < ActiveRecord::Base
     "Order ##{number}"
   end
 
-  def title
-    to_s
-  end
+  alias_method :title, :to_s
 
   private
   def notify_user

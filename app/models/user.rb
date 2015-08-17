@@ -48,12 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    if guest
-      "Guest"
-    else
-      "#{first_name} #{last_name}"
-    end
-
+    guest ? I18n.t("user.guest") : "#{first_name} #{last_name}"
   end
 
   # def after_database_authentication

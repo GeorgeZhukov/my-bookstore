@@ -3,9 +3,7 @@ class BooksController < ApplicationController
   add_breadcrumb (I18n.t"books.books"), :books_path
 
   def index
-    if params[:search]
-      @books = @books.search params[:search]
-    end
+    @books = @books.search params[:search] if params[:search]
     @books = @books.page params[:page]
   end
 

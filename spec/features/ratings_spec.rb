@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Ratings", type: :feature do
+  let(:book) {  FactoryGirl.create :book }
+
   scenario "A user can see book approved ratings" do
     # Init ratings
     ratings = []
-    book = FactoryGirl.create :book
     5.times { ratings << FactoryGirl.create(:rating, state: "approved", book: book) }
 
     visit book_path(book)
@@ -14,7 +15,6 @@ RSpec.feature "Ratings", type: :feature do
   scenario "A user can't see book not approved ratings" do
     # Init ratings
     ratings = []
-    book = FactoryGirl.create :book
     5.times { ratings << FactoryGirl.create(:rating, book: book) }
 
     visit book_path(book)
@@ -24,8 +24,6 @@ RSpec.feature "Ratings", type: :feature do
   scenario "A user can add a new rating" do
     user = FactoryGirl.create :admin
     login_as(user, scope: :user)
-
-    book = FactoryGirl.create :book
 
     visit book_path(book)
     within "#new_rating" do

@@ -16,11 +16,7 @@ class WishListBooksController < ApplicationController
       flash[:warning] = (I18n.t"wish_list_books.create.already_in_wish_list")
     else
       wish_list.books << book
-      if wish_list.save
-        flash[:notice] = (I18n.t"wish_list_books.create.successfully_added")
-      else
-        flash[:notice] = "Some unknown error occurs."
-      end
+      flash[:notice] = (I18n.t"wish_list_books.create.successfully_added")
     end
 
     redirect_to book_path(book)

@@ -28,5 +28,9 @@ RSpec.describe Address, type: :model do
       subject.country = "us"
       expect(subject.country_name).to eq "United States"
     end
+    it "returns Ukraine when country is 'ua'" do
+      subject.country = "ua"
+      expect(subject.country_name).to eq "Ukraine"
+    end
   end
 end

@@ -22,7 +22,7 @@ class OrderItem < ActiveRecord::Base
   delegate :title, :books_in_stock, :price, to: :book, prefix: true
 
   before_save do
-    self.price = book_price * quantity
+    update_price!
   end
 
   # Decrease books quantity when order sent to custom
@@ -37,5 +37,9 @@ class OrderItem < ActiveRecord::Base
 
   def to_s
     "#{book} x#{quantity}"
+  end
+
+  def update_price!
+    self.price = book_price * quantity
   end
 end

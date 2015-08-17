@@ -153,6 +153,9 @@ en:
     delivered: "Delivered"
     canceled: "Canceled"
 
+  user:
+    guest: "Guest"
+
   orders:
     orders: "Orders"
     in_progress: "In progress"
