@@ -4,11 +4,14 @@ RSpec.describe OrderItem, type: :model do
   let(:book) { FactoryGirl.create :book }
   subject { FactoryGirl.create :order_item, book: book }
 
-  it { expect(subject).to validate_presence_of :quantity }
-  # it { expect(subject).to validate_presence_of :order }
-  it { expect(subject).to validate_presence_of :book }
   it { expect(subject).to belong_to :book }
   it { expect(subject).to belong_to :order }
+
+  context "validation" do
+    it { expect(subject).to validate_presence_of :quantity }
+    # it { expect(subject).to validate_presence_of :order }
+    it { expect(subject).to validate_presence_of :book }
+  end
 
   describe "#price" do
     it "returns correct price" do

@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  it { expect(subject).to validate_presence_of :address }
-  it { expect(subject).to validate_presence_of :zip_code }
-  it { expect(subject).to validate_presence_of :city }
-  it { expect(subject).to validate_presence_of :phone }
-  it { expect(subject).to validate_presence_of :country }
-  it { expect(subject).to validate_presence_of :user }
+
   it { expect(subject).to belong_to :user }
+
+  context "validation" do
+    it { expect(subject).to validate_presence_of :address }
+    it { expect(subject).to validate_presence_of :zip_code }
+    it { expect(subject).to validate_presence_of :city }
+    it { expect(subject).to validate_presence_of :phone }
+    it { expect(subject).to validate_presence_of :country }
+    it { expect(subject).to validate_presence_of :user }
+  end
 
   describe "#eq" do
     it "returns true if all fields in address1 equal to all fields in address2" do

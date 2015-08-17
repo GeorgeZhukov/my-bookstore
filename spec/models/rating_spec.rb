@@ -3,10 +3,13 @@ require 'rails_helper'
 RSpec.describe Rating, type: :model do
   it { expect(subject).to belong_to :book }
   it { expect(subject).to belong_to :user }
-  it { expect(subject).to validate_presence_of :number }
-  it { expect(subject).to validate_presence_of :review }
-  it { expect(subject).to validate_presence_of :book }
-  it { expect(subject).to validate_presence_of :user }
+
+  context "validation" do
+    it { expect(subject).to validate_presence_of :number }
+    it { expect(subject).to validate_presence_of :review }
+    it { expect(subject).to validate_presence_of :book }
+    it { expect(subject).to validate_presence_of :user }
+  end
 
   describe ".default_scope" do
     it "returns in descending order" do

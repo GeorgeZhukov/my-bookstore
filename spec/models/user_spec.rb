@@ -3,13 +3,17 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject { FactoryGirl.create :user }
 
-  it{ expect(subject).to validate_presence_of :first_name }
-  it{ expect(subject).to validate_presence_of :last_name }
+
   it{ expect(subject).to have_many :orders }
   it{ expect(subject).to have_many :ratings }
   it{ expect(subject).to have_one :wish_list }
   it{ expect(subject).to belong_to :billing_address }
   it{ expect(subject).to belong_to :shipping_address }
+
+  context "validation" do
+    it{ expect(subject).to validate_presence_of :first_name }
+    it{ expect(subject).to validate_presence_of :last_name }
+  end
 
   describe "#cart" do
     it "returns an order which has state :in_progress" do
