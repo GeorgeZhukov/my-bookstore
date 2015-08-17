@@ -23,7 +23,7 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  describe ".avg_rating" do
+  describe "#avg_rating" do
     it "returns 0 if no ratings" do
       expect(subject.avg_rating).to be_zero
     end
@@ -51,7 +51,7 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  describe ".search" do
+  describe "#search" do
     it "returns all books when no query" do
       books = Book.search(nil)
       expect(books).to eq Book.all
@@ -73,13 +73,13 @@ RSpec.describe Book, type: :model do
     end
   end
 
-  describe ".to_s" do
+  describe "#to_s" do
     it "returns a title" do
       expect(subject.to_s).to eq subject.title
     end
   end
 
-  describe ".best_sellers" do
+  describe "#best_sellers" do
     before do
       10.times { FactoryGirl.create :book }
     end

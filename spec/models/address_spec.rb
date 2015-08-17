@@ -9,7 +9,7 @@ RSpec.describe Address, type: :model do
   it { expect(subject).to validate_presence_of :user }
   it { expect(subject).to belong_to :user }
 
-  describe ".eq" do
+  describe "#eq" do
     it "returns true if all fields in address1 equal to all fields in address2" do
       address1 = FactoryGirl.create :address
       address2 = FactoryGirl.create :address
@@ -23,7 +23,7 @@ RSpec.describe Address, type: :model do
     end
   end
 
-  describe ".country_name" do
+  describe "#country_name" do
     it "returns United States when country is 'us'" do
       subject.country = "us"
       expect(subject.country_name).to eq "United States"

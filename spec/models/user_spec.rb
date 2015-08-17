@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
   it{ expect(subject).to belong_to :billing_address }
   it{ expect(subject).to belong_to :shipping_address }
 
-  describe ".cart" do
+  describe "#cart" do
     it "returns an order which has state :in_progress" do
       expect(subject.cart.state).to eq "in_progress"
     end
@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe ".to_s" do
+  describe "#to_s" do
     it "returns first_name + last_name" do
       expect(subject.to_s).to eq "#{subject.first_name} #{subject.last_name}"
     end
@@ -36,23 +36,23 @@ RSpec.describe User, type: :model do
 
     end
   end
-  describe ".name" do
+  describe "#name" do
     it "returns .to_s" do
       expect(subject.name).to eq subject.to_s
     end
   end
 
-  describe ".avatar_url" do
+  describe "#avatar_url" do
     it "returns avatar field if it presence"
     it "returns gravatar url if avatar field is empty"
   end
 
-  describe ".get_wish_list" do
+  describe "#get_wish_list" do
     it "returns current wish list if exists"
     it "creates a new wish list if current wish list is empty"
   end
 
-  describe "#from_omniauth" do
+  describe ".from_omniauth" do
     let(:user) { FactoryGirl.create :facebook_user }
 
     it "returns the user with current credentials" do

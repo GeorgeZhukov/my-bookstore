@@ -20,7 +20,7 @@ RSpec.describe Order, type: :model do
     expect(subject.total_price).not_to be_nil
   end
 
-  describe ".finish" do
+  describe "#finish" do
     subject { FactoryGirl.create :order, state: "delivered"}
 
     before do
@@ -42,7 +42,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".add_book" do
+  describe "#add_book" do
 
     it "creates order item with given book and sets quantity to one by default" do
       subject.add_book book
@@ -82,7 +82,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".books_count" do
+  describe "#books_count" do
     it "returns zero if no order items" do
       expect(subject.books_count).to eq 0
     end
@@ -104,7 +104,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".empty?" do
+  describe "#empty?" do
 
     it "returns true when no order items" do
       expect(subject).to be_empty
@@ -116,7 +116,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".clear" do
+  describe "#clear" do
     before do
       book = FactoryGirl.create :book
       delivery_service = FactoryGirl.create :delivery_service
@@ -151,7 +151,7 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".notify_user" do
+  describe "#notify_user" do
     it "sends an email" do
       expect { subject.send(:notify_user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
@@ -161,41 +161,41 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe ".take_books" do
+  describe "#take_books" do
     xit "calls OrderItem.take_books" do
       subject.take_books
       # expect().to
     end
   end
 
-  describe ".restore_books" do
+  describe "#restore_books" do
     xit "calls OrderItem.restore_books" do
 
     end
   end
 
-  describe ".calculate_total_price" do
+  describe "#calculate_total_price" do
     it "returns .calculate_books_price when no delivery service"
     it "returns sum of .calculate_books_price and delivery service price"
   end
 
-  describe ".calculate_books_price" do
+  describe "#calculate_books_price" do
     it "returns 0 when no books"
     it "returns price of one book multiple by quantity"
     it "returns a sum of prices of different books multiply by quantity"
   end
 
-  describe ".generate_number" do
+  describe "#generate_number" do
     it "generates number in format 'R000000000'"
   end
 
-  describe ".title" do
+  describe "#title" do
     it "returns .to_s" do
       expect(subject.title).to eq subject.to_s
     end
   end
 
-  describe ".to_s" do
+  describe "#to_s" do
     it "returns Order #(number)" do
       expect(subject.to_s).to eq "Order ##{subject.number}"
     end

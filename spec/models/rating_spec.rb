@@ -8,7 +8,7 @@ RSpec.describe Rating, type: :model do
   it { expect(subject).to validate_presence_of :book }
   it { expect(subject).to validate_presence_of :user }
 
-  describe "#default_scope" do
+  describe ".default_scope" do
     it "returns in descending order" do
       3.times { FactoryGirl.create :rating }
       expect(Rating.all).to eq Rating.all.order(created_at: :desc)
