@@ -6,51 +6,13 @@ GIT
       railties (>= 3.0)
 
 GIT
-  remote: git://github.com/rspec/rspec-core.git
-  revision: 11013d58d9be2c8cfd10ccd403d23032720fb990
-  branch: master
+  remote: https://github.com/guard/guard-rspec.git
+  revision: 4e056af9d8525bfe29b8da333da64f0e78b11123
   specs:
-    rspec-core (3.4.0.pre)
-      rspec-support (= 3.4.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-expectations.git
-  revision: e3049195f50c0ed1d969d51acc0a6cb90a8e0bc8
-  branch: master
-  specs:
-    rspec-expectations (3.4.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.4.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-mocks.git
-  revision: b0ec374e6219162d175a4de1a0d014dc2150f35c
-  branch: master
-  specs:
-    rspec-mocks (3.4.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.4.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-rails.git
-  revision: d339d7eea95648350c7b4ad78ff3d80a556a5fdb
-  branch: master
-  specs:
-    rspec-rails (3.4.0.pre)
-      actionpack (>= 3.0, < 4.3)
-      activesupport (>= 3.0, < 4.3)
-      railties (>= 3.0, < 4.3)
-      rspec-core (= 3.4.0.pre)
-      rspec-expectations (= 3.4.0.pre)
-      rspec-mocks (= 3.4.0.pre)
-      rspec-support (= 3.4.0.pre)
-
-GIT
-  remote: git://github.com/rspec/rspec-support.git
-  revision: f82e762eb550e71fa01cc3a6291921bbcbb341fe
-  branch: master
-  specs:
-    rspec-support (3.4.0.pre)
+    guard-rspec (4.6.4)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
 
 GIT
   remote: https://github.com/railsbp/rails_best_practices.git
@@ -148,6 +110,7 @@ GEM
       sexp_processor
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
+    coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -188,13 +151,25 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    ffi (1.9.10)
     font-awesome-rails (4.4.0.0)
       railties (>= 3.2, < 5.0)
+    formatador (0.2.5)
     gaffe (1.0.2)
       rails (>= 3.2.0)
     geocoder (1.2.9)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    guard (2.13.0)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, <= 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -227,20 +202,29 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    listen (3.0.3)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
+    lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nenv (0.2.0)
     nested_form (0.3.2)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    notiffany (0.0.7)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
@@ -259,6 +243,10 @@ GEM
     paranoia (2.1.3)
       activerecord (~> 4.0)
     pg (0.18.2)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -311,6 +299,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rb-fsevent (0.9.5)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
     rdoc (4.2.0)
     remotipart (1.2.1)
     require_all (1.3.2)
@@ -320,6 +311,27 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.2)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-rails (3.3.3)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
     ruby-progressbar (1.7.5)
     ruby_parser (3.7.0)
       sexp_processor (~> 4.1)
@@ -335,6 +347,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.6.0)
+    shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -345,6 +358,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    slop (3.6.0)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     spring (1.3.6)
@@ -412,6 +426,7 @@ DEPENDENCIES
   font-awesome-rails
   gaffe
   geocoder
+  guard-rspec!
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
@@ -424,11 +439,7 @@ DEPENDENCIES
   rails_admin
   rails_admin_state
   rails_best_practices!
-  rspec-core!
-  rspec-expectations!
-  rspec-mocks!
-  rspec-rails!
-  rspec-support!
+  rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   shoulda-matchers

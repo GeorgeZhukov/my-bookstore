@@ -70,11 +70,13 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-    gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
-  end
+  # %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+  #   gem lib, :git => "git://github.com/rspec/#{lib}.git", :branch => 'master'
+  # end
+  gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails'
   gem 'faker', git: "https://github.com/stympy/faker.git"
+  gem 'guard-rspec', git: "https://github.com/guard/guard-rspec.git"
 end
 
 group :test do
