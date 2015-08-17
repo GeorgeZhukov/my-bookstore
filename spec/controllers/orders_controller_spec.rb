@@ -5,9 +5,9 @@ RSpec.describe OrdersController, type: :controller do
   let(:order) { FactoryGirl.create :order, user: @user }
 
   describe "GET index" do
-    xit "assigns @orders" do
+    it "assigns @orders" do
       get :index
-      expect(assigns(:orders)).to eq [order]
+      expect(assigns(:orders)).to match_array [order]
     end
 
     it "renders the index template" do

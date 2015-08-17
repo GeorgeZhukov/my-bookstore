@@ -21,7 +21,7 @@ RSpec.describe Book, type: :model do
       Book.destroy_all
       book1 = FactoryGirl.create :book
       book2 = FactoryGirl.create :book
-      expect(Book.all.to_a).to eq [book2, book1]
+      expect(Book.all).to match_array [book2, book1]
     end
   end
 

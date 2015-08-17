@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
-  login_user
   let(:author) { FactoryGirl.create :author }
 
   describe "GET index" do
-    xit "assigns @authors" do
+    it "assigns @authors" do
       get :index
-      expect(assigns(:authors).to_a).to eq [author]
+      expect(assigns(:authors)).to match_array [author]
     end
 
     it "renders the index template" do

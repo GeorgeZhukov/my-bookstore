@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-  login_user
   let(:category) { FactoryGirl.create :category }
 
   describe "GET index" do
-    xit "assigns @categories" do
+    it "assigns @categories" do
       get :index
-      expect(assigns(:categories).to_a).to eq [category]
+      expect(assigns(:categories)).to match_array [category]
     end
 
     it "renders the index template" do
