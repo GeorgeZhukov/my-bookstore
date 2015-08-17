@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "authors/index.html.haml", type: :view do
-  xit "displays all the authors" do
-    assign(:authors, [FactoryGirl.create(:author), FactoryGirl.create(:author)])
+  it "displays all the authors" do
+  	authors = []
+  	5.times { authors << FactoryGirl.create(:author) }
+    assign(:authors, Author.all.page(1))
     render
 
-    expect(rendered).to match /slicer/
-    expect(rendered).to match /dicer/
+    authors.each {|a| expect(rendered).to match a.first_name}
   end
 end
