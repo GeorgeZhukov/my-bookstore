@@ -144,7 +144,8 @@ class Order < ActiveRecord::Base
   private
   def notify_user
     self.completed_date = DateTime.now
-    UserMailer.delivered_email(user, self).deliver_later
+    # todo: need to configure heroku
+    # UserMailer.delivered_email(user, self).deliver_later
   end
 end
 

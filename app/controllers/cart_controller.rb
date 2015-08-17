@@ -77,7 +77,7 @@ class CartController < ApplicationController
 
   def init_delivery
     @delivery_services = DeliveryService.all
-    # @cart.delivery_service ||= @delivery_services[0]
+    @cart.delivery_service ||= @delivery_services[0]
   end
 
   def init_credit_card

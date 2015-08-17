@@ -152,7 +152,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#notify_user" do
-    it "sends an email" do
+    xit "sends an email" do
       expect { subject.send(:notify_user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
