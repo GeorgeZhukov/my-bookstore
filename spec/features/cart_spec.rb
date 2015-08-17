@@ -76,7 +76,6 @@ RSpec.feature "Cart", type: :feature do
   end
 
   scenario "A user can checkout the order" do
-    credit_card = FactoryGirl.create :credit_card
     # Put addresses to show last page
     fill_address
     fill_delivery

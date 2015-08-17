@@ -20,6 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 en:
   home: "Home"
+  admin_panel: "Admin Panel"
 
   logout_modal:
     title: "Sign Out"
