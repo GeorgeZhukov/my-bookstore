@@ -69,11 +69,15 @@
       %td= number_to_currency order_item.price
 
 %hr/
-= "Subtotal: #{number_to_currency @cart.calculate_books_price}"
-%br
-= "Shipping: #{number_to_currency @cart.delivery_service.price}"
+.pull-right
+  = t(".subtotal_price", subtotal: number_to_currency(@cart.calculate_books_price))
+  %br
+  = t(".shipping_price", shipping: number_to_currency(@cart.delivery_service.price))
+.clearfix  
 %hr/
-
-= "Order total: #{number_to_currency @cart.total_price}"
-
-= link_to (t".place_order"), wizard_path, class: "btn btn-success", method: :put
+.pull-right
+  = t(".order_total", total: number_to_currency(@cart.total_price))
+.clearfix
+= link_to wizard_path, class: "btn btn-success btn-lg pull-right", method: :put do
+  %i.fa.fa-credit-card
+  =t".place_order"

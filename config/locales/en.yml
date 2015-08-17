@@ -116,6 +116,9 @@ en:
       price: "Price"
       qty: "QTY"
       total: "Total"
+      order_total: "Order total: %{total}"
+      shipping_price: "Shipping: %{shipping}"
+      subtotal_price: "Subtotal: %{subtotal}"
 
     delivery:
       delivery: "Delivery"
