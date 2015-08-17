@@ -46,4 +46,53 @@ RSpec.describe CartController, type: :controller do
     end
 
   end
+
+  describe "PUT update" do
+    context "address" do
+      it "redirects to delivery page" do
+        shipping_address = FactoryGirl.create(:address)
+        put :update, id: :address,
+            shipping_address: {
+              address: shipping_address.address,
+              phone: shipping_address.phone,
+              city: shipping_address.city,
+              zip_code: shipping_address.zip_code,
+              country: shipping_address.country,
+            },
+            billing_address: {
+              address: shipping_address.address,
+              phone: shipping_address.phone,
+              city: shipping_address.city,
+              zip_code: shipping_address.zip_code,
+              country: shipping_address.country,
+            },
+            use_billing_address: "yes"
+        expect(response).to redirect_to cart_path(:delivery)
+      end
+    end
+
+    context "delivery" do
+      let(:delivery) { FactoryGirl.create :delivery_service }
+
+      it "redirects to payment page" do
+        put :update, id: :delivery, delivery: delivery
+        expect(response).to redirect_to cart_path(:payment)
+      end
+    end
+
+    context "payment" do
+      let(:credit_card) { FactoryGirl.create :credit_card }
+      it "redirects to confirm page" do
+        put :update, id: :payment, credit_card: {
+                number: credit_card.number,
+                CVV: credit_card.CVV,
+                expiration_year: credit_card.expiration_year,
+                expiration_month: credit_card.expiration_month,
+                first_name: credit_card.first_name,
+                last_name: credit_card.last_name
+                   }
+        expect(response).to redirect_to cart_path(:confirm)
+      end
+    end
+  end
 end
