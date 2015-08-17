@@ -68,8 +68,8 @@ class CartController < ApplicationController
 
   def init_addresses
     if current_user
-      @cart.shipping_address ||= current_user.shipping_address
-      @cart.billing_address ||= current_user.billing_address
+      @cart.shipping_address ||= current_user.shipping_address.dup if current_user.shipping_address
+      @cart.billing_address ||= current_user.billing_address.dup if current_user.billing_address
     end
     @cart.shipping_address ||= Address.new(user: current_or_guest_user)
     @cart.billing_address ||= Address.new(user: current_or_guest_user)
@@ -105,6 +105,7 @@ class CartController < ApplicationController
 
     # Update user address
     if current_user
+      # todo: maybe run this code when confirm shopping cart
       current_user.shipping_address ||= @cart.shipping_address
       current_user.billing_address ||= @cart.billing_address
       current_user.save
