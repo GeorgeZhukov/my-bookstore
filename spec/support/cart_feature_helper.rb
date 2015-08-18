@@ -33,12 +33,13 @@ module CartFeatureHelper
 
   def fill_payment
     credit_card = FactoryGirl.create :credit_card
+    exp_date = Date.today + 1.year
     visit cart_path(:payment)
     within "#new_credit_card" do
       fill_in "Number", with: credit_card.number
       fill_in "Cvv", with: credit_card.CVV
-      select "7", from: "Expiration month"
-      select Date.today.year, from: "Expiration year"
+      select exp_date.month, from: "Expiration month"
+      select exp_date.year, from: "Expiration year"
       fill_in "First name", with: credit_card.first_name
       fill_in "Last name", with: credit_card.last_name
       click_button I18n.t("cart.payment.save_and_continue")

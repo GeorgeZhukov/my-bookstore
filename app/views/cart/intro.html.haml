@@ -1,6 +1,5 @@
 - if @cart.order_items.exists?
 
-  = render "steps"
   = form_tag wizard_path, method: :put do
     %table.table
       %thead

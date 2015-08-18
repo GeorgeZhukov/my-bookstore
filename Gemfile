@@ -77,6 +77,10 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker', git: "https://github.com/stympy/faker.git"
   gem 'guard-rspec', git: "https://github.com/guard/guard-rspec.git"
+  gem 'brakeman', require: false
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'capybara-screenshot'
 end
 
 group :test do
