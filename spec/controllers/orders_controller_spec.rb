@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
   login_user
-  let(:order) { FactoryGirl.create :order, user: @user }
+  let(:order) { create :order, user: @user }
 
   describe "GET index" do
     it "assigns @orders" do

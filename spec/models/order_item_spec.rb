@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe OrderItem, type: :model do
-  let(:book) { FactoryGirl.create :book }
-  subject { FactoryGirl.create :order_item, book: book }
+  let(:book) { create :book }
+  subject { create :order_item, book: book }
 
   it { expect(subject).to belong_to :book }
   it { expect(subject).to belong_to :order }

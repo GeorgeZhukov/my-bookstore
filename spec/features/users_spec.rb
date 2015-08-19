@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.feature "Users", type: :feature do
   before do
-    @user = FactoryGirl.create :user
+    @user = create :user
     login_as(@user, scope: :user)
   end
 
-  let(:address) { FactoryGirl.create :address }
+  let(:address) { create :address }
 
   scenario "A user can edit billing address" do
     visit edit_user_registration_path
@@ -35,13 +35,13 @@ RSpec.feature "Users", type: :feature do
   end
 
   scenario "A user should see saved shipping address" do
-    address = @user.shipping_address = FactoryGirl.create :address
+    address = @user.shipping_address = create :address
     visit edit_user_registration_path
     expect(page).to have_content address.address
   end
 
   scenario "A user should see saved billing address" do
-    address = @user.billing_address = FactoryGirl.create :address
+    address = @user.billing_address = create :address
     visit edit_user_registration_path
     expect(page).to have_content address.address
   end

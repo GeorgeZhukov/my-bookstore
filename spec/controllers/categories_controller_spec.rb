@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
-  let(:category) { FactoryGirl.create :category }
+  let(:category) { create :category }
 
   describe "GET index" do
     it "assigns @categories" do

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  subject { FactoryGirl.create :order }
-  let(:book) { FactoryGirl.create :book }
+  subject { create :order }
+  let(:book) { create :book }
 
   it { expect(subject).to belong_to :billing_address }
   it { expect(subject).to belong_to :shipping_address }
@@ -21,7 +21,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#finish" do
-    subject { FactoryGirl.create :order, state: "delivered"}
+    subject { create :order, state: "delivered"}
 
     before do
       allow(subject).to receive(:notify_user).once
@@ -37,7 +37,7 @@ RSpec.describe Order, type: :model do
     end
 
     it "raise an error if state isn't delivered" do
-      order = FactoryGirl.create :order
+      order = create :order
       expect { order.complete }.to raise_error(/Wrong state/)
     end
   end
@@ -74,7 +74,7 @@ RSpec.describe Order, type: :model do
       end
 
       it "updates total price with 2 different books" do
-        book2 = FactoryGirl.create :book
+        book2 = create :book
         subject.add_book book
         subject.add_book book2
         expect(subject.total_price).to eq book.price + book2.price
@@ -88,18 +88,18 @@ RSpec.describe Order, type: :model do
     end
 
     it "returns 1 if one order item with quantity eq to 1" do
-      subject.order_items << FactoryGirl.create(:order_item, quantity: 1)
+      subject.order_items << create(:order_item, quantity: 1)
       expect(subject.books_count).to eq 1
     end
 
     it "returns 2 if one order item with quantity eq to 2" do
-      subject.order_items << FactoryGirl.create(:order_item, quantity: 2)
+      subject.order_items << create(:order_item, quantity: 2)
       expect(subject.books_count).to eq 2
     end
 
     it "returns 8 if one order item with quantity eq to 3 and second eq to 5" do
-      subject.order_items << FactoryGirl.create(:order_item, quantity: 3)
-      subject.order_items << FactoryGirl.create(:order_item, quantity: 5)
+      subject.order_items << create(:order_item, quantity: 3)
+      subject.order_items << create(:order_item, quantity: 5)
       expect(subject.books_count).to eq 8
     end
   end
@@ -111,17 +111,17 @@ RSpec.describe Order, type: :model do
     end
 
     it "returns false when has some order items" do
-      subject.add_book FactoryGirl.create(:book)
+      subject.add_book create(:book)
       expect(subject).not_to be_empty
     end
   end
 
   describe "#clear" do
     before do
-      book = FactoryGirl.create :book
-      delivery_service = FactoryGirl.create :delivery_service
-      billing_address = FactoryGirl.create :address
-      shipping_address = FactoryGirl.create :address
+      book = create :book
+      delivery_service = create :delivery_service
+      billing_address = create :address
+      shipping_address = create :address
 
       subject.add_book book
       subject.delivery_service = delivery_service

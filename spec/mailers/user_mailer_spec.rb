@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:user) { FactoryGirl.create :user }
-  let(:order) { FactoryGirl.create :order, user: user }
+  let(:user) { create :user }
+  let(:order) { create :order, user: user }
   let(:mail) { UserMailer.delivered_email(user, order) }
 
   it 'renders the subject' do

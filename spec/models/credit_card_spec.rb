@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
-  subject { FactoryGirl.create :credit_card }
+  subject { create :credit_card }
 
   it { expect(subject).to have_many :orders }
 

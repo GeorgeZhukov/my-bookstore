@@ -4,13 +4,13 @@ require "cancan/matchers"
 describe User do
   describe "abilities" do
     context "admin" do
-      subject { Ability.new(FactoryGirl.create(:admin)) }
+      subject { Ability.new(create(:admin)) }
 
       it { expect(subject).to be_able_to :manage, :all }
     end
 
     context "user" do
-      let(:user) { FactoryGirl.create(:user) }
+      let(:user) { create(:user) }
       subject { Ability.new(user) }
 
       context "book" do
@@ -96,7 +96,7 @@ describe User do
     end
 
     context "guest" do
-      subject { Ability.new(FactoryGirl.create(:user, guest: true)) }
+      subject { Ability.new(create(:user, guest: true)) }
 
       context "book" do
         it { expect(subject).to be_able_to :read, Book.new }

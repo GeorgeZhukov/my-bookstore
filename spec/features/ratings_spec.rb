@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Ratings", type: :feature do
-  let(:book) {  FactoryGirl.create :book }
+  let(:book) {  create :book }
 
   scenario "A user can see book approved ratings" do
     # Init ratings
     ratings = []
-    5.times { ratings << FactoryGirl.create(:rating, state: "approved", book: book) }
+    5.times { ratings << create(:rating, state: "approved", book: book) }
 
     visit book_path(book)
     ratings.each {|rating| expect(page).to have_content rating.review }
@@ -15,14 +15,14 @@ RSpec.feature "Ratings", type: :feature do
   scenario "A user can't see book not approved ratings" do
     # Init ratings
     ratings = []
-    5.times { ratings << FactoryGirl.create(:rating, book: book) }
+    5.times { ratings << create(:rating, book: book) }
 
     visit book_path(book)
     ratings.each {|rating| expect(page).not_to have_content rating.review }
   end
 
   scenario "A user can add a new rating" do
-    user = FactoryGirl.create :admin
+    user = create :admin
     login_as(user, scope: :user)
 
     visit book_path(book)

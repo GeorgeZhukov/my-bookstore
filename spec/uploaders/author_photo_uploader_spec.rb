@@ -3,7 +3,7 @@ require 'carrierwave/test/matchers'
 
 describe AuthorPhotoUploader do
   include CarrierWave::Test::Matchers
-  let(:author) { FactoryGirl.create :author }
+  let(:author) { create :author }
 
   before do
     @uploader = AuthorPhotoUploader.new(author, :photo)

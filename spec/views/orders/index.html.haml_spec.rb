@@ -4,8 +4,8 @@ RSpec.describe "orders/index.html.haml", type: :view do
 
   xit "renders the correct partial" do
     orders = []
-    5.times { orders << FactoryGirl.create(:order, state: "in_queue") }
-    user = FactoryGirl.create :user
+    5.times { orders << create(:order, state: "in_queue") }
+    user = create :user
     allow(view).to receive(:current_or_guest_user).and_return(user)
     assign(:orders, Order.all)
     render

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "WishLists", type: :feature do
-  let(:book) { FactoryGirl.create :book }
+  let(:book) { create :book }
 
   scenario "A guest will be redirected to login page if will try add book to wish list" do
     visit book_path(book)
@@ -11,7 +11,7 @@ RSpec.feature "WishLists", type: :feature do
 
   context "authorized user" do
     before do
-      @user = FactoryGirl.create :user
+      @user = create :user
       login_as(@user, scope: :user)
 
       # add book to wish list
@@ -20,14 +20,14 @@ RSpec.feature "WishLists", type: :feature do
     end
 
     scenario "A user should see 'No books' when wish list is empty" do
-      user = FactoryGirl.create :user
+      user = create :user
       login_as(user, scope: :user)
       visit wish_list_books_path
       expect(page).to have_content I18n.t("wish_list_books.index.no_books")
     end
 
     scenario "A user can add book to wish list" do
-      book2 = FactoryGirl.create :book
+      book2 = create :book
       visit book_path(book2)
       click_link I18n.t("books.details.add_to_wish_list")
       expect(page).to have_content (I18n.t"wish_list_books.create.successfully_added")

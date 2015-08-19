@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Authors", type: :feature do
-  subject { FactoryGirl.create(:author) }
+  subject { create(:author) }
 
   scenario "A user can see authors list" do
     authors = []
-    5.times { authors << FactoryGirl.create(:author) }
+    5.times { authors << create(:author) }
 
     visit authors_path
     authors.each { |author| expect(page).to have_content author.first_name }
@@ -20,7 +20,7 @@ RSpec.feature "Authors", type: :feature do
 
   scenario "A user can see author books" do
     books = []
-    4.times { books << FactoryGirl.create(:book) }
+    4.times { books << create(:book) }
     subject.books = books
     subject.save
     visit author_path(subject)

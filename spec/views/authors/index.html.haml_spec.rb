@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "authors/index.html.haml", type: :view do
   before do
     @authors = []
-    5.times { @authors << FactoryGirl.create(:author) }
+    5.times { @authors << create(:author) }
     assign(:authors, Author.all.page(1))
   end
 

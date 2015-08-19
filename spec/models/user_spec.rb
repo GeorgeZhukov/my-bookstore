@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { FactoryGirl.create :user }
+  subject { create :user }
 
 
   it{ expect(subject).to have_many :orders }
@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
 
     it "returns the order which has state :in_progress" do
       Order.destroy_all
-      order = FactoryGirl.create :order, user: subject
+      order = create :order, user: subject
       expect(subject.cart).to eq order
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
     end
 
     it "returns 'Guest' if user is a guest" do
-      guest = FactoryGirl.create :user, guest: true
+      guest = create :user, guest: true
       expect(guest.to_s).to eq "Guest"
 
     end
@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
   end
 
   describe ".from_omniauth" do
-    let(:user) { FactoryGirl.create :facebook_user }
+    let(:user) { create :facebook_user }
 
     it "returns the user with current credentials" do
       auth = double("auth")
@@ -67,7 +67,7 @@ RSpec.describe User, type: :model do
     end
 
     it "returns creates a new user" do
-      user = FactoryGirl.build :facebook_user
+      user = build :facebook_user
       auth = double("auth")
       allow(auth).to receive(:provider).and_return(user.provider)
       allow(auth).to receive(:uid).and_return(user.uid)

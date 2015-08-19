@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe WishListBooksController, type: :controller do
   login_user
-  let(:book) { FactoryGirl.create :book }
+  let(:book) { create :book }
 
   describe "GET index" do
     it "assigns @books" do

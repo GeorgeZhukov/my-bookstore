@@ -3,7 +3,7 @@ require 'carrierwave/test/matchers'
 
 describe BookCoverUploader do
   include CarrierWave::Test::Matchers
-  let(:book) { FactoryGirl.create :book }
+  let(:book) { create :book }
 
   before do
     @uploader = BookCoverUploader.new(book, :cover)

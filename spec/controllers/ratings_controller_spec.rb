@@ -5,7 +5,7 @@ RSpec.describe RatingsController, type: :controller do
   #
   # describe "GET index" do
   #   it "assigns @books" do
-  #     book = FactoryGirl.create :book
+  #     book = create :book
   #     @user.get_wish_list.books << book
   #     get :index
   #     expect(assigns(:books)).to eq [book]

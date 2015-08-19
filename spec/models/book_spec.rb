@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  subject { FactoryGirl.create :book }
+  subject { create :book }
 
   it { expect(subject).to belong_to :author }
   it { expect(subject).to belong_to :category }
@@ -19,8 +19,8 @@ RSpec.describe Book, type: :model do
   describe "default scope" do
     it "returns books in descending order" do
       Book.destroy_all
-      book1 = FactoryGirl.create :book
-      book2 = FactoryGirl.create :book
+      book1 = create :book
+      book2 = create :book
       expect(Book.all).to match_array [book2, book1]
     end
   end
@@ -31,24 +31,24 @@ RSpec.describe Book, type: :model do
     end
 
     it "returns 5 if one rating with number eq to 5" do
-      rating = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      rating = create :rating, book: subject, number: 5, state: "approved"
       expect(subject.avg_rating).to eq 5
     end
 
     it "returns 5 if two ratings with numbers eq to 5" do
-      rating1 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
-      rating2 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      rating1 = create :rating, book: subject, number: 5, state: "approved"
+      rating2 = create :rating, book: subject, number: 5, state: "approved"
       expect(subject.avg_rating).to eq 5
     end
 
     it "returns 4 if two ratings with number 3 and 5" do
-      rating1 = FactoryGirl.create :rating, book: subject, number: 3, state: "approved"
-      rating2 = FactoryGirl.create :rating, book: subject, number: 5, state: "approved"
+      rating1 = create :rating, book: subject, number: 3, state: "approved"
+      rating2 = create :rating, book: subject, number: 5, state: "approved"
       expect(subject.avg_rating).to eq 4
     end
 
     it "returns 0 if one rating with number eq to 5 but state is pending" do
-      rating1 = FactoryGirl.create :rating, book: subject, number: 5
+      rating1 = create :rating, book: subject, number: 5
       expect(subject.avg_rating).to be_zero
     end
   end
@@ -83,7 +83,7 @@ RSpec.describe Book, type: :model do
 
   describe "#best_sellers" do
     before do
-      10.times { FactoryGirl.create :book }
+      10.times { create :book }
     end
 
     it "returns empty when no order items" do
@@ -91,20 +91,20 @@ RSpec.describe Book, type: :model do
     end
 
     it "returns correct book when one order item exists" do
-      item = FactoryGirl.create :order_item
+      item = create :order_item
       expect(Book.best_sellers).to match_array(item.book)
     end
 
     it "returns two books" do
-      item1 = FactoryGirl.create :order_item
-      item2 = FactoryGirl.create :order_item
+      item1 = create :order_item
+      item2 = create :order_item
       expect(Book.best_sellers).to match_array([item1.book, item2.book])
     end
 
     it "returns books in correct order dependent of quantity in order items" do
-      item1 = FactoryGirl.create :order_item, quantity: 3
-      item2 = FactoryGirl.create :order_item, quantity: 5
-      item3 = FactoryGirl.create :order_item, quantity: 2
+      item1 = create :order_item, quantity: 3
+      item2 = create :order_item, quantity: 5
+      item3 = create :order_item, quantity: 2
       expect(Book.best_sellers).to eq [item2.book, item1.book, item3.book]
     end
   end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
 
-  let(:book) { FactoryGirl.create :book }
+  let(:book) { create :book }
 
   describe "GET index" do
     it "assigns @books" do
@@ -17,8 +17,8 @@ RSpec.describe BooksController, type: :controller do
 
     context "search" do
       it "assigns @books associated with search keywords" do
-        book1 = FactoryGirl.create :book
-        book2 = FactoryGirl.create :book
+        book1 = create :book
+        book2 = create :book
 
         get :index, search: book2.title
         expect(assigns(:books)).to match_array [book2]

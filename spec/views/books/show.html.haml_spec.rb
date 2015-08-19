@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "books/show.html.haml", type: :view do
-  let(:book) { FactoryGirl.create :book }
-  let(:rating) { FactoryGirl.create(:rating) }
+  let(:book) { create :book }
+  let(:rating) { create(:rating) }
 
   before do
     assign(:book, book)

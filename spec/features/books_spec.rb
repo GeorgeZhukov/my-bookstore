@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Books", type: :feature do
-  let(:book) { FactoryGirl.create :book }
+  let(:book) { create :book }
 
   scenario "A user see best sellers on home page" do
     # Init best sellers
     items = []
-    5.times { items << FactoryGirl.create(:order_item) }
+    5.times { items << create(:order_item) }
 
     visit root_path
     items.each do |item|
@@ -16,7 +16,7 @@ RSpec.feature "Books", type: :feature do
 
   scenario "A user can see list of books" do
     books = []
-    5.times { books << FactoryGirl.create(:book) }
+    5.times { books << create(:book) }
     visit books_path
     books.each{ |book| expect(page).to have_content book.title }
   end

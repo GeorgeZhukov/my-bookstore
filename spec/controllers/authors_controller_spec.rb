@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AuthorsController, type: :controller do
-  let(:author) { FactoryGirl.create :author }
+  let(:author) { create :author }
 
   describe "GET index" do
     it "assigns @authors" do

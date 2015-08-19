@@ -13,7 +13,7 @@ RSpec.describe Rating, type: :model do
 
   describe ".default_scope" do
     it "returns in descending order" do
-      3.times { FactoryGirl.create :rating }
+      3.times { create :rating }
       expect(Rating.all).to eq Rating.all.order(created_at: :desc)
     end
   end

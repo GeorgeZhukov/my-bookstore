@@ -5,7 +5,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  let(:user) { FactoryGirl.create :facebook_user }
+  let(:user) { create :facebook_user }
 
   it "calls User.from_omniauth" do
     expect(User).to receive(:from_omniauth).and_return(user)
