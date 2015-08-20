@@ -76,5 +76,5 @@ class User < ActiveRecord::Base
   end
 
   alias_method :name, :to_s
-  
+
 end
