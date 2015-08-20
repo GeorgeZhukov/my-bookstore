@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if current_user
       if session[:guest_user_id] && session[:guest_user_id] != current_user.id
         guest = User.find session[:guest_user_id]
-        guest.move_orders_to current_user
+        guest.reassign_date_to current_user
         guest.destroy
         session[:guest_user_id] = nil
       end

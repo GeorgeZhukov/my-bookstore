@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject { create :user }
 
-
   it{ expect(subject).to have_many :orders }
   it{ expect(subject).to have_many :ratings }
   it{ expect(subject).to have_one :wish_list }
   it{ expect(subject).to belong_to :billing_address }
   it{ expect(subject).to belong_to :shipping_address }
+  it{ should have_many :addresses }
 
   context "validation" do
     it{ expect(subject).to validate_presence_of :first_name }
@@ -27,6 +27,10 @@ RSpec.describe User, type: :model do
       order = create :order, user: subject
       expect(subject.cart).to eq order
     end
+  end
+
+  describe "#move_addresses_to" do
+    it "changes addresses user_id"
   end
 
   describe "#move_orders_to" do
@@ -86,18 +90,17 @@ RSpec.describe User, type: :model do
     end
 
     it "returns creates a new user" do
-      user = build :facebook_user
-      auth = double("auth")
-      allow(auth).to receive(:provider).and_return(user.provider)
-      allow(auth).to receive(:uid).and_return(user.uid)
-
-      info = double("info")
-      allow(info).to receive(:email).and_return(user.email)
-      allow(info).to receive(:first_name).and_return(user.first_name)
-      allow(info).to receive(:last_name).and_return(user.last_name)
-      allow(info).to receive(:image).and_return(user.avatar)
-
-      allow(auth).to receive(:info).and_return(info)
+      user = attributes_for :facebook_user
+      auth = double("auth",
+                    provider: user[:provider],
+                    uid: user[:uid],
+                    info: double("info",
+                                 email: user[:email],
+                                 first_name: user[:first_name],
+                                 last_name: user[:last_name],
+                                 image: user[:avatar]
+                    )
+      )
 
       expect { User.from_omniauth(auth) }.to change { User.count }.by(1)
     end

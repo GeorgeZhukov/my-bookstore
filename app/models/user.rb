@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   has_many :orders
   has_many :ratings
+  has_many :addresses
   has_one :wish_list
   belongs_to :billing_address, class_name: "Address"
   belongs_to :shipping_address, class_name: "Address"
@@ -55,6 +56,11 @@ class User < ActiveRecord::Base
   #   self.reassign_data_from_guest
   # end
 
+  def reassign_date_to(user)
+    move_orders_to user
+    move_addresses_to user
+  end
+
   def move_orders_to(user)
     # Move current cart
     user.cart.merge(cart)
@@ -64,7 +70,11 @@ class User < ActiveRecord::Base
     o.update_all(user_id: user.id) if o.exists?
   end
 
+  def move_addresses_to(user)
+    a = user.addresses
+    a.update_all(user_id: user.id) if a.exists?
+  end
+
   alias_method :name, :to_s
-
-
+  
 end
