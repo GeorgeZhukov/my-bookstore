@@ -179,6 +179,7 @@ en:
       order_number: "Order %{number}"
 
     index:
+      no_orders: "No orders"
       in_progress: "In progress"
       waiting_for_processing: "Waiting for processing"
       in_delivery: "In delivery"

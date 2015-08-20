@@ -4,7 +4,6 @@
   add_breadcrumb (I18n.t"orders.orders"), :orders_path
 
   def index
-
   end
 
   def show
