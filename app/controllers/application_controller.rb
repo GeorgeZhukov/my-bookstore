@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     if current_user
       if session[:guest_user_id] && session[:guest_user_id] != current_user.id
         current_user.reassign_data_from_guest(session[:guest_user_id])
+        guest = User.find(session[:guest_user_id])
+        guest.destroy
         session[:guest_user_id] = nil
       end
       current_user

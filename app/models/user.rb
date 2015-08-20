@@ -62,9 +62,9 @@ class User < ActiveRecord::Base
     guest_cart = guest_user.cart
     user_cart = self.cart
 
-    if guest_cart.order_items.exists?
+    unless guest_cart.empty?
 
-      if user_cart.order_items.exists?
+      unless user_cart.empty?
 
         guest_cart_book_ids = guest_cart.order_items.pluck(:book_id)
         user_cart_book_ids = user_cart.order_items.pluck(:book_id)
@@ -84,6 +84,12 @@ class User < ActiveRecord::Base
 
       # Refresh total price
       user_cart.calculate_total_price
+    end
+
+    # Move other orders
+    orders = guest_user.orders.where.not(state: "in_progress")
+    if orders.exists?
+      orders.update_all(user_id: id)
     end
 
     # todo: destroy guest user
