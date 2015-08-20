@@ -50,23 +50,8 @@ RSpec.describe CartController, type: :controller do
   describe "PUT update" do
     context "address" do
       it "redirects to delivery page" do
-        shipping_address = attributes_for(:address)
-        put :update, id: :address,
-            shipping_address: {
-              address: shipping_address[:address],
-              phone: shipping_address[:phone],
-              city: shipping_address[:city],
-              zip_code: shipping_address[:zip_code],
-              country: shipping_address[:country],
-            },
-            billing_address: {
-              address: shipping_address[:address],
-              phone: shipping_address[:phone],
-              city: shipping_address[:city],
-              zip_code: shipping_address[:zip_code],
-              country: shipping_address[:country],
-            },
-            use_billing_address: "yes"
+        address = attributes_for(:address)
+        put :update, id: :address, shipping_address: address, billing_address: address, use_billing_address: "yes"
         expect(response).to redirect_to cart_path(:delivery)
       end
     end
@@ -83,14 +68,7 @@ RSpec.describe CartController, type: :controller do
     context "payment" do
       let(:credit_card) { attributes_for :credit_card }
       it "redirects to confirm page" do
-        put :update, id: :payment, credit_card: {
-                number: credit_card[:number],
-                CVV: credit_card[:CVV],
-                expiration_year: credit_card[:expiration_year],
-                expiration_month: credit_card[:expiration_month],
-                first_name: credit_card[:first_name],
-                last_name: credit_card[:last_name]
-                   }
+        put :update, id: :payment, credit_card: credit_card
         expect(response).to redirect_to cart_path(:confirm)
       end
     end
