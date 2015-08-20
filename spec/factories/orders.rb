@@ -6,6 +6,8 @@ FactoryGirl.define do
     credit_card
     delivery_service
     user
+    association :shipping_address, factory: :address
+    association :billing_address, factory: :address
   end
 
 end

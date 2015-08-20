@@ -55,46 +55,16 @@ class User < ActiveRecord::Base
   #   self.reassign_data_from_guest
   # end
 
-  def reassign_data_from_guest(guest_id)
-    # todo: need to refactor
-    guest_user = User.find(guest_id)
-
-    guest_cart = guest_user.cart
-    user_cart = self.cart
-
-    unless guest_cart.empty?
-
-      unless user_cart.empty?
-
-        guest_cart_book_ids = guest_cart.order_items.pluck(:book_id)
-        user_cart_book_ids = user_cart.order_items.pluck(:book_id)
-        same_books_ids = guest_cart_book_ids & user_cart_book_ids
-
-        if same_books_ids.empty?
-          guest_cart.order_items.update_all(order_id: user_cart.id)
-        else
-          guest_cart.order_items.each do |order_item|
-            user_cart.add_book(order_item.book, order_item.quantity)
-          end
-        end
-
-      else
-        guest_cart.order_items.update_all(order_id: user_cart.id)
-      end
-
-      # Refresh total price
-      user_cart.calculate_total_price
-    end
+  def move_orders_to(user)
+    # Move current cart
+    user.cart.merge(cart)
 
     # Move other orders
-    orders = guest_user.orders.where.not(state: "in_progress")
-    if orders.exists?
-      orders.update_all(user_id: id)
-    end
-
-    # todo: destroy guest user
+    o = orders.where.not(state: "in_progress")
+    o.update_all(user_id: user.id) if o.exists?
   end
 
-
   alias_method :name, :to_s
+
+
 end

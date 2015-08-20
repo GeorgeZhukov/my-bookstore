@@ -100,6 +100,23 @@ class Order < ActiveRecord::Base
     order_items.map(&:quantity).inject(&:+) || 0
   end
 
+  def merge(order)
+    order_book_ids = order.order_items.pluck(:book_id)
+    book_ids = order_items.pluck(:book_id)
+    same_books_ids = order_book_ids & book_ids
+
+    if same_books_ids.empty?
+      order.move_items_to(self)
+    else
+      order.order_items.each {|item| add_book(item.book, item.quantity) } # Todo: maybe destroy items after reassign?
+    end
+  end
+
+  def move_items_to(order)
+    order_items.update_all(order_id: order.id)
+    calculate_total_price && order.calculate_total_price
+  end
+
   def restore_books
     order_items.map(&:restore_books)
   end
@@ -122,6 +139,7 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_total_price
+    reload
     subtotal = calculate_books_price
     shipping = delivery_service ? delivery_service.price : 0
     self.total_price = subtotal + shipping

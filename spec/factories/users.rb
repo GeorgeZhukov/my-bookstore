@@ -5,6 +5,7 @@ FactoryGirl.define do
     last_name { Faker::Name.last_name }
     password "password"
 
+
     factory :admin do
       is_admin true
     end
@@ -12,6 +13,11 @@ FactoryGirl.define do
     factory :facebook_user do
       provider "facebook"
       uid { Faker::Number.number(15) }
+    end
+
+    factory :user_with_addresses do
+      association :shipping_address, factory: :address
+      association :billing_address, factory: :address
     end
   end
 

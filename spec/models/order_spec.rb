@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  subject { create :order }
+  subject { create :order, delivery_service: nil }
   let(:book) { create :book }
 
   it { expect(subject).to belong_to :billing_address }
@@ -18,6 +18,49 @@ RSpec.describe Order, type: :model do
 
   it "init total_price" do
     expect(subject.total_price).not_to be_nil
+  end
+
+  describe "#merge" do
+    let(:order1) { create :order }
+    let(:order2) { create :order }
+    let(:book1) { create :book}
+    let(:book2) { create :book }
+
+    it "calls #move_items_to if no same books" do
+      order1.add_book book1
+      order2.add_book book2
+      expect(order1).to receive(:move_items_to).once
+      order2.merge(order1)
+    end
+
+    it "calls #add_book for every item if there are same books" do
+      order1.add_book book1
+      order2.add_book book1
+      expect(order2).to receive(:add_book).with(book1, 1).once
+      order2.merge(order1)
+    end
+  end
+
+  describe "#move_items_to" do
+    let(:another_order) { create :order }
+    it "moves order item from one order to another" do
+      subject.add_book book
+      subject.move_items_to another_order
+      expect(subject).to be_empty
+      expect(another_order).not_to be_empty
+    end
+
+    it "moves few order items from one order to another" do
+      5.times { subject.add_book create(:book) }
+      subject.move_items_to another_order
+      expect(subject).to be_empty
+      expect(another_order.order_items.count).to eq 5
+    end
+
+    it "updates total price" do
+      subject.add_book book
+      expect { subject.move_items_to another_order }.to change{another_order.total_price}.by(book.price)
+    end
   end
 
   describe "#finish" do
@@ -63,17 +106,17 @@ RSpec.describe Order, type: :model do
         subject.clear
       end
 
-      it "updates total price to book price" do
+      it "updates to book price" do
         subject.add_book book
         expect(subject.total_price).to eq book.price
       end
 
-      it "updates total price to 2x book price" do
+      it "updates to 2x book price" do
         subject.add_book(book, 2)
         expect(subject.total_price).to eq book.price * 2
       end
 
-      it "updates total price with 2 different books" do
+      it "updates with 2 different books" do
         book2 = create :book
         subject.add_book book
         subject.add_book book2

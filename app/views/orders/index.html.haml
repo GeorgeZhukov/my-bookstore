@@ -1,7 +1,7 @@
 - unless @orders.exists?
   %p.lead= t".no_orders"
 - else
-  - if @orders.in_progress.exists?
+  - if @orders.in_progress.exists? && !@orders.in_progress.first.empty?
     %h2= t".in_progress"
     = render @orders.in_progress.first
 

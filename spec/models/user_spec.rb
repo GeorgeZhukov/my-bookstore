@@ -29,6 +29,25 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#move_orders_to" do
+    let(:book) { create :book }
+    let(:user2) { create :user }
+
+    it "move shopping cart items from user1 to user2" do
+      subject.cart.add_book book
+      expect { subject.move_orders_to user2 }.to change{ user2.cart.empty? }.from(true).to(false)
+    end
+
+    it "changes user_id for other orders" do
+      subject.cart.add_book book
+      order = subject.cart
+      order.checkout!
+      order.confirm!
+      order.finish!
+      expect { subject.move_orders_to user2 }.to change{ user2.orders.where.not(state: :in_progress).count }.by(1)
+    end
+  end
+
   describe "#to_s" do
     it "returns first_name + last_name" do
       expect(subject.to_s).to eq "#{subject.first_name} #{subject.last_name}"
