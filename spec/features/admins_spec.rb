@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Admins", type: :feature do
-  before do
+  background do
     user = create :admin
     login_as(user, scope: :user)
   end
@@ -14,8 +14,8 @@ RSpec.feature "Admins", type: :feature do
   end
 
   context "ratings" do
-    let!(:book) { create :book }
-    let!(:rating) { create :rating, book: book }
+    given!(:book) { create :book }
+    given!(:rating) { create :rating, book: book }
 
     scenario "An admin can approve pending ratings" do
       visit rails_admin.index_path("Rating")
@@ -35,7 +35,7 @@ RSpec.feature "Admins", type: :feature do
   end
 
   context "authors" do
-    let(:author) { create :author }
+    given(:author) { create :author }
 
     scenario "An admin can create an author" do
       visit rails_admin.index_path("Author")

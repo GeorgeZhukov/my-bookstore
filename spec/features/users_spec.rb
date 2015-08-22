@@ -5,12 +5,12 @@ RSpec.feature "Users", type: :feature do
   include CartFeatureHelper
 
   context "authorized" do
-    before do
+    background do
       @user = create :user
       login_as(@user, scope: :user)
     end
 
-    let(:address) { attributes_for :address }
+    given(:address) { attributes_for :address }
 
     scenario "A user can edit billing address" do
       visit edit_user_registration_path
@@ -39,7 +39,7 @@ RSpec.feature "Users", type: :feature do
     end
 
     context "saved addresses" do
-      let(:address) { create :address }
+      given(:address) { create :address }
       scenario "A user should see saved shipping address" do
         @user.shipping_address = address
         visit edit_user_registration_path

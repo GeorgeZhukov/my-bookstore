@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "WishLists", type: :feature do
-  let(:book) { create :book }
+  given(:book) { create :book }
 
   scenario "A guest will be redirected to login page if will try add book to wish list" do
     visit book_path(book)
@@ -10,7 +10,7 @@ RSpec.feature "WishLists", type: :feature do
   end
 
   context "authorized user" do
-    before do
+    background do
       @user = create :user
       login_as(@user, scope: :user)
 

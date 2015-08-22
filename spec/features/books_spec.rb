@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Books", type: :feature do
-  let(:book) { create :book }
+  given(:book) { create :book }
 
   scenario "A user see best sellers on home page" do
     # Init best sellers

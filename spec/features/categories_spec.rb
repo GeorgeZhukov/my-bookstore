@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Categories", type: :feature do
-  let!(:category) { create :category }
-  let!(:book) { create :book, category: category }
+  given!(:category) { create :category }
+  given!(:book) { create :book, category: category }
 
   scenario "A user can see categories on books page" do
     categories = []

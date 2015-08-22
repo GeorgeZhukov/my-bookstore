@@ -81,7 +81,6 @@ group :development, :test do
   gem 'brakeman', require: false
   gem "better_errors"
   gem "binding_of_caller"
-  gem 'capybara-screenshot'
   gem 'fuubar'
 end
 
@@ -89,6 +88,7 @@ group :test do
   gem "codeclimate-test-reporter"
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'capybara-screenshot'
 end
 
 group :production do

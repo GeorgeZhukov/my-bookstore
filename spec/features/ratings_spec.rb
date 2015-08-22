@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Ratings", type: :feature do
-  let(:book) {  create :book }
+  given(:book) {  create :book }
 
   scenario "A user can see book approved ratings" do
     # Init ratings
