@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-
+  subject { create :address }
   it { expect(subject).to belong_to :user }
 
   context "validation" do
@@ -35,6 +35,18 @@ RSpec.describe Address, type: :model do
     it "returns Ukraine when country is 'ua'" do
       subject.country = "ua"
       expect(subject.country_name).to eq "Ukraine"
+    end
+  end
+
+  describe "#full_address" do
+    it { expect(subject.full_address).to eq "#{subject.address}, #{subject.city}, #{subject.zip_code}, #{subject.country.upcase}" }
+  end
+
+  describe "#coords" do
+    it "calls Geocoder.coordinates with #full_address" do
+      allow(subject).to receive(:full_address).and_return(:full_address)
+      expect(Geocoder).to receive(:coordinates).with(:full_address).once
+      subject.coords
     end
   end
 end

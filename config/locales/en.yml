@@ -179,6 +179,7 @@ en:
       order_number: "Order %{number}"
 
     index:
+      shopping_cart_is_empty: "Your shopping cart is empty"
       no_orders: "No orders"
       in_progress: "In progress"
       waiting_for_processing: "Waiting for processing"

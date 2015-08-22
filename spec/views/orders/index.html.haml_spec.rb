@@ -5,18 +5,18 @@ RSpec.describe "orders/index.html.haml", type: :view do
 
   before do
     allow(view).to receive(:current_user).and_return(user)
-    # view.stub(:current_user).and_return(user)
   end
 
-  xit "renders the orders collection partial" do
+  it "renders the orders collection partial" do
     5.times { create(:order, state: "in_queue") }
     assign(:orders, Order.all)
     render
     expect(view).to render_template(partial: "orders/_orders", count: 1)
   end
 
-  xit "renders the order partial" do
-    create(:order, state: "in_progress")
+  it "renders the order partial" do
+    order = create(:order, state: "in_progress", user: user)
+    order.add_book create(:book)
     assign(:orders, Order.all)
     render
     expect(view).to render_template(partial: "orders/_order", count: 1)
@@ -26,5 +26,12 @@ RSpec.describe "orders/index.html.haml", type: :view do
     assign(:orders, Order.all)
     render
     expect(rendered).to match I18n.t("orders.index.no_orders")
+  end
+
+  it "renders 'cart is empty' when order in progress is empty " do
+    create :order, state: :in_progress, user: user
+    assign(:orders, Order.all)
+    render
+    expect(rendered).to match I18n.t("orders.index.shopping_cart_is_empty")
   end
 end

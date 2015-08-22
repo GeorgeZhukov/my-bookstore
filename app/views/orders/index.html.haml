@@ -1,7 +1,9 @@
-- unless @orders.exists?
+- if !@orders.exists?
   %p.lead= t".no_orders"
 - else
-  - if @orders.in_progress.exists? && !@orders.in_progress.first.empty?
+  - if !@orders.in_progress.exists? || @orders.in_progress.first.empty?
+    %p.lead= t".shopping_cart_is_empty"
+  - else
     %h2= t".in_progress"
     = render @orders.in_progress.first
 
