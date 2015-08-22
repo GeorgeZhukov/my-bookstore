@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject { create :user }
 
-  it{ expect(subject).to have_many :orders }
-  it{ expect(subject).to have_many :ratings }
-  it{ expect(subject).to have_one :wish_list }
-  it{ expect(subject).to belong_to :billing_address }
-  it{ expect(subject).to belong_to :shipping_address }
+  it{ should have_many :orders }
+  it{ should have_many :ratings }
+  it{ should have_one :wish_list }
+  it{ should belong_to :billing_address }
+  it{ should belong_to :shipping_address }
   it{ should have_many :addresses }
 
   context "validation" do
-    it{ expect(subject).to validate_presence_of :first_name }
-    it{ expect(subject).to validate_presence_of :last_name }
+    it{ should validate_presence_of :first_name }
+    it{ should validate_presence_of :last_name }
   end
 
   describe "#cart" do

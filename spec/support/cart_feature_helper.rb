@@ -45,4 +45,15 @@ module CartFeatureHelper
       click_button I18n.t("cart.payment.save_and_continue")
     end
   end
+
+  def add_book_to_cart
+    @book = create :book
+    visit book_path(@book)
+    click_button I18n.t("books.details.add_to_cart")
+  end
+
+  def login
+    @user = create :user_with_addresses
+    login_as(@user, scope: :user)
+  end
 end

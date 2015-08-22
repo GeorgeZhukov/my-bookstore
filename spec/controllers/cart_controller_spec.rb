@@ -67,6 +67,7 @@ RSpec.describe CartController, type: :controller do
 
     context "payment" do
       let(:credit_card) { attributes_for :credit_card }
+
       it "redirects to confirm page" do
         put :update, id: :payment, credit_card: credit_card
         expect(response).to redirect_to cart_path(:confirm)

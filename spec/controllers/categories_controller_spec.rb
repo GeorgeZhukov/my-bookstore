@@ -4,25 +4,29 @@ RSpec.describe CategoriesController, type: :controller do
   let(:category) { create :category }
 
   describe "GET index" do
+    before { get :index }
+
     it "assigns @categories" do
-      get :index
       expect(assigns(:categories)).to match_array [category]
     end
 
     it "renders the index template" do
-      get :index
       expect(response).to render_template("index")
     end
   end
 
   describe "GET show" do
+    before { get :show, id: category.id }
+
     it "assigns @category" do
-      get :show, id: category.id
       expect(assigns(:category)).to eq category
     end
 
+    it "assigns @books" do
+      expect(assigns(:books)).to eq category.books.page(1)
+    end
+
     it "renders the show template" do
-      get :show, id: category.id
       expect(response).to render_template("show")
     end
   end

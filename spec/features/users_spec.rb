@@ -6,8 +6,7 @@ RSpec.feature "Users", type: :feature do
 
   context "authorized" do
     background do
-      @user = create :user
-      login_as(@user, scope: :user)
+      login
     end
 
     given(:address) { attributes_for :address }
@@ -66,8 +65,7 @@ RSpec.feature "Users", type: :feature do
     fill_payment
     click_link I18n.t("cart.confirm.place_order")
     guest_order = Order.in_queue.first
-    user = create :user
-    login_as(user, scope: :user)
+    login
     visit orders_path
     expect(page).to have_content guest_order.number
   end
@@ -77,8 +75,7 @@ RSpec.feature "Users", type: :feature do
     book = create :book
     visit book_path(book)
     click_button I18n.t("books.details.add_to_cart")
-    user = create :user
-    login_as(user, scope: :user)
+    login
     visit cart_path(:intro)
     expect(User.count).to eq 1
   end

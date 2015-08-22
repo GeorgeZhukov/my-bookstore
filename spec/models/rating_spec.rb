@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-  it { expect(subject).to belong_to :book }
-  it { expect(subject).to belong_to :user }
+  it { should belong_to :book }
+  it { should belong_to :user }
 
   context "validation" do
-    it { expect(subject).to validate_presence_of :number }
-    it { expect(subject).to validate_presence_of :review }
-    it { expect(subject).to validate_presence_of :book }
-    it { expect(subject).to validate_presence_of :user }
+    it { should validate_presence_of :number }
+    it { should validate_presence_of :review }
+    it { should validate_presence_of :book }
+    it { should validate_presence_of :user }
   end
 
   describe ".default_scope" do

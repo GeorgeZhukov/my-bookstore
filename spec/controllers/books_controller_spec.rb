@@ -32,25 +32,23 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe "GET show" do
+    before { get :show, id: book.id }
+
     it "assigns @book" do
-      get :show, id: book.id
       expect(assigns(:book)).to eq book
     end
 
     it "assigns @new_rating" do
-
-      get :show, id: book.id
       expect(assigns(:new_rating)).not_to be_nil
     end
 
     it "renders the show template" do
-      get :show, id: book.id
       expect(response).to render_template("show")
     end
   end
 
   describe "PUT add_to_cart" do
-    xit "calls #add_book"
+    it "calls #add_book"
 
     it "redirects to shopping cart with notice" do
       put :add_to_cart, id: book.id, add_to_cart: { quantity: 3 }

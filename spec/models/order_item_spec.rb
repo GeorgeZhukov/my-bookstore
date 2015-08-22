@@ -4,13 +4,13 @@ RSpec.describe OrderItem, type: :model do
   let(:book) { create :book }
   subject { create :order_item, book: book }
 
-  it { expect(subject).to belong_to :book }
-  it { expect(subject).to belong_to :order }
+  it { should belong_to :book }
+  it { should belong_to :order }
 
   context "validation" do
-    it { expect(subject).to validate_presence_of :quantity }
-    # it { expect(subject).to validate_presence_of :order }
-    it { expect(subject).to validate_presence_of :book }
+    it { should validate_presence_of :quantity }
+    # it { should validate_presence_of :order }
+    it { should validate_presence_of :book }
   end
 
   describe "#price" do

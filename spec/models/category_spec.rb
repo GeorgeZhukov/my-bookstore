@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
 
-  it { expect(subject).to have_many :books }
+  it { should have_many :books }
 
   context "validation" do
-    it { expect(subject).to validate_presence_of :title }
-    it { expect(subject).to validate_uniqueness_of :title }
+    it { should validate_presence_of :title }
+    it { should validate_uniqueness_of :title }
   end
 
   describe "#to_s" do

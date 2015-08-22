@@ -15,8 +15,9 @@ class Ability
       can :read, Order, user_id: user.id
 
       unless user.guest
+        can [:read, :create], WishList, user_id: user.id
         can :create, Rating, user_id: user.id
-        can :create, WishList, user_id: user.id
+        can :read, Address, user_id: user.id
       end
     end
 

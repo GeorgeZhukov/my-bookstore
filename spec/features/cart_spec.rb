@@ -14,10 +14,7 @@ RSpec.feature "Cart", type: :feature do
   context "with item" do
     before do
       create :delivery_service
-      # Add book
-      book = create :book
-      visit book_path(book)
-      click_button I18n.t("books.details.add_to_cart")
+      add_book_to_cart
     end
 
     scenario "a user can clear the cart" do
@@ -37,7 +34,7 @@ RSpec.feature "Cart", type: :feature do
 
     scenario "a user can remove item from cart" do
       # Get order item
-      cart = User.first.cart
+      cart = User.first.cart # Guest
       order_item = cart.order_items.first
       visit cart_path(:intro)
       page.driver.submit :delete, remove_item_cart_path(:intro, item_id: order_item.id), {}
@@ -50,12 +47,11 @@ RSpec.feature "Cart", type: :feature do
     end
 
     scenario "assigns addresses if needed" do
-      user = create :user
-      login_as(user, scope: :user)
+      login
       fill_address
-      user.reload
-      expect(user.shipping_address).not_to be_nil
-      expect(user.billing_address).not_to be_nil
+      @user.reload
+      expect(@user.shipping_address).not_to be_nil
+      expect(@user.billing_address).not_to be_nil
     end
 
     scenario "a user can use checkbox to use billing address as shipping address" do
@@ -87,17 +83,11 @@ RSpec.feature "Cart", type: :feature do
     end
 
     scenario "when user visit addresses step its init form with user addresses" do
-      user = create :user_with_addresses
-      login_as(user, scope: :user)
-
-      # Add book
-      book = create :book
-      visit book_path(book)
-      click_button I18n.t("books.details.add_to_cart")
-
+      login
+      add_book_to_cart
       visit cart_path(:address)
       # expect(page).to have_content user.shipping_address.address
-      expect(page).to have_content user.billing_address.address
+      expect(page).to have_content @user.billing_address.address
     end
 
     scenario "a user can checkout the order" do
@@ -111,20 +101,18 @@ RSpec.feature "Cart", type: :feature do
     end
 
     scenario "when the guest authorizes its basket preserved" do
-      book = create :book
-      visit book_path(book)
-      click_button I18n.t("books.details.add_to_cart")
+      add_book_to_cart
 
-      user = create :user
+      user = attributes_for :user
       visit new_user_session_path
       within "#new_user" do
-        fill_in "Email", with: user.email
+        fill_in "Email", with: user[:email]
         fill_in "Password", with: "password"
         click_button "Log in"
       end
 
       visit cart_path(:intro)
-      expect(page).to have_content book.title
+      expect(page).to have_content @book.title
     end
   end
 

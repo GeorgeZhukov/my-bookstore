@@ -4,13 +4,13 @@ RSpec.describe Order, type: :model do
   subject { create :order, delivery_service: nil }
   let(:book) { create :book }
 
-  it { expect(subject).to belong_to :billing_address }
-  it { expect(subject).to belong_to :shipping_address }
-  it { expect(subject).to belong_to :credit_card }
-  it { expect(subject).to belong_to :user }
-  it { expect(subject).to belong_to :delivery_service }
-  it { expect(subject).to validate_presence_of :user }
-  it { expect(subject).to have_many :order_items }
+  it { should belong_to :billing_address }
+  it { should belong_to :shipping_address }
+  it { should belong_to :credit_card }
+  it { should belong_to :user }
+  it { should belong_to :delivery_service }
+  it { should validate_presence_of :user }
+  it { should have_many :order_items }
 
   it "generates number" do
     expect(subject.number).not_to be_nil
@@ -46,14 +46,14 @@ RSpec.describe Order, type: :model do
     it "moves order item from one order to another" do
       subject.add_book book
       subject.move_items_to another_order
-      expect(subject).to be_empty
+      should be_empty
       expect(another_order).not_to be_empty
     end
 
     it "moves few order items from one order to another" do
       5.times { subject.add_book create(:book) }
       subject.move_items_to another_order
-      expect(subject).to be_empty
+      should be_empty
       expect(another_order.order_items.count).to eq 5
     end
 
@@ -75,7 +75,7 @@ RSpec.describe Order, type: :model do
     end
 
     it "calls .notify_user" do
-      expect(subject).to receive(:notify_user)
+      should receive(:notify_user)
       subject.complete
     end
 
@@ -150,7 +150,7 @@ RSpec.describe Order, type: :model do
   describe "#empty?" do
 
     it "returns true when no order items" do
-      expect(subject).to be_empty
+      should be_empty
     end
 
     it "returns false when has some order items" do
@@ -174,7 +174,7 @@ RSpec.describe Order, type: :model do
     end
 
     it "removes order items" do
-      expect(subject).to be_empty
+      should be_empty
     end
 
     # it "removes shipping address" do
