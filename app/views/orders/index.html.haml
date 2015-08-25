@@ -1,15 +1,11 @@
 - if !@orders.exists?
   %p.lead= t".no_orders"
 - else
-  - if @orders.in_progress.first == current_user.cart
-    = "TRUE"
-  - else
-    = "FALSE"
   %h2= t".in_progress"
-  - if !@orders.in_progress.exists? || @orders.in_progress.first.empty?
+  - if current_user.cart.empty?
     %p.lead= t".shopping_cart_is_empty"
   - else
-    = render @orders.in_progress.first
+    = render current_user.cart
 
   - if @orders.in_queue.exists?
     %h2= t".waiting_for_processing"
