@@ -57,9 +57,7 @@ class Book < ActiveRecord::Base
     title
   end
 
-  def avg_rating
-    return 0 unless ratings_approved.exists?
-    numbers = ratings_approved.map(&:number)
-    numbers.inject(&:+).to_f / numbers.size
+  def rating
+    ratings_approved.average(:number) || 0
   end
 end

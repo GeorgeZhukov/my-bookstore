@@ -3,9 +3,9 @@
     = image_tag book.cover.url, class: "book-cover"
   .col-md-2
   .col-md-7
-    - if book.avg_rating > 0
+    - if book.rating > 0
       .product-rating
-        .rating-stars{"data-score"=>book.avg_rating/2}
+        .rating-stars{"data-score"=>book.rating/2}
         %small= t".customer_reviews", number: book.ratings_approved.count
     %h2.title= book.title
     %small
