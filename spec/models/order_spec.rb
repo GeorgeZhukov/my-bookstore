@@ -63,28 +63,6 @@ RSpec.describe Order, type: :model do
     end
   end
 
-  describe "#finish" do
-    subject { create :order, state: "delivered"}
-
-    before do
-      allow(subject).to receive(:notify_user).once
-    end
-
-    it "sets completed_date" do
-      expect { subject.complete }.to change { subject.completed_date }
-    end
-
-    it "calls .notify_user" do
-      should receive(:notify_user)
-      subject.complete
-    end
-
-    it "raise an error if state isn't delivered" do
-      order = create :order
-      expect { order.complete }.to raise_error(/Wrong state/)
-    end
-  end
-
   describe "#add_book" do
 
     it "creates order item with given book and sets quantity to one by default" do

@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
   state_machine :state, initial: :in_progress do
     before_transition :in_progress => :in_queue, do: :generate_number
     before_transition any => :in_delivery, do: :take_books
-    after_transition any => :delivered, do: :complete
+    after_transition any => :delivered, do: :notify_user
     after_transition any => :canceled, do: :restore_books
 
     event :checkout do
@@ -127,11 +127,6 @@ class Order < ActiveRecord::Base
     self.total_price = subtotal + shipping
     self.save
     self.total_price
-  end
-
-  def complete
-    raise StandardError.new("Wrong state, should be 'delivered'.") unless delivered?
-    notify_user
   end
 
   def to_s
