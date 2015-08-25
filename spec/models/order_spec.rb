@@ -205,15 +205,18 @@ RSpec.describe Order, type: :model do
   end
 
   describe "#take_books" do
-    xit "calls OrderItem.take_books" do
+    it "decrease books quantity by one when one item in order with quantity eq to 1" do
+      subject.add_book book
       subject.take_books
-      # expect().to
+      expect {book.reload}.to change { book.books_in_stock }.by(-1)
     end
   end
 
   describe "#restore_books" do
-    xit "calls OrderItem.restore_books" do
-
+    it "increase books quantity by one when one item in order with quantity eq to 1" do
+      subject.add_book book
+      subject.restore_books
+      expect {book.reload}.to change { book.books_in_stock }.by(1)
     end
   end
 

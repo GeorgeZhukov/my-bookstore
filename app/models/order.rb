@@ -92,8 +92,12 @@ class Order < ActiveRecord::Base
     calculate_total_price
   end
 
+  # Decrease books quantity when order sent to custom
   def take_books
-    order_items.map(&:take_books)
+    order_items.each do |item|
+      item.book.books_in_stock -= item.quantity
+      item.book.save
+    end
   end
 
   def books_count
@@ -117,8 +121,12 @@ class Order < ActiveRecord::Base
     calculate_total_price && order.calculate_total_price
   end
 
+  # Restore books quantity when order was canceled
   def restore_books
-    order_items.map(&:restore_books)
+    order_items.each do |item|
+      item.book.books_in_stock += item.quantity
+      item.book.save
+    end
   end
 
   def add_book(book, quantity=1)

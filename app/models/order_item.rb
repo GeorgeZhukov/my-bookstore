@@ -25,16 +25,6 @@ class OrderItem < ActiveRecord::Base
     update_price!
   end
 
-  # Decrease books quantity when order sent to custom
-  def take_books
-    book.books_in_stock -= quantity
-  end
-
-  # Restore books quantity when order was canceled
-  def restore_books
-    book.books_in_stock += quantity
-  end
-
   def to_s
     "#{book} x#{quantity}"
   end
