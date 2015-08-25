@@ -16,6 +16,50 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.model 'Rating' do
+    list do
+      field :book
+      field :user
+      field :number
+      field :state, :state
+    end
+    edit do
+      configure :state, :state
+    end
+
+    state({
+            events: {approve: 'btn-success', reject: 'btn-danger'},
+            states: {pending: 'label-info', rejected: 'label-danger', approved: 'label-success'}
+        })
+  end
+
+
+  config.model 'Order' do
+    list do
+      field :user
+      field :total_price
+      field :state, :state
+    end
+
+    edit do
+      configure :state, :state
+      configure :completed_date do
+        read_only true
+      end
+      configure :number do
+        read_only true
+      end
+      configure :total_price do
+        read_only true
+      end
+    end
+
+    state({
+            events: {confirm: 'btn-warning', finish: 'btn-success', cancel: 'btn-danger'},
+            states: {in_queue: 'label-info', in_delivery: 'label-warning', delivered: 'label-success'},
+            disable: [:checkout]
+        })
+  end
 
   config.actions do
     dashboard # mandatory

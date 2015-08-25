@@ -49,32 +49,6 @@ class Order < ActiveRecord::Base
     state :canceled
   end
 
-  rails_admin do
-    list do
-      field :user
-      field :total_price
-      field :state, :state
-    end
-    edit do
-      configure :state, :state
-      configure :completed_date do
-        read_only true
-      end
-      configure :number do
-        read_only true
-      end
-      configure :total_price do
-        read_only true
-      end
-    end
-
-    state({
-              events: {confirm: 'btn-warning', finish: 'btn-success', cancel: 'btn-danger'},
-              states: {in_queue: 'label-info', in_delivery: 'label-warning', delivered: 'label-success'},
-              disable: [:checkout]
-          })
-  end
-
   def generate_number
     unless number
       self.number = "R#{id.to_s.rjust(9, '0')}" # Get order id and fill it to with zeroes
@@ -157,7 +131,6 @@ class Order < ActiveRecord::Base
 
   def complete
     raise StandardError.new("Wrong state, should be 'delivered'.") unless delivered?
-    self.completed_date = DateTime.now
     notify_user
   end
 

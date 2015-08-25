@@ -36,21 +36,4 @@ class Rating < ActiveRecord::Base
     state :rejected
   end
 
-  rails_admin do
-    list do
-      field :book
-      field :user
-      field :number
-      field :state, :state
-    end
-    edit do
-      configure :state, :state
-    end
-
-    state({
-              events: {approve: 'btn-success', reject: 'btn-danger'},
-              states: {pending: 'label-info', rejected: 'label-danger', approved: 'label-success'}
-          })
-  end
-
 end
